@@ -1,0 +1,135 @@
+{
+  "name": "discord_ping",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM users WHERE time > NOW() - interval '1 minute';",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        80,
+        -112
+      ],
+      "id": "bd4718fc-c0f7-4acc-a546-4e7353643b61",
+      "name": "Execute a SQL query",
+      "executeOnce": false,
+      "alwaysOutputData": false,
+      "credentials": {
+        "postgres": {
+          "id": "Wd2oJC26z5xDP5T1",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "=📩 New User Submission\n\nName: {{$json[\"name\"]}}\nEmail: {{$json[\"email\"]}}\nMessage: \n{{$json[\"message\"]}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        352,
+        -112
+      ],
+      "id": "416edef0-1b10-4131-9cc0-10d5aac59696",
+      "name": "Discord",
+      "webhookId": "de5434a6-ee3b-46c9-a181-af4278bbf186",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "B8tgLdgj8QqmG4af",
+          "name": "Discord Webhook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData(\"global\");\n\nlet lastId = staticData.lastRowId ? Number(staticData.lastRowId) : 0;\nconsole.log(\"Last processed ID:\", lastId);\n\nconst newRows = $input.all().filter(item => {\n    const id = item.json.id;\n    return id !== undefined && id !== null && Number(id) > lastId;\n});\n\nconsole.log(`Found ${newRows.length} new rows`);\n\nif (newRows.length === 0) {\n    console.log(\"No new data - stopping workflow\");\n    return [];\n}\n\nconst maxId = Math.max(...newRows.map(item => Number(item.json.id)));\nstaticData.lastRowId = maxId;\nconsole.log(\"Updated last ID to:\", maxId);\n\nreturn newRows;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        -112
+      ],
+      "id": "8394da46-57a4-4602-a9c7-d13e27a11af2",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        -112
+      ],
+      "id": "85760b75-c3f0-4452-aab7-ddb1552b0c5e",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Execute a SQL query": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord": {
+      "main": [
+        []
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "77fe3321-f38e-4386-98fb-fe5cbb7016f0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "05c920c7ab4e75e1177da6454eff72a238aefeadc5dacea9a0c0a55061a37cae"
+  },
+  "id": "Qe1lbcTW637WGMDD",
+  "tags": []
+}

@@ -13,7 +13,6 @@ import {
   SiPostgresql,
   SiMysql,
   SiGithub,
-  SiSwagger,
   SiPolars,
   SiN8N,
   SiApacheairflow,
