@@ -20,7 +20,7 @@ const sections = [
     gradient: "from-violet-500 to-purple-500",
   },
   {
-    title: "Database & API",
+    title: "Database",
     items: database,
     icon: <Database className="w-5 h-5" />,
     gradient: "from-emerald-500 to-teal-500",

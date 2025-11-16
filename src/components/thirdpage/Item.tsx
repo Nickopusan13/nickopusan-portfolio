@@ -20,6 +20,7 @@ import {
   SiFirebase,
   SiSupabase,
   SiGooglebigquery,
+  SiMongodb,
 } from "react-icons/si";
 import { TbBrandReactNative } from "react-icons/tb";
 import { DiGoogleCloudPlatform } from "react-icons/di";
@@ -136,9 +137,9 @@ export const database = [
   },
   {
     logo: (
-      <SiSwagger className="text-5xl text-[#85EA2D] transition-transform duration-300 hover:text-[#72d126] hover:scale-110 hover:drop-shadow-[0_0_8px_#85EA2D]" />
+      <SiMongodb className="text-5xl text-[#47A248] transition-transform duration-300 hover:text-[#399036] hover:scale-110 hover:drop-shadow-[0_0_8px_#47A248]" />
     ),
-    desc: "Swagger – API documentation and design tool",
+    desc: "MongoDB – Popular NoSQL document database",
   },
 ];
 
