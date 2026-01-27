@@ -5,64 +5,6 @@
 @custom-variant dark (&:is(.dark *));
 @tailwind utilities;
 
-.hero-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 900px;
-  height: 900px;
-  background-image: radial-gradient(
-    circle,
-    rgba(29, 78, 216, 0.15),
-    rgba(18, 18, 18, 0) 70%
-  );
-  z-index: 0;
-}
-
-.hero-section::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: #6366f1;
-  border-radius: 50%;
-  filter: blur(150px);
-  z-index: 0;
-  animation: floatOrb 20s infinite linear;
-  bottom: -200px;
-  right: -200px;
-}
-
-@keyframes floatOrb {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(-400px, -300px) rotate(90deg);
-  }
-  50% {
-    transform: translate(-100px, -600px) rotate(180deg);
-  }
-  75% {
-    transform: translate(300px, -400px) rotate(270deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(360deg);
-  }
-}
-
-.hero-section > * {
-  position: relative;
-  z-index: 10;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -184,6 +126,61 @@ body {
   }
 }
 
-h2 {
-  font-size: large;
+.moon-wrapper {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
+
+.moon {
+  width: 160px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffffff,
+    #d9d9d9 60%,
+    #bdbdbd 100%
+  );
+  box-shadow:
+    0 0 40px rgba(255, 255, 255, 0.4),
+    inset -15px -20px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* craters */
+.crater {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #bfbfbf, #9e9e9e);
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0.8;
+}
+
+.c1 {
+  width: 22px;
+  height: 22px;
+  top: 35px;
+  left: 45px;
+}
+.c2 {
+  width: 14px;
+  height: 14px;
+  top: 85px;
+  left: 90px;
+}
+.c3 {
+  width: 30px;
+  height: 30px;
+  top: 90px;
+  left: 40px;
+}
+
+.mask {
+  position: absolute;
+  mask-image: url("../../public/assets/logo/circle.svg");
+  background: black;
+  mask-repeat: no-repeat;
+  mask-size: 300px;
+  color: black;
 }

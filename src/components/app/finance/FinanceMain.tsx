@@ -12,7 +12,7 @@ export default function FinanceMain() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-      className="overflow-auto h-screen scroll-smooth scrollbar-thin scrollbar-track-slate-900 scrollbar-thumb-slate-600 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative"
+      className="overflow-auto h-screen scroll-smooth scrollbar-thin scrollbar-track-slate-900 scrollbar-thumb-slate-600 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 relative"
     >
       <div className="p-3 fixed z-50 sm:z-100">
         <SidebarProvider defaultOpen={false}>
@@ -26,7 +26,7 @@ export default function FinanceMain() {
         <div className="flex items-center h-full w-full flex-col px-5 gap-8 lg:px-70 sm:px-20 relative z-10">
           <div className="relative">
             <motion.div
-              className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"
+              className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-linear-to-r from-transparent via-blue-500 to-transparent opacity-50"
               initial={{ width: 0 }}
               animate={{ width: "8rem" }}
               transition={{ duration: 1, delay: 0.5 }}
@@ -37,7 +37,7 @@ export default function FinanceMain() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
                 Financial Report Generator
               </span>
             </motion.h1>
@@ -104,11 +104,11 @@ export default function FinanceMain() {
             <UploadCsv />
           </motion.div>
           <div className="mt-16 flex items-center justify-center gap-8 opacity-30">
-            <div className="h-px w-20 bg-gradient-to-r from-transparent to-slate-600"></div>
+            <div className="h-px w-20 bg-linear-to-r from-transparent to-slate-600"></div>
             <span className="text-slate-300 text-xs uppercase tracking-widest">
               Demo Version
             </span>
-            <div className="h-px w-20 bg-gradient-to-l from-transparent to-slate-600"></div>
+            <div className="h-px w-20 bg-linear-to-l from-transparent to-slate-600"></div>
           </div>
         </div>
       </div>

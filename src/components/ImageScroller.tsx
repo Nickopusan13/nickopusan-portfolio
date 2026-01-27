@@ -20,7 +20,7 @@ export default function ImageScroller({
   return (
     <div className="w-full flex justify-center items-center">
       <Swiper
-        className="w-full max-w-xl aspect-[16/9] rounded-2xl overflow-hidden cursor-pointer transition-transform duration-500"
+        className="w-full max-w-3xl aspect-video rounded-2xl overflow-hidden transition-transform duration-500"
         loop={images.length > 1}
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000, disableOnInteraction: false }}

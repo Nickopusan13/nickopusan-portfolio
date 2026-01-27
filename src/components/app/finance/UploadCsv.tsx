@@ -149,10 +149,10 @@ export default function UploadCsv() {
   return (
     <>
       <ToasterProvider />
-      <Card className="w-full divide-y divide-white/5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white shadow-2xl border border-slate-700/50 backdrop-blur-xl">
-        <CardHeader className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent px-8 py-6">
+      <Card className="w-full divide-y divide-white/5 rounded-2xl bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-white shadow-2xl border border-slate-700/50 backdrop-blur-xl">
+        <CardHeader className="text-2xl font-bold bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent px-8 py-6">
           <CardTitle className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-to-br from-blue-500 to-violet-500 rounded-xl">
+            <div className="p-2 bg-linear-to-br from-blue-500 to-violet-500 rounded-xl">
               <RiUploadCloud2Line className="text-2xl text-white" />
             </div>
             Upload CSV File
@@ -186,8 +186,8 @@ export default function UploadCsv() {
                   transition={{ repeat: Infinity, duration: 1.5 }}
                   className={`p-6 rounded-2xl ${
                     isDragActive
-                      ? "bg-gradient-to-br from-blue-500 to-violet-500"
-                      : "bg-gradient-to-br from-slate-700 to-slate-800"
+                      ? "bg-linear-to-br from-blue-500 to-violet-500"
+                      : "bg-linear-to-br from-slate-700 to-slate-800"
                   }`}
                 >
                   <RiUploadCloud2Line className="text-5xl text-white" />
@@ -202,7 +202,7 @@ export default function UploadCsv() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.1 }}
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500 to-violet-500"
+                  className="absolute inset-0 bg-linear-to-br from-blue-500 to-violet-500"
                 />
               )}
             </motion.div>
@@ -211,7 +211,7 @@ export default function UploadCsv() {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="relative bg-gradient-to-r from-slate-700 to-slate-800 px-8 py-3 rounded-xl text-white font-medium cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-600/50 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
+              className="relative bg-linear-to-r from-slate-700 to-slate-800 px-8 py-3 rounded-xl text-white font-medium cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-600/50 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
               onClick={handleUpload}
               disabled={!file || loading}
             >
@@ -219,7 +219,7 @@ export default function UploadCsv() {
                 {loading ? "Loading..." : "See Preview"}
               </span>
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-slate-600 to-slate-700 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute inset-0 bg-linear-to-r from-slate-600 to-slate-700 opacity-0 group-hover:opacity-100 transition-opacity"
                 layoutId="button-hover"
               />
             </motion.button>
@@ -230,14 +230,14 @@ export default function UploadCsv() {
                 onClick={() => setOpenCard(true)}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative bg-gradient-to-r from-blue-600 to-violet-600 px-8 py-3 rounded-xl text-white font-medium cursor-pointer shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 overflow-hidden group"
+                className="relative bg-linear-to-r from-blue-600 to-violet-600 px-8 py-3 rounded-xl text-white font-medium cursor-pointer shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 overflow-hidden group"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <FaChartSimple />
                   Analyze & Upload
                 </span>
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-violet-500"
+                  className="absolute inset-0 bg-linear-to-r from-blue-500 to-violet-500"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "0%" }}
                   transition={{ duration: 0.3 }}
@@ -249,7 +249,7 @@ export default function UploadCsv() {
             {preview ? (
               <div className="bg-slate-900/40 backdrop-blur-sm rounded-xl">
                 <Table>
-                  <TableHeader className="bg-gradient-to-r from-slate-800 to-slate-900 sticky top-0">
+                  <TableHeader className="bg-linear-to-r from-slate-800 to-slate-900 sticky top-0">
                     <TableRow className="hover:bg-transparent border-b border-slate-700/50">
                       {preview.columns.map((col, idx) => (
                         <TableHead
@@ -302,7 +302,7 @@ export default function UploadCsv() {
         <AnimatePresence>
           {openCard && (
             <AppDialog open={true} onClose={() => setOpenCard(false)}>
-              <DialogTitle className="text-center text-xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mb-2">
+              <DialogTitle className="text-center text-xl font-bold bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent mb-2">
                 Configure Your Chart
               </DialogTitle>
               <p className="text-center text-slate-400 text-sm mb-8">
@@ -324,7 +324,7 @@ export default function UploadCsv() {
                       value={axis.value}
                       onValueChange={(val) => axis.setValue(val)}
                     >
-                      <SelectTrigger className="w-[220px] bg-slate-900/50 border-slate-700/50 hover:border-slate-600 transition-colors">
+                      <SelectTrigger className="w-55 bg-slate-900/50 border-slate-700/50 hover:border-slate-600 transition-colors">
                         <SelectValue placeholder={axis.placeholder} />
                       </SelectTrigger>
                       <SelectContent
@@ -339,7 +339,7 @@ export default function UploadCsv() {
                             ?.filter(
                               (col) =>
                                 !selectedValues.includes(col) ||
-                                col === axis.value
+                                col === axis.value,
                             )
                             .map((col, idx) => (
                               <SelectItem
@@ -362,7 +362,7 @@ export default function UploadCsv() {
                   disabled={loading}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative py-3 px-8 bg-gradient-to-r from-blue-600 to-violet-600 rounded-xl cursor-pointer shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
+                  className="relative py-3 px-8 bg-linear-to-r from-blue-600 to-violet-600 rounded-xl cursor-pointer shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
                 >
                   {loading ? (
                     <div className="relative z-10 flex items-center justify-center gap-2">
@@ -376,7 +376,7 @@ export default function UploadCsv() {
                     </div>
                   )}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-blue-500 to-violet-500"
+                    className="absolute inset-0 bg-linear-to-r from-blue-500 to-violet-500"
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "0%" }}
                     transition={{ duration: 0.3 }}

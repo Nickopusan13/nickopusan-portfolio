@@ -18,7 +18,7 @@ export default function DynamicPlotlyChart({
 }: PlotlyChartProps) {
   if (!data?.length)
     return (
-      <div className="flex items-center justify-center h-[400px] text-slate-400">
+      <div className="flex items-center justify-center h-100 text-slate-400">
         <p className="text-lg">No data available</p>
       </div>
     );
@@ -69,7 +69,7 @@ export default function DynamicPlotlyChart({
   else if (type === "box") {
     if (group) {
       const groups = Array.from(
-        new Set(data.map((row) => row[group] as string))
+        new Set(data.map((row) => row[group] as string)),
       );
       groups.forEach((g, i) => {
         const filtered = data.filter((row) => row[group] === g);
@@ -114,7 +114,7 @@ export default function DynamicPlotlyChart({
   else if (type === "histogram") {
     if (group) {
       const groups = Array.from(
-        new Set(data.map((row) => row[group] as string))
+        new Set(data.map((row) => row[group] as string)),
       );
       groups.forEach((g, i) => {
         const filtered = data.filter((row) => row[group] === g);
@@ -155,7 +155,7 @@ export default function DynamicPlotlyChart({
   else if (type === "bar") {
     if (group) {
       const groups = Array.from(
-        new Set(data.map((row) => row[group] as string))
+        new Set(data.map((row) => row[group] as string)),
       );
       groups.forEach((g, i) => {
         const filtered = data.filter((row) => row[group] === g);
@@ -184,7 +184,7 @@ export default function DynamicPlotlyChart({
     } else {
       const yValues = data.map((row) => Number(row[y]));
       const barColors = yValues.map((val) =>
-        val >= 0 ? "#10b981" : "#ef4444"
+        val >= 0 ? "#10b981" : "#ef4444",
       );
 
       traces.push({
@@ -215,7 +215,7 @@ export default function DynamicPlotlyChart({
   else if (type === "scatter") {
     if (group) {
       const groups = Array.from(
-        new Set(data.map((row) => row[group] as string))
+        new Set(data.map((row) => row[group] as string)),
       );
       groups.forEach((g, i) => {
         const filtered = data.filter((row) => row[group] === g);
@@ -385,7 +385,7 @@ export default function DynamicPlotlyChart({
   }
 
   return (
-    <div className="w-full h-full p-4 rounded-xl bg-gradient-to-br from-slate-900/60 to-slate-800/60 backdrop-blur-sm border border-slate-700/30 shadow-2xl">
+    <div className="w-full h-full p-4 rounded-xl bg-linear-to-br from-slate-900/60 to-slate-800/60 backdrop-blur-sm border border-slate-700/30 shadow-2xl">
       <Plot
         data={traces}
         layout={{

@@ -39,14 +39,14 @@ export default function AppDialog({
             className="relative w-full max-w-4xl mx-auto"
           >
             <DialogPanel
-              className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900
+              className="relative bg-linear-to-br from-slate-900 via-slate-800 to-slate-900
                          border border-slate-700/50 rounded-2xl shadow-2xl
                          p-6 sm:p-10 text-white backdrop-blur-xl 
                          overflow-y-auto max-h-[85vh] overflow-x-hidden 
                          scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-900"
             >
               <motion.div
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 rounded-b-full"
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-linear-to-r from-blue-500 via-violet-500 to-cyan-500 rounded-b-full"
                 initial={{ width: 0 }}
                 animate={{ width: "8rem" }}
                 transition={{ duration: 0.6, delay: 0.2 }}

@@ -4,6 +4,9 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import GoogletagManager from "@/components/GTM";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Lenis } from "lenis/react";
+import ProgressScroll from "@/components/ProgressScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 const loveYaLikeASister = Love_Ya_Like_A_Sister({
   subsets: ["latin"],
@@ -49,14 +52,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="overflow-y-hidden scroll-smooth" lang="en">
+    <html className="scrollbar-none" lang="en">
       <body
-        className={`${loveYaLikeASister.variable} antialiased h-full bg-black`}
+        className={`${loveYaLikeASister.variable} antialiased h-full bg-black selection:bg-gray-900 selection:text-white`}
       >
-        <GoogletagManager />
-        {children}
-        <SpeedInsights />
-        <Analytics />
+        <Lenis
+          root
+          options={{
+            lerp: 0.04,
+            smoothWheel: true,
+            wheelMultiplier: 0.8,
+            touchMultiplier: 1.2,
+          }}
+        >
+          <CustomCursor />
+          <ProgressScroll />
+          <GoogletagManager />
+          {children}
+          <SpeedInsights />
+          <Analytics />
+        </Lenis>
       </body>
     </html>
   );

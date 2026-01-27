@@ -80,7 +80,7 @@ export default function ChatBot({
           transition={{ duration: 0.5 }}
         >
           <motion.div
-            className="p-2 bg-gradient-to-br from-blue-500 to-violet-500 rounded-xl shadow-lg"
+            className="p-2 bg-linear-to-br from-blue-500 to-violet-500 rounded-xl shadow-lg"
             animate={{
               rotate: [0, 5, -5, 0],
             }}
@@ -92,7 +92,7 @@ export default function ChatBot({
           >
             <Bot className="w-5 h-5 text-white" />
           </motion.div>
-          <h1 className="text-lg font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+          <h1 className="text-lg font-bold bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
             AI Assistant
           </h1>
         </motion.div>
