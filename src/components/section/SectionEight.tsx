@@ -25,6 +25,9 @@ export default function SectionEight() {
   const marqueeRef = useRef<HTMLDivElement>(null);
   const { x, y } = useMousePosition();
   const size = isHovered ? 320 : 60;
+  const scrambleTextOne = useRef(null);
+  const scrambleTextTwo = useRef(null);
+  const scrambleTextThree = useRef(null);
   useGSAP(
     () => {
       gsap.set(marqueeRef.current, {
@@ -42,6 +45,37 @@ export default function SectionEight() {
     },
     { dependencies: [isReversed] },
   );
+  useGSAP(() => {
+    gsap
+      .timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 30%",
+        },
+      })
+      .to(scrambleTextOne.current, {
+        duration: 0.8,
+        scrambleText: {
+          text: "DROP ME",
+          revealDelay: 0.01,
+        },
+      })
+      .to(scrambleTextTwo.current, {
+        duration: 0.8,
+        scrambleText: {
+          text: "AN",
+          revealDelay: 0.01,
+        },
+      })
+      .to(scrambleTextThree.current, {
+        duration: 0.8,
+        scrambleText: {
+          text: "EMAIL",
+          revealDelay: 0.01,
+        },
+      });
+  });
   const timelineTimeScaleTween = useRef<GSAPTween>(null);
   const onPointerEnter = () => {
     if (!timeline.current) return;
@@ -82,10 +116,10 @@ export default function SectionEight() {
           </a>
         </div>
         <h1 className="z-0 text-center font-bold text-6xl lg:text-[200px] leading-none text-white">
-          <strong className="text-amber-200">DROP ME</strong> <br /> AN{" "}
-          <a href="mailto:nickowork13@gmail.com">EMAIL</a>
+          <strong ref={scrambleTextOne} className="text-amber-200" />
+          <br /> <span ref={scrambleTextTwo} />{" "}
+          <a ref={scrambleTextThree} href="mailto:nickowork13@gmail.com" />
         </h1>
-
         <motion.div
           className="mask hidden absolute inset-0 z-10 lg:flex items-center justify-center"
           animate={{

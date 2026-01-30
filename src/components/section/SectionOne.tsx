@@ -125,7 +125,7 @@ export default function SectionOne() {
   return (
     <section
       ref={sectionRef}
-      className="bg-orange-400 text-white font-bold min-h-dvh py-20 lg:py-0"
+      className="bg-orange-400 text-white font-bold min-h-dvh py-20 lg:py-0 overflow-y-auto"
     >
       <div className="flex flex-col lg:flex-row justify-between min-h-dvh gap-20 lg:gap-20 mx-5 sm:mx-20 lg:mx-50">
         <div className="sticky left-0 top-0 lg:h-dvh lg:w-1/2 flex items-center justify-center lg:justify-start">

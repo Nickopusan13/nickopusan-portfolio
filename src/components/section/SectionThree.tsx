@@ -59,7 +59,7 @@ export default function SectionThree() {
     const sctl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 30%",
+        start: "top 40%",
       },
     });
     sctl

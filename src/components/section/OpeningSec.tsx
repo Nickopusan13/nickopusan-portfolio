@@ -6,7 +6,11 @@ import { useRef } from "react";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/all";
 import { ShyEmote } from "../ShyEmote";
-import LiveCirclesBG from "../Background";
+import dynamic from "next/dynamic";
+
+const LiveCirclesBG = dynamic(() => import("../Background"), {
+  ssr: false,
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
