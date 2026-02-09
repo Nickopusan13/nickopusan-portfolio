@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 
@@ -53,14 +53,14 @@ export function ShyEmote({
     >
       <motion.div
         ref={ref}
-        className="emote rounded-full bg-orange-400 w-30 h-30 lg:w-45 lg:h-45 cursor-pointer"
+        className="emote rounded-full bg-orange-400 w-32 h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 cursor-pointer flex items-center justify-center relative"
         style={{ x: springX, y: springY }}
         whileHover={{ scale: 1.4 }}
       >
         <a
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full h-full"
+          className="w-full h-full flex items-center justify-center"
           href={link}
         >
           <motion.div
@@ -71,20 +71,20 @@ export function ShyEmote({
               damping: 30,
               ease: "easeIn",
             }}
-            className="lg:opacity-0 opacity-100 w-full h-full rounded-full"
+            className="opacity-100 md:opacity-0 w-full h-full rounded-full flex flex-col items-center justify-center relative"
           >
             <motion.h2
-              whileHover={{ x: 300 }}
-              className="text-2xl lg:text-4xl absolute w-full font-bold bg-amber-300 border-4 border-amber-300 top-0 text-center rounded-4xl"
+              whileHover={{ x: 0 }}
+              className="text-xl md:text-3xl lg:text-4xl absolute -top-2 w-max font-bold bg-amber-300 border-4 border-amber-300 px-4 py-2 text-center rounded-full z-10"
             >
               {title}
             </motion.h2>
             <Image
-              className={imageClassName}
+              className={`w-full h-full object-contain ${imageClassName}`}
               src={src}
-              alt={src}
-              width={10}
-              height={10}
+              alt={title}
+              width={176}
+              height={176}
             />
           </motion.div>
         </a>

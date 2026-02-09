@@ -118,7 +118,11 @@ export default function SectionEight() {
         <h1 className="z-0 text-center font-bold text-6xl lg:text-[200px] leading-none text-white">
           <strong ref={scrambleTextOne} className="text-amber-200" />
           <br /> <span ref={scrambleTextTwo} />{" "}
-          <a ref={scrambleTextThree} href="mailto:nickowork13@gmail.com" />
+          <a
+            className="underline"
+            ref={scrambleTextThree}
+            href="mailto:nickowork13@gmail.com"
+          />
         </h1>
         <motion.div
           className="mask hidden absolute inset-0 z-10 lg:flex items-center justify-center"
@@ -139,7 +143,10 @@ export default function SectionEight() {
             </strong>
             <br />
             <span className="text-yellow-300">AN</span>{" "}
-            <a href="mailto:nickowork13@gmail.com" className="text-orange-400">
+            <a
+              href="mailto:nickowork13@gmail.com"
+              className="text-orange-400 underline"
+            >
               EMAIL
             </a>
           </h1>

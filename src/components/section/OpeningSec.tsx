@@ -7,6 +7,7 @@ import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/all";
 import { ShyEmote } from "../ShyEmote";
 import dynamic from "next/dynamic";
+import throttle from "lodash.throttle";
 
 const LiveCirclesBG = dynamic(() => import("../Background"), {
   ssr: false,
@@ -70,28 +71,28 @@ const Emoticon = () => {
     <div className="lg:min-w-7xl w-full min-h-1/2 top-30 absolute flex items-center justify-center z-30">
       <ShyEmote
         src="/assets/emote/emote_1.svg"
-        className="lg:bottom-20 bottom-0 right-5 lg:right-20 "
+        className="lg:bottom-30 bottom-0 right-5 lg:right-40 "
         imageClassName="absolute w-30 h-30 lg:w-40 lg:h-40 mt-2"
         link="https://github.com/Nickopusan13"
         title="GITHUB"
       />
       <ShyEmote
         src="/assets/emote/emote_2.svg"
-        className="top-0 right-10 lg:top-20 lg:right-80"
+        className="top-0 right-10 lg:top-10 lg:right-120"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-1"
         link="https://www.linkedin.com/in/nickopusan13/"
         title="LINKEDIN"
       />
       <ShyEmote
         src="/assets/emote/emote_3.svg"
-        className="bottom-6 lg:bottom-25 left-7 lg:left-1/2"
+        className="bottom-6 lg:bottom-30 left-7 lg:left-140"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-5"
         link="https://upwork.com/freelancers/nickopusan"
         title="UPWORK"
       />
       <ShyEmote
         src="/assets/emote/emote_4.svg"
-        className="top-5 left-10 lg:left-70 lg:top-30"
+        className="top-5 left-10 lg:left-70 lg:top-20"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-7"
         link="mailto:nickowork13@gmail.com"
         title="EMAIL"
@@ -106,66 +107,89 @@ const BigEmoticon = () => {
   const leftPupilRef = useRef<SVGEllipseElement>(null);
   const rightPupilRef = useRef<SVGEllipseElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const eyeCenters = {
+    left: { x: 646.5, y: 173.5 },
+    right: { x: 834.5, y: 173.5 },
+  };
+
   useGSAP(() => {
-    const leftEye = { x: 646.5, y: 173.5 };
-    const rightEye = { x: 834.5, y: 173.5 };
-    const maxWhiteMove = 5;
-    const maxPupilMove = 25;
-    const handleMouseMove = (e: MouseEvent) => {
-      if (
-        !svgRef.current ||
-        !leftEyeRef.current ||
-        !rightEyeRef.current ||
-        !leftPupilRef.current ||
-        !rightPupilRef.current
-      )
-        return;
-      const svgRect = svgRef.current.getBoundingClientRect();
-      const mouseX = e.clientX - svgRect.left;
-      const mouseY = e.clientY - svgRect.top;
-      const moveEye = (
-        eyeCenter: { x: number; y: number },
-        eye: SVGEllipseElement,
-        pupil: SVGEllipseElement,
-      ) => {
-        const dx = mouseX - eyeCenter.x;
-        const dy = mouseY - eyeCenter.y;
-        const angle = Math.atan2(dy, dx);
-        const distance = Math.hypot(dx, dy);
-        const whiteDist = Math.min(distance, maxWhiteMove);
-        const pupilDist = Math.min(distance, maxPupilMove);
-        const whiteTargetX = eyeCenter.x + whiteDist * Math.cos(angle);
-        const whiteTargetY = eyeCenter.y + whiteDist * Math.sin(angle);
-        const pupilTargetX = eyeCenter.x + pupilDist * Math.cos(angle);
-        const pupilTargetY = eyeCenter.y + pupilDist * Math.sin(angle);
-        gsap.to(eye, {
-          cx: whiteTargetX,
-          cy: whiteTargetY,
-          duration: 1,
-          ease: "power3.out",
-        });
-        gsap.to(pupil, {
-          cx: pupilTargetX,
-          cy: pupilTargetY,
-          duration: 1,
-          ease: "power3.out",
-        });
-      };
-      moveEye(leftEye, leftEyeRef.current, leftPupilRef.current);
-      moveEye(rightEye, rightEyeRef.current, rightPupilRef.current);
+    const viewBoxWidth = 1440;
+    const viewBoxHeight = 319;
+    const maxWhiteMove = 10;
+    const maxPupilMove = 45;
+
+    const moveEye = (
+      eyeCenter: { x: number; y: number },
+      eye: SVGEllipseElement | null,
+      pupil: SVGEllipseElement | null,
+      mouseX: number,
+      mouseY: number,
+    ) => {
+      if (!eye || !pupil) return;
+      const dx = mouseX - eyeCenter.x;
+      const dy = mouseY - eyeCenter.y;
+      const angle = Math.atan2(dy, dx);
+      const distance = Math.hypot(dx, dy);
+      const whiteDist = Math.min(distance / 30, maxWhiteMove);
+      const pupilDist = Math.min(distance / 10, maxPupilMove);
+      const whiteTargetX = eyeCenter.x + whiteDist * Math.cos(angle);
+      const whiteTargetY = eyeCenter.y + whiteDist * Math.sin(angle);
+      const pupilTargetX = eyeCenter.x + pupilDist * Math.cos(angle);
+      const pupilTargetY = eyeCenter.y + pupilDist * Math.sin(angle);
+
+      gsap.to(eye, {
+        cx: whiteTargetX,
+        cy: whiteTargetY,
+        duration: 0.3,
+        ease: "power3.out",
+      });
+      gsap.to(pupil, {
+        cx: pupilTargetX,
+        cy: pupilTargetY,
+        duration: 0.3,
+        ease: "power3.out",
+      });
     };
+
+    const handleMouseMove = throttle((e: MouseEvent) => {
+      if (!svgRef.current) return;
+      const svgRect = svgRef.current.getBoundingClientRect();
+      const mousePixelX = e.clientX - svgRect.left;
+      const mousePixelY = e.clientY - svgRect.top;
+      const mouseViewX = (mousePixelX / svgRect.width) * viewBoxWidth;
+      const mouseViewY = (mousePixelY / svgRect.height) * viewBoxHeight;
+
+      moveEye(
+        eyeCenters.left,
+        leftEyeRef.current,
+        leftPupilRef.current,
+        mouseViewX,
+        mouseViewY,
+      );
+      moveEye(
+        eyeCenters.right,
+        rightEyeRef.current,
+        rightPupilRef.current,
+        mouseViewX,
+        mouseViewY,
+      );
+    }, 16);
+
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  });
+    return () => {
+      handleMouseMove.cancel();
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
   return (
     <svg
       ref={svgRef}
-      width="1440"
-      height="319"
       viewBox="0 0 1440 319"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="flex w-full h-full"
+      className="w-full h-auto"
+      aria-label="Big emoticon with following eyes"
     >
       <path
         d="M1717.51 296.106C1717.51 359.976 2044.54 344.301 740.501 344.301C-563.54 344.301 -236.512 359.976 -236.512 296.106C-236.512 232.236 200.911 0 740.501 0C1280.09 0 1717.51 232.236 1717.51 296.106Z"
