@@ -18,7 +18,7 @@ export default function Main() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-      className="bg-orange-400 overflow-x-hidden"
+      className="bg-orange-400"
     >
       <OpeningSec />
       <SectionOne />
