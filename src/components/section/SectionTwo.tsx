@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import "swiper/css/zoom";
 import Link from "next/link";
-import { slides } from "../slides";
+import { projects } from "@/utils/projects";
 
 export default function SectionTwo() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
@@ -123,8 +123,12 @@ export default function SectionTwo() {
 const BuiltSection = () => {
   return (
     <>
-      {slides.map((slide, slideIdx) => (
-        <Link key={slideIdx} href="" className="border-2 w-2xl h-100">
+      {projects.map((slide, slideIdx) => (
+        <Link
+          key={slideIdx}
+          href={`project/${slide.slug}`}
+          className="border-2 w-2xl h-100"
+        >
           <Swiper
             loop={true}
             autoplay={{ delay: 8000, disableOnInteraction: false }}
