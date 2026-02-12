@@ -11,7 +11,7 @@ export default async function ProjectPage({ params }: Props) {
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
   return (
-    <div className="flex items-center justify-center min-h-dvh">
+    <div className="">
       <h1 className="text-white text-4xl sm:text-7xl lg:text-8xl">
         UNDER MAINTENANCE
       </h1>

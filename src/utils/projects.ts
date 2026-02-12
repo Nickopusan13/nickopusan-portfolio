@@ -1,7 +1,7 @@
 export const projects = [
   {
-    title: "Caufi Project",
-    slug: "caufi-project",
+    title: "Fullstack Website",
+    slug: "fullstack-project",
     color: "bg-blue-600/60 border-blue-600",
     description:
       "A feature-rich e-commerce platform designed for a seamless shopping experience. The responsive frontend is built with Next.js for fast page loads, while the FastAPI backend securely handles products, user accounts, and order processing.",
