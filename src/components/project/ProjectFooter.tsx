@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { FaMapPin } from "react-icons/fa";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
+import { AnimatedLink } from "./AnimatedLink";
 
 const list = (
   <div className="flex items-center gap-1 w-fit">
@@ -70,10 +70,10 @@ export default function ProjectFooter() {
             <span>Indonesia</span>
           </div>
           <div className="flex flex-col leading-relaxed">
-            <Link href="/">GALLERY</Link>
-            <Link href="/">PROJECTS</Link>
-            <Link href="/">ABOUT</Link>
-            <Link href="/">CONTACT</Link>
+            <AnimatedLink href="/">GALLERY</AnimatedLink>
+            <AnimatedLink href="/">PROJECTS</AnimatedLink>
+            <AnimatedLink href="/">ABOUT</AnimatedLink>
+            <AnimatedLink href="/">CONTACT</AnimatedLink>
           </div>
           <div className="flex flex-col items-start justify-center">
             <a href="">nickowork13@gmail.com</a>

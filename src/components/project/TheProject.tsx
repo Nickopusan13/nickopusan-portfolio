@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { AnimatedLink } from "./AnimatedLink";
 
 gsap.registerPlugin(ScrollTrigger);
 const MotionLink = motion.create(Link);
@@ -38,9 +39,9 @@ export default function TheProject({
   }, []);
   return (
     <div className="relative">
-      <div
+      <section
         ref={pinRef}
-        className="fixed inset-0 h-screen w-screen z-0 pointer-events-none"
+        className="fixed inset-0 h-dvh w-screen z-0 pointer-events-none"
       >
         <Image
           className="object-cover brightness-75"
@@ -50,8 +51,8 @@ export default function TheProject({
           alt={title}
           fill
         />
-      </div>
-      <div className="relative flex justify-between z-10 px-10 bg-zinc-900 min-h-dvh text-white gap-20">
+      </section>
+      <section className="relative flex justify-between z-10 px-10 bg-zinc-900 min-h-dvh text-white gap-20">
         <div className="w-1/2">
           <div className="flex sticky h-screen top-0 items-center justify-center">
             <div className="flex flex-col gap-6 w-full text-xl">
@@ -90,8 +91,8 @@ export default function TheProject({
               </div>
               <div className="border border-white/20 w-full" />
               <div className="flex justify-between items-center w-full">
-                <Link href="/">PREVIOUS</Link>
-                <Link href="/">NEXT</Link>
+                <AnimatedLink href="/">PREVIOUS</AnimatedLink>
+                <AnimatedLink href="/">NEXT</AnimatedLink>
               </div>
             </div>
           </div>
@@ -100,14 +101,14 @@ export default function TheProject({
           <div className="flex flex-col gap-10">
             {images.map((src, idx) => {
               return (
-                <div key={idx} className="relative w-full h-125">
+                <div key={idx} className="relative w-full h-100">
                   <Image src={src} alt={title} fill />
                 </div>
               );
             })}
           </div>
         </aside>
-      </div>
+      </section>
     </div>
   );
 }
