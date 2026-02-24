@@ -1,6 +1,8 @@
 import { projects } from "@/utils/projects";
 import { notFound } from "next/navigation";
 import ProjectNavbar from "@/components/project/ProjectNavbar";
+import TheProject from "@/components/project/TheProject";
+import ProjectFooter from "@/components/project/ProjectFooter";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -11,13 +13,17 @@ export default async function ProjectPage({ params }: Props) {
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
   return (
-    <div className="">
-      <h1 className="text-white text-4xl sm:text-7xl lg:text-8xl">
-        UNDER MAINTENANCE
-      </h1>
-      {/* <ProjectNavbar />
-      <h1>{project.title}</h1>
-      <p>{project.description}</p> */}
+    <div className="bg-zinc-900">
+      <ProjectNavbar />
+      <div className="flex flex-col gap-10">
+        <TheProject
+          description={project.description}
+          images={project.images}
+          title={project.title}
+        />
+        <div className="border border-white/20 w-full " />
+        <ProjectFooter />
+      </div>
     </div>
   );
 }
