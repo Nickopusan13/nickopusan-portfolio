@@ -58,7 +58,7 @@ export default function TheProject({
             <div className="flex flex-col gap-6 w-full text-xl">
               <div className="justify-start items-center flex">
                 <MotionLink
-                  href="/"
+                  href="/project"
                   whileHover={{ opacity: 100 }}
                   className="flex items-center justify-center gap-2 cursor-pointer opacity-70"
                 >

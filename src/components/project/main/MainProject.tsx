@@ -1,9 +1,6 @@
 "use client";
 
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { Draggable } from "gsap/all";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,12 +8,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
-import { CiGrid41, CiGrid2V, CiGrid2H } from "react-icons/ci";
+import { CiGrid41, CiGrid2V } from "react-icons/ci";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import Image from "next/image";
-import { motion } from "motion/react";
-
-gsap.registerPlugin(Draggable);
+import { AnimatePresence, motion } from "motion/react";
+import { NextPrevBtn } from "./BtnTooltip";
+import { Grid2, Grid4 } from "./ProjectGrid";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const sortOptions = [
   { label: "WEB APP" },
@@ -25,11 +27,10 @@ const sortOptions = [
   { label: "E-COMMERCE" },
 ];
 
-type GridType = "grid2v" | "grid2h" | "grid4";
+type GridType = "grid2" | "grid4";
 const gridButtons = [
-  { id: "grid2v", icon: <CiGrid2V /> },
-  { id: "grid2h", icon: <CiGrid2H /> },
-  { id: "grid4", icon: <CiGrid41 /> },
+  { id: "grid2", icon: <CiGrid2V />, label: "2 Grid" },
+  { id: "grid4", icon: <CiGrid41 />, label: "4 Grid" },
 ];
 
 const images = [
@@ -41,7 +42,13 @@ const images = [
 
 export default function MainProject() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [activeGrid, setActiveGrid] = useState<GridType>("grid2v");
+  const [activeGrid, setActiveGrid] = useState<GridType>("grid2");
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % images.length);
+  };
+  const handlePrevious = () => {
+    setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
   return (
     <div className="min-h-dvh text-white">
       <section className="flex flex-col items-center justify-center gap-8 px-20">
@@ -74,132 +81,118 @@ export default function MainProject() {
               <MdKeyboardDoubleArrowDown />
             </div>
           </div>
-          <div className="flex gap-3 justify-center items-center">
-            {images.map((img, idx) => {
-              return (
-                <div
-                  className="relative w-25 h-15"
-                  key={idx}
-                  onClick={() => setActiveIndex(idx)}
-                >
-                  <Image
-                    fill
-                    src={img}
-                    alt=""
-                    className={`object-cover rounded-md transition-all duration-300 ${activeIndex === idx ? "opacity-100" : "opacity-40 hover:opacity-70"}`}
-                  />
-                  {activeIndex === idx && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-zinc-600 rounded-sm"
+          <AnimatePresence mode="wait">
+            {activeGrid !== "grid4" && (
+              <motion.div
+                key="thumbnails"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="flex gap-3 justify-center items-center"
+              >
+                {images.map((img, idx) => (
+                  <div
+                    className="relative w-25 h-12"
+                    key={idx}
+                    onClick={() => setActiveIndex(idx)}
+                  >
+                    <Image
+                      fill
+                      src={img}
+                      alt=""
+                      className={`object-cover rounded-md transition-all duration-300 ${
+                        activeIndex === idx
+                          ? "opacity-100"
+                          : "opacity-40 hover:opacity-70"
+                      }`}
                     />
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                    {activeIndex === idx && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-zinc-600 rounded-sm"
+                      />
+                    )}
+                  </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
           <div className="flex gap-4 text-xl">
             <div className="flex gap-2">
               {gridButtons.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveGrid(item.id as GridType)}
-                  className={`relative p-2 rounded-lg text-white hover:bg-zinc-400/40 bg-zinc-400/10`}
-                >
-                  {activeGrid === item.id && (
-                    <motion.div
-                      layoutId="activeGridBg"
-                      className="absolute inset-0 bg-orange-500 rounded-lg"
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">{item.icon}</span>
-                </button>
+                <Tooltip key={item.id}>
+                  <TooltipTrigger>
+                    <button
+                      onClick={() => setActiveGrid(item.id as GridType)}
+                      className={`relative p-2 rounded-lg text-white hover:bg-zinc-400/40 bg-zinc-400/10`}
+                    >
+                      {activeGrid === item.id && (
+                        <motion.div
+                          layoutId="activeGridBg"
+                          className="absolute inset-0 bg-orange-500 rounded-lg"
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                      <span className="relative z-10">{item.icon}</span>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{item.label}</p>
+                  </TooltipContent>
+                </Tooltip>
               ))}
             </div>
-            <div className="flex gap-2">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95, y: -5 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="bg-zinc-400/10 p-2 rounded-full hover:bg-zinc-400/40"
-              >
-                <IoMdArrowRoundBack />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95, y: -5 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="bg-zinc-400/10 p-2 rounded-full hover:bg-zinc-400/40"
-              >
-                <IoMdArrowRoundForward />
-              </motion.button>
-            </div>
+            <AnimatePresence>
+              {activeGrid !== "grid4" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex gap-2"
+                >
+                  <NextPrevBtn content="Previous" onClick={handlePrevious}>
+                    <IoMdArrowRoundBack />
+                  </NextPrevBtn>
+                  <NextPrevBtn content="Next" onClick={handleNext}>
+                    <IoMdArrowRoundForward />
+                  </NextPrevBtn>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
-        <Grid2V images={images} activeIndex={activeIndex} />
+        <AnimatePresence mode="wait">
+          {activeGrid === "grid2" ? (
+            <motion.div
+              key="grid2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Grid2
+                setActiveIndex={setActiveIndex}
+                images={images}
+                activeIndex={activeIndex}
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="grid4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Grid4 images={images} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </section>
-    </div>
-  );
-}
-
-function Grid2V({
-  images,
-  activeIndex,
-}: {
-  images: string[];
-  activeIndex: number;
-}) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  useGSAP(() => {
-    if (!containerRef.current) return;
-    const totalWidth = containerRef.current.scrollWidth / 2;
-    Draggable.create(containerRef.current, {
-      type: "x",
-      edgeResistance: 0.8,
-      inertia: true,
-      cursor: "grab",
-      activeCursor: "grabbing",
-      onDrag: function () {
-        if (this.x <= -totalWidth) {
-          gsap.set(containerRef.current, { x: 0 });
-        }
-
-        if (this.x >= 0) {
-          gsap.set(containerRef.current, { x: -totalWidth });
-        }
-      },
-    });
-  });
-  useGSAP(() => {
-    if (!containerRef.current) return;
-    const slideWidth = containerRef.current.children[0].clientWidth + 40;
-    gsap.to(containerRef.current, {
-      x: -slideWidth * activeIndex,
-      duration: 0.6,
-      ease: "power3.out",
-    });
-  }, [activeIndex]);
-  return (
-    <div className="w-full overflow-hidden">
-      <div ref={containerRef} className="flex select-none cursor-grab gap-10">
-        {[...images, ...images].map((item, idx) => (
-          <div
-            key={idx}
-            className={`min-w-[70vw] relative h-120 transition-all duration-500 ${
-              activeIndex === idx % images.length
-                ? "scale-100 opacity-100"
-                : "scale-90 opacity-50"
-            }`}
-          >
-            <Image alt="" fill src={item} className="object-cover rounded-xl" />
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

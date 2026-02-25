@@ -60,8 +60,8 @@ export default function ProjectFooter() {
     }
   };
   return (
-    <div className="py-10">
-      <div className="bg-zinc-900 px-10 mb-10 text-white flex flex-col">
+    <div className="py-10 mt-20 bg-zinc-900">
+      <div className="px-10 mb-10 text-white flex flex-col">
         <div className="flex justify-between items-center">
           <div className="flex flex-col items-start justify-center leading-relaxed">
             <FaMapPin />
