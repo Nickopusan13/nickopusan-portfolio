@@ -9,6 +9,12 @@ import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { AnimatedLink } from "./AnimatedLink";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import "swiper/css/zoom";
 
 gsap.registerPlugin(ScrollTrigger);
 const MotionLink = motion.create(Link);
@@ -52,10 +58,10 @@ export default function TheProject({
           fill
         />
       </section>
-      <section className="relative flex justify-between z-10 px-10 bg-zinc-900 min-h-dvh text-white gap-20">
-        <div className="w-1/2">
+      <section className="relative flex flex-col lg:flex-row justify-between z-10 px-5 lg:px-10 bg-zinc-900 min-h-dvh text-white gap-5 lg:gap-20">
+        <div className="w-full lg:w-1/2">
           <div className="flex sticky h-screen top-0 items-center justify-center">
-            <div className="flex flex-col gap-6 w-full text-xl">
+            <div className="flex flex-col gap-6 w-full text-base sm:text-lg lg:text-xl">
               <div className="justify-start items-center flex">
                 <MotionLink
                   href="/project"
@@ -97,18 +103,50 @@ export default function TheProject({
             </div>
           </div>
         </div>
-        <aside className="w-1/2 mt-20">
-          <div className="flex flex-col gap-10">
+        <aside className="w-full lg:w-1/2 mt-0 lg:mt-20">
+          <div className="flex flex-col gap-0 lg:gap-10">
             {images.map((src, idx) => {
               return (
-                <div key={idx} className="relative w-full h-100">
+                <div
+                  key={idx}
+                  className="hidden lg:block relative w-full h-50 lg:h-100"
+                >
                   <Image src={src} alt={title} fill />
                 </div>
               );
             })}
+            <ImageSection images={images} />
           </div>
         </aside>
       </section>
     </div>
+  );
+}
+
+function ImageSection({ images }: { images: string[] }) {
+  return (
+    <>
+      <Link href="/" className="block lg:hidden h-50 sm:h-100">
+        <Swiper
+          loop={true}
+          autoplay={{ delay: 8000, disableOnInteraction: false }}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          speed={1200}
+          modules={[Autoplay, Pagination, EffectFade]}
+          pagination={{ clickable: true, dynamicBullets: true }}
+          className="w-full h-full"
+        >
+          {images.map((image, idx) => (
+            <SwiperSlide key={idx}>
+              <div className="relative bg-white h-full w-full overflow-hidden">
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent z-10" />
+                <Image fill src={image} alt="" className="z-5" />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Link>
+    </>
   );
 }

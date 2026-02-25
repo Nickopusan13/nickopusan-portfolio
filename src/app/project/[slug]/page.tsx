@@ -15,13 +15,13 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <div className="bg-zinc-900">
       <ProjectNavbar />
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-0 lg:gap-10">
         <TheProject
           description={project.description}
           images={project.images}
           title={project.title}
         />
-        <div className="border border-white/20 w-full " />
+        <div className="border hidden lg:block border-white/20 w-full " />
         <ProjectFooter />
       </div>
     </div>
