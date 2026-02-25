@@ -125,7 +125,7 @@ export default function MainProject() {
             <div className="flex gap-2">
               {gridButtons.map((item) => (
                 <Tooltip key={item.id}>
-                  <TooltipTrigger>
+                  <TooltipTrigger asChild>
                     <button
                       onClick={() => setActiveGrid(item.id as GridType)}
                       className={`relative p-2 rounded-lg text-white hover:bg-zinc-400/40 bg-zinc-400/10`}
