@@ -31,7 +31,7 @@ export default function CustomCursor() {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-10 h-10 rounded-full border-3 border-pink-700 pointer-events-none mix-blend-difference z-1000"
+      className="hidden lg:block fixed top-0 left-0 w-10 h-10 rounded-full border-3 border-pink-700 pointer-events-none mix-blend-difference z-1000"
     />
   );
 }

@@ -30,7 +30,7 @@ export function NextPrevBtn({
           {children}
         </motion.button>
       </TooltipTrigger>
-      <TooltipContent>
+      <TooltipContent className="lg:block hidden">
         <p>{content}</p>
       </TooltipContent>
     </Tooltip>

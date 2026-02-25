@@ -60,28 +60,27 @@ export default function ProjectFooter() {
     }
   };
   return (
-    <div className="py-10 mt-20 bg-zinc-900">
-      <div className="px-10 mb-10 text-white flex flex-col">
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col items-start justify-center leading-relaxed">
+    <div className="py-5 lg:py-10 mt-10 lg:mt-20 bg-zinc-900">
+      <div className="px-5 lg:px-10 mb-10 text-white flex flex-col">
+        <div className="flex lg:flex-row flex-col justify-between items-center">
+          <div className="flex flex-col items-center lg:items-start justify-center leading-relaxed">
             <FaMapPin />
             <span>Jl. Sudirman No. 45</span>{" "}
             <span> Setiabudi, Jakarta Selatan 12920</span>
             <span>Indonesia</span>
           </div>
-          <div className="flex flex-col leading-relaxed">
+          <div className="border w-full border-white/20 lg:hidden block my-5" />
+          <div className="flex lg:flex-col gap-10 lg:gap-0 lg:leading-relaxed">
             <AnimatedLink href="/">GALLERY</AnimatedLink>
             <AnimatedLink href="/">PROJECTS</AnimatedLink>
             <AnimatedLink href="/">ABOUT</AnimatedLink>
             <AnimatedLink href="/">CONTACT</AnimatedLink>
           </div>
-          <div className="flex flex-col items-start justify-center">
+          <div className="flex mt-10 mb-5 lg:my-0 flex-col items-center lg:items-start justify-center">
             <a href="">nickowork13@gmail.com</a>
             <a href="">+62 85156229898</a>
           </div>
-          <div>
-            <p>© {new Date().getFullYear()} ALL RIGHTS RESERVED</p>
-          </div>
+          <p>© {new Date().getFullYear()} ALL RIGHTS RESERVED</p>
         </div>
       </div>
       <div

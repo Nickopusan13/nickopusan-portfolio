@@ -72,10 +72,16 @@ export function Grid2({
   });
   useGSAP(() => {
     if (!containerRef.current) return;
-    const slideWidth = containerRef.current.children[0].clientWidth + 40;
+    const slides = Array.from(containerRef.current.children) as HTMLElement[];
     const viewportWidth = containerRef.current.parentElement!.clientWidth;
+    const activeSlide = slides[activeIndex];
+    if (!activeSlide) return;
+    const offset =
+      activeSlide.offsetLeft -
+      containerRef.current.scrollLeft -
+      (viewportWidth / 2 - activeSlide.offsetWidth / 2);
     gsap.to(containerRef.current, {
-      x: -(slideWidth * activeIndex) + (viewportWidth / 2 - slideWidth / 2),
+      x: -offset,
       duration: 0.6,
       ease: "power3.out",
     });
@@ -89,7 +95,7 @@ export function Grid2({
             onMouseLeave={() => handleLeave(idx)}
             href="/"
             key={idx}
-            className={`min-w-[70vw] relative h-120 transition-all duration-500 overflow-hidden ${
+            className={`min-w-[80vw] relative h-50 sm:h-80 lg:h-120 transition-all duration-500 overflow-hidden ${
               activeIndex === idx % images.length
                 ? "scale-100 opacity-100"
                 : "scale-90 opacity-50"
@@ -104,12 +110,12 @@ export function Grid2({
               src={item}
               className="object-cover rounded-xl"
             />
-            <div className="absolute bottom-0 left-0 w-full p-6 bg-linear-to-t from-black/70 to-transparent text-white">
+            <div className="absolute bottom-0 left-0 w-full p-2 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
                 ref={(el) => {
                   textRef.current[idx] = el;
                 }}
-                className="text-xl font-semibold"
+                className="text-xl sm:text-2xl lg:text-3xl font-semibold"
               >
                 CAUFI
               </p>
@@ -146,34 +152,39 @@ export function Grid4({ images }: { images: string[] }) {
     });
   };
   return (
-    <div className="w-full grid grid-cols-2 gap-x-5 gap-y-15 px-10">
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-x-5 gap-y-0 lg:gap-y-15 px-5 lg:px-10">
       {images.map((item, idx) => (
-        <Link
-          onMouseEnter={() => handleEnter(idx)}
-          onMouseLeave={() => handleLeave(idx)}
-          href="/"
-          key={idx}
-          className="relative h-100 w-full overflow-hidden"
-        >
-          <MotionImage
-            whileHover={{ scale: 1.05 }}
-            alt=""
-            fill
-            src={item}
-            className="rounded-xl object-cover"
-          />
-          <div className="absolute bottom-0 left-0 w-full p-6 bg-linear-to-t from-black/70 to-transparent text-white">
-            <p
-              ref={(el) => {
-                textRef.current[idx] = el;
-              }}
-              className="text-xl font-semibold"
-            >
-              CAUFI
-            </p>
-            <p className="text-sm text-white/70">[MARKETING SITE] – [SPORTS]</p>
-          </div>
-        </Link>
+        <>
+          <Link
+            onMouseEnter={() => handleEnter(idx)}
+            onMouseLeave={() => handleLeave(idx)}
+            href="/"
+            key={idx}
+            className="relative h-50 sm:h-100 lg:h-100 w-full overflow-hidden"
+          >
+            <MotionImage
+              whileHover={{ scale: 1.05 }}
+              alt=""
+              fill
+              src={item}
+              className="rounded-xl object-cover"
+            />
+            <div className="absolute bottom-0 left-0 w-full p-2 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
+              <p
+                ref={(el) => {
+                  textRef.current[idx] = el;
+                }}
+                className="text-xl sm:text-2xl lg:text-2xl font-semibold"
+              >
+                CAUFI
+              </p>
+              <p className="text-sm text-white/70">
+                [MARKETING SITE] – [SPORTS]
+              </p>
+            </div>
+          </Link>
+          <div className="border-2 w-full my-5 border-white/20" />
+        </>
       ))}
     </div>
   );
