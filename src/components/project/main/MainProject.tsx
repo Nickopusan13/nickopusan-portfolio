@@ -51,7 +51,7 @@ export default function MainProject() {
   return (
     <div className="min-h-dvh text-white overflow-hidden">
       <section className="flex flex-col items-center justify-center gap-4 lg:gap-8 px-5 lg:px-20">
-        <h1 className="text-5xl lg:text-8xl">Our Craft</h1>
+        <h1 className="text-5xl font-semibold lg:text-8xl">Our Craft</h1>
         <div className="flex flex-col items-center justify-center text-lg text-white/50">
           <span>50+ projects shipped. </span>
           <span>500M+ page views delivered.</span>
