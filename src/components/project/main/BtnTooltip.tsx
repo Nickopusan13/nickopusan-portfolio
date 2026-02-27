@@ -23,7 +23,7 @@ export function NextPrevBtn({
         <motion.button
           onClick={onClick}
           whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95, y: -5 }}
+          whileTap={{ scale: 0.95, y: -3 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="bg-zinc-400/10 p-2 rounded-full hover:bg-zinc-400/40"
         >

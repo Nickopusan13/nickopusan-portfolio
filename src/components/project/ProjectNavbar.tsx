@@ -29,7 +29,7 @@ export default function ProjectNavbar() {
         Nickopusan
       </Link>
       <div className="flex justify-center items-center lg:text-base text-sm gap-5 lg:gap-10">
-        <AnimatedLink href="/">PROJECTS</AnimatedLink>
+        <AnimatedLink href="/project">PROJECTS</AnimatedLink>
         <AnimatedLink href="/">ABOUT</AnimatedLink>
         <AnimatedLink href="/">CONTACT</AnimatedLink>
       </div>

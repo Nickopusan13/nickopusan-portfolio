@@ -113,6 +113,11 @@ export default function MainProject() {
                     {activeIndex === idx && (
                       <motion.div
                         layoutId="activeIndicator"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
                         className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-orange-600/80 rounded-sm"
                       />
                     )}
@@ -212,7 +217,12 @@ export default function MainProject() {
                       />
                       {activeIndex === idx && (
                         <motion.div
-                          layoutId="activeIndicator"
+                          layoutId="activeIndicatorMobile"
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                          }}
                           className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-orange-600/80 rounded-sm"
                         />
                       )}

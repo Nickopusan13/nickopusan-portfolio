@@ -183,7 +183,7 @@ export function Grid4({ images }: { images: string[] }) {
               </p>
             </div>
           </Link>
-          <div className="border-2 w-full my-5 border-white/20" />
+          <div className="lg:hidden block border-2 w-full my-5 border-white/20" />
         </>
       ))}
     </div>
