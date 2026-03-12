@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { ScrambleTextPlugin } from "gsap/all";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
@@ -154,20 +155,11 @@ export default function SectionOne() {
           className="relative h-full gap-30 lg:gap-0 flex flex-col w-full lg:w-1/2 text-2xl lg:text-2xl"
         >
           <div className="relative flex flex-col">
-            <motion.img
-              className="w-[50%] sm:w-[30%] lg:w-[50%] absolute sm:-top-20 sm:right-30 -top-15 right-15 lg:top-20 lg:-right-10 z-10"
+            <img
+              loading="lazy"
+              className="will-change-transform w-[50%] sm:w-[30%] lg:w-[50%] absolute sm:-top-20 sm:right-30 -top-15 right-15 lg:top-20 lg:-right-10 z-10"
               src="/assets/logo/first.svg"
               alt=""
-              animate={{
-                y: [0, -10, 0, 10, 0],
-                x: [0, 5, 0, -5, 0],
-                rotate: [0, 2, 0, -2, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
             />
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -183,31 +175,16 @@ export default function SectionOne() {
             </motion.div>
           </div>
           <div className="relative flex flex-col">
-            <motion.img
-              className="w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 top-35 left-50 sm:top-0 lg:top-35 lg:left-50"
+            <img
+              loading="lazy"
+              className="will-change-transform w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 top-35 left-50 sm:top-0 lg:top-35 lg:left-50"
               src="/assets/logo/second.svg"
               alt=""
-              animate={{
-                y: [0, -10, 0, 10, 0],
-                x: [0, 5, 0, -5, 0],
-                rotate: [0, 2, 0, -2, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-2 sm:gap-5 z-20">
-              <motion.h1
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ ease: "easeIn", delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black"
-              >
+              <h1 className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black">
                 Interactive Experiences
-              </motion.h1>
+              </h1>
               <motion.span
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -222,31 +199,16 @@ export default function SectionOne() {
             </div>
           </div>
           <div className="relative flex flex-col">
-            <motion.img
-              className="w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 top-30 right-15 sm:right-30 lg:top-45 lg:right-0"
+            <img
+              className="w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 top-30 right-15 sm:right-30 lg:top-45 lg:right-0 will-change-transform"
               src="/assets/logo/third.svg"
+              loading="lazy"
               alt=""
-              animate={{
-                y: [0, -10, 0, 10, 0],
-                x: [0, 5, 0, -5, 0],
-                rotate: [0, 2, 0, -2, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-3 sm:gap-5 z-20">
-              <motion.h1
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ ease: "easeIn", delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black"
-              >
+              <h1 className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black">
                 Scalable Backend Systems
-              </motion.h1>
+              </h1>
               <motion.span
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -262,31 +224,16 @@ export default function SectionOne() {
             </div>
           </div>
           <div className="relative flex flex-col">
-            <motion.img
-              className="w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 -bottom-20 right-15 sm:right-20 lg:top-15 lg:-right-15"
+            <img
+              loading="lazy"
+              className="will-change-transform w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 -bottom-20 right-15 sm:right-20 lg:top-15 lg:-right-15"
               src="/assets/logo/fourth.svg"
               alt=""
-              animate={{
-                y: [0, -10, 0, 10, 0],
-                x: [0, 5, 0, -5, 0],
-                rotate: [0, 2, 0, -2, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-3 sm:gap-5 z-20">
-              <motion.h1
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ ease: "easeIn", delay: 0.1 }}
-                viewport={{ once: true }}
-                className="leading-tight text-5xl lg:text-4xl lg:text-start text-center text-black"
-              >
+              <h1 className="leading-tight text-5xl lg:text-4xl lg:text-start text-center text-black">
                 Deployment & Maintenance
-              </motion.h1>
+              </h1>
               <motion.span
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -301,7 +248,7 @@ export default function SectionOne() {
               </motion.span>
             </div>
           </div>
-          <motion.svg
+          <svg
             width="538"
             height="1548"
             viewBox="0 0 538 1548"
@@ -316,7 +263,7 @@ export default function SectionOne() {
               strokeWidth="50"
               strokeLinecap="round"
             />
-          </motion.svg>
+          </svg>
         </aside>
       </div>
     </section>

@@ -10,14 +10,8 @@ import SectionFive from "./section/SectionFive";
 import SectionSix from "./section/SectionSix";
 import SectionSeven from "./section/SectionSeven";
 import SectionEight from "./section/SectionEight";
-import LoadingPage from "./LoadingPage";
-import { useState } from "react";
 
 export default function Main() {
-  const [loading, setLoading] = useState(true);
-  if (loading) {
-    return <LoadingPage onFinish={() => setLoading(false)} />;
-  }
   return (
     <motion.div
       initial={{ opacity: 0 }}
