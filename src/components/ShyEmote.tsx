@@ -31,9 +31,9 @@ export function ShyEmote({
       const dx = e.clientX - cx;
       const dy = e.clientY - cy;
       const dist = Math.hypot(dx, dy);
-      const shyRadius = 400;
-      const fleeStrength = 40;
-      if (dist < shyRadius) {
+      const shyRadius = 300;
+      const fleeStrength = 42;
+      if (dist < shyRadius && dist > 1) {
         const force = (1 - dist / shyRadius) * fleeStrength;
         x.set((-dx / dist) * force);
         y.set((-dy / dist) * force);
@@ -53,7 +53,7 @@ export function ShyEmote({
     >
       <motion.div
         ref={ref}
-        className="emote rounded-full bg-orange-400 w-32 h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 cursor-pointer flex items-center justify-center relative"
+        className="emote rounded-full bg-orange-400 w-32 h-32 md:w-40 md:h-40 cursor-pointer flex items-center justify-center relative"
         style={{ x: springX, y: springY }}
         whileHover={{ scale: 1.4 }}
       >
@@ -74,8 +74,9 @@ export function ShyEmote({
             className="opacity-100 md:opacity-0 w-full h-full rounded-full flex flex-col items-center justify-center relative"
           >
             <motion.h2
-              whileHover={{ x: 0 }}
-              className="text-xl md:text-3xl lg:text-4xl absolute -top-2 w-max font-bold bg-amber-300 border-4 border-amber-300 px-4 py-2 text-center rounded-full z-10"
+              className="text-xl md:text-3xl absolute -top-3 font-bold bg-amber-300 border-4 border-amber-300 px-5 py-1.5 text-center rounded-full z-10 shadow-md"
+              whileHover={{ x: 12, scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {title}
             </motion.h2>
@@ -85,6 +86,7 @@ export function ShyEmote({
               alt={title}
               width={176}
               height={176}
+              priority
             />
           </motion.div>
         </a>
