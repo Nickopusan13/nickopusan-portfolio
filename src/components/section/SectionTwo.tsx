@@ -14,6 +14,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/zoom";
 import Link from "next/link";
 import { projects } from "@/utils/projects";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function SectionTwo() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
@@ -66,13 +67,13 @@ export default function SectionTwo() {
       scrollTrigger: {
         trigger: scrollSectionRef.current,
         start: "2% top",
-        end: `+=${scrollAmount + 1500}px`,
+        end: `+=${scrollAmount + 1200}px`,
         scrub: true,
         pin: true,
       },
     });
     tl.to(scrollSectionRef.current, {
-      x: `-${scrollAmount + 1000}px`,
+      x: `-${scrollAmount + 650}px`,
       ease: "power1.inOut",
     });
   });
@@ -110,8 +111,14 @@ export default function SectionTwo() {
         </div>
         <div className="h-full">
           <div ref={sliderRef} className="h-dvh w-full mt-0 md:mt-20 xl:mt-0">
-            <div className="h-full w-full flex flex-row items-center gap-52 flex-nowrap text-white">
+            <div className="h-full w-full flex flex-row items-center gap-40 flex-nowrap text-white">
               <BuiltSection />
+              <div className="flex w-2xl md:text-4xl">
+                <Link className="flex gap-5" href="/project">
+                  <span>See More Project</span>
+                  <FaArrowRight />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

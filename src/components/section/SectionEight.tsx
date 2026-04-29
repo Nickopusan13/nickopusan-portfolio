@@ -6,6 +6,7 @@ import useMousePosition from "@/utils/mousePosition";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
+import { AnimatedLink } from "../project/AnimatedLink";
 
 const list = (
   <div className="flex items-center gap-1 w-fit">
@@ -105,15 +106,24 @@ export default function SectionEight() {
         className="relative min-h-dvh bg-pink-600 flex flex-col items-center justify-center cursor-default overflow-hidden"
       >
         <div className="absolute top-5 text-lg right-10 flex text-amber-200 z-20 gap-10">
-          <a className="hover:underline" href="">
+          <AnimatedLink
+            underline="bg-amber-200"
+            href="https://github.com/Nickopusan13"
+          >
             GITHUB
-          </a>
-          <a className="hover:underline" href="">
+          </AnimatedLink>
+          <AnimatedLink
+            underline="bg-amber-200"
+            href="https://www.linkedin.com/in/nickopusan13"
+          >
             LINKEDIN
-          </a>
-          <a className="hover:underline" href="">
+          </AnimatedLink>
+          <AnimatedLink
+            underline="bg-amber-200"
+            href="https://upwork.com/freelancers/nickopusan"
+          >
             UPWORK
-          </a>
+          </AnimatedLink>
         </div>
         <h1 className="z-0 text-center font-bold text-6xl lg:text-[200px] leading-none text-white">
           <strong ref={scrambleTextOne} className="text-amber-200" />

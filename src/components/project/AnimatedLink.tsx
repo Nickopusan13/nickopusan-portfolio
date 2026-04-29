@@ -7,11 +7,17 @@ interface AnimatedLinkProps {
   href: string;
   children: React.ReactNode;
   classname?: string;
+  underline?: string;
 }
 
 const MotionLink = motion.create(Link);
 
-export function AnimatedLink({ href, children, classname }: AnimatedLinkProps) {
+export function AnimatedLink({
+  href,
+  children,
+  classname,
+  underline = "bg-white",
+}: AnimatedLinkProps) {
   return (
     <MotionLink
       initial="rest"
@@ -23,7 +29,7 @@ export function AnimatedLink({ href, children, classname }: AnimatedLinkProps) {
       <span className="relative">
         {children}
         <motion.span
-          className="absolute left-0 bottom-0 h-0.5 bg-white w-full"
+          className={`absolute left-0 bottom-0 h-0.5 ${underline} w-full`}
           variants={{
             rest: { scaleX: 0 },
             hover: { scaleX: 1 },
