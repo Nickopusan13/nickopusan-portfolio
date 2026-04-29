@@ -2,7 +2,7 @@
 
 import { useLenis } from "lenis/react";
 import { useRef, useState } from "react";
-import { AnimatedLink } from "./AnimatedLink";
+import { AnimatedLink } from "../ui/AnimatedLink";
 import Link from "next/link";
 
 export default function ProjectNavbar() {

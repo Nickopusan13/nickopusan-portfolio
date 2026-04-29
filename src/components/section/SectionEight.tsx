@@ -6,7 +6,7 @@ import useMousePosition from "@/utils/mousePosition";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
-import { AnimatedLink } from "../project/AnimatedLink";
+import { AnimatedLink } from "../ui/AnimatedLink";
 
 const list = (
   <div className="flex items-center gap-1 w-fit">

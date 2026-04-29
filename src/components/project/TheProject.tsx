@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { AnimatedLink } from "./AnimatedLink";
+import { AnimatedLink } from "../ui/AnimatedLink";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

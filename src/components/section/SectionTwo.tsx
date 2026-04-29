@@ -22,7 +22,30 @@ export default function SectionTwo() {
   const firstTextRef = useRef(null);
   const secTextRef = useRef(null);
   const thirdRef = useRef(null);
-
+  const textRef = useRef<HTMLDivElement>(null);
+  const handleEnter = () => {
+    gsap.to(textRef.current, {
+      duration: 1.2,
+      scrambleText: {
+        text: "See More Project",
+        chars: "##",
+        speed: 0.6,
+        revealDelay: 0.2,
+      },
+    });
+  };
+  const handleLeave = () => {
+    gsap.to(textRef.current, {
+      duration: 1.2,
+      scrambleText: {
+        text: "See More Project",
+        rightToLeft: true,
+        chars: "##",
+        speed: 0.6,
+        revealDelay: 0.2,
+      },
+    });
+  };
   useGSAP(() => {
     const firstTextSplit = SplitText.create(firstTextRef.current, {
       type: "chars",
@@ -73,7 +96,7 @@ export default function SectionTwo() {
       },
     });
     tl.to(scrollSectionRef.current, {
-      x: `-${scrollAmount + 650}px`,
+      x: `-${scrollAmount + 1000}px`,
       ease: "power1.inOut",
     });
   });
@@ -113,10 +136,25 @@ export default function SectionTwo() {
           <div ref={sliderRef} className="h-dvh w-full mt-0 md:mt-20 xl:mt-0">
             <div className="h-full w-full flex flex-row items-center gap-40 flex-nowrap text-white">
               <BuiltSection />
-              <div className="flex w-2xl md:text-4xl">
-                <Link className="flex gap-5" href="/project">
-                  <span>See More Project</span>
-                  <FaArrowRight />
+              <div
+                onMouseEnter={handleEnter}
+                onMouseLeave={handleLeave}
+                className="flex w-2xl md:text-4xl"
+              >
+                <Link
+                  href="/project"
+                  className="w-2xl h-100 border-15 bg-black/20 rounded-2xl backdrop-blur-md flex flex-col justify-center items-center group relative overflow-hidden"
+                >
+                  <div
+                    ref={textRef}
+                    className="text-4xl md:text-6xl font-bold text-white"
+                  >
+                    See More Project
+                  </div>
+                  <div className="mt-6 flex items-center gap-3 text-white/80 group-hover:text-white transition">
+                    <span className="text-xl">Explore</span>
+                    <FaArrowRight className="group-hover:translate-x-2 transition" />
+                  </div>
                 </Link>
               </div>
             </div>
@@ -134,7 +172,7 @@ const BuiltSection = () => {
         <Link
           key={slideIdx}
           href={`project/${slide.slug}`}
-          className="border-2 w-2xl h-100"
+          className="border-15 w-2xl h-100 rounded-2xl"
         >
           <Swiper
             loop={true}

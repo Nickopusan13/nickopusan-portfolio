@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
-import { AnimatedLink } from "./AnimatedLink";
+import { AnimatedLink } from "../ui/AnimatedLink";
 
 const list = (
   <div className="flex items-center gap-1 w-fit">
