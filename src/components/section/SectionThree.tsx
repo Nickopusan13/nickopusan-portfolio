@@ -41,6 +41,7 @@ export default function SectionThree() {
         end: "+=200%",
         pin: true,
         scrub: true,
+        markers: true,
       },
     });
     tl.to(pinkMaskRef.current, {
@@ -64,14 +65,14 @@ export default function SectionThree() {
     });
     sctl
       .to(textOne.current, {
-        duration: 0.8,
+        duration: 0.4,
         scrambleText: {
           text: "I ALWAYS BUILT",
           revealDelay: 0.05,
         },
       })
       .to(textTwo.current, {
-        duration: 0.8,
+        duration: 0.4,
         scrambleText: {
           text: "SOMETHING AMAZING",
           revealDelay: 0.05,
@@ -79,14 +80,14 @@ export default function SectionThree() {
       });
     sctl
       .to(textThree.current, {
-        duration: 0.8,
+        duration: 0.4,
         scrambleText: {
           text: "LET'S DIVE",
           revealDelay: 0.05,
         },
       })
       .to(textFour.current, {
-        duration: 0.8,
+        duration: 0.4,
         scrambleText: {
           text: "IN THIS REALM",
           revealDelay: 0.05,

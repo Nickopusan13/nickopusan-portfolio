@@ -26,6 +26,7 @@ export function Grid2({
     gsap.to(textRef.current[index], {
       duration: 0.6,
       color: "#f97316",
+      overwrite: "auto",
       scrambleText: {
         text: "CAUFI",
         chars: "upperCase",
@@ -36,8 +37,10 @@ export function Grid2({
     gsap.to(textRef.current[index], {
       duration: 0.6,
       color: "#ffffff",
+      overwrite: "auto",
       scrambleText: {
         text: "CAUFI",
+        chars: "upperCase",
       },
     });
   };

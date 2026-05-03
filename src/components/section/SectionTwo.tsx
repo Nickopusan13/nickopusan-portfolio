@@ -6,12 +6,10 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { SplitText } from "gsap/all";
 import Image from "next/image";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import "swiper/css/zoom";
 import Link from "next/link";
 import { projects } from "@/utils/projects";
 import { FaArrowRight } from "react-icons/fa";
@@ -26,23 +24,21 @@ export default function SectionTwo() {
   const handleEnter = () => {
     gsap.to(textRef.current, {
       duration: 1.2,
+      color: "#000000",
       scrambleText: {
-        text: "See More Project",
-        chars: "##",
-        speed: 0.6,
-        revealDelay: 0.2,
+        text: "Project",
+        chars: "Project",
       },
     });
   };
   const handleLeave = () => {
     gsap.to(textRef.current, {
       duration: 1.2,
+      color: "#ffffff",
       scrambleText: {
-        text: "See More Project",
+        text: "Project",
+        chars: "Project",
         rightToLeft: true,
-        chars: "##",
-        speed: 0.6,
-        revealDelay: 0.2,
       },
     });
   };
@@ -143,13 +139,15 @@ export default function SectionTwo() {
               >
                 <Link
                   href="/project"
-                  className="w-2xl h-100 border-15 bg-black/20 rounded-2xl backdrop-blur-md flex flex-col justify-center items-center group relative overflow-hidden"
+                  className="w-2xl h-100 border-15 bg-white/10 rounded-2xl backdrop-blur-md flex flex-col justify-center items-center group relative overflow-hidden"
                 >
                   <div
-                    ref={textRef}
+                    ref={(el) => {
+                      textRef.current = el;
+                    }}
                     className="text-4xl md:text-6xl font-bold text-white"
                   >
-                    See More Project
+                    Project
                   </div>
                   <div className="mt-6 flex items-center gap-3 text-white/80 group-hover:text-white transition">
                     <span className="text-xl">Explore</span>
@@ -166,41 +164,76 @@ export default function SectionTwo() {
 }
 
 const BuiltSection = () => {
+  const titleRef = useRef<(HTMLDivElement | null)[]>([]);
+  const handleEnter = (index: number) => {
+    const el = titleRef.current[index];
+    if (!el) return;
+    gsap.to(el, {
+      keyframes: [
+        { scale: 1.1, skewX: -8, duration: 0.15, ease: "power2.out" },
+        { scale: 0.9, skewX: 4, duration: 0.12, ease: "power2.inOut" },
+        { scale: 1.02, skewX: 0, duration: 0.4, ease: "elastic.out(1, 0.4)" },
+      ],
+      color: "#f97316",
+      overwrite: "auto",
+    });
+  };
+
+  const handleLeave = (index: number) => {
+    const el = titleRef.current[index];
+    if (!el) return;
+    gsap.to(el, {
+      duration: 0.5,
+      scale: 1,
+      skewX: 0,
+      rotation: 0,
+      color: "#ffffff",
+      ease: "back.out(2)",
+      overwrite: "auto",
+    });
+  };
   return (
     <>
       {projects.map((slide, slideIdx) => (
         <Link
+          onMouseEnter={() => handleEnter(slideIdx)}
+          onMouseLeave={() => handleLeave(slideIdx)}
           key={slideIdx}
           href={`project/${slide.slug}`}
-          className="border-15 w-2xl h-100 rounded-2xl"
+          className="relative border-15 w-2xl h-100 rounded-2xl"
         >
           <Swiper
             loop={true}
-            autoplay={{ delay: 8000, disableOnInteraction: false }}
+            autoplay={{ delay: 5000, disableOnInteraction: true }}
             effect="fade"
             fadeEffect={{ crossFade: true }}
             speed={1200}
-            modules={[Autoplay, Pagination, EffectFade]}
-            pagination={{ clickable: true, dynamicBullets: true }}
+            modules={[Autoplay, EffectFade]}
+            pagination={{ clickable: false, dynamicBullets: false }}
             className="w-full h-full"
           >
             {slide.images.map((image, idx) => (
               <SwiperSlide key={idx}>
-                <div className="relative bg-white h-full w-full overflow-hidden">
+                <div className="bg-white h-full w-full overflow-hidden">
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent z-10" />
                   <Image fill src={image} alt={slide.title} className="z-5" />
-                  <div className="absolute inset-0 z-20 max-w-5xl mx-auto space-y-6 flex flex-col items-center justify-center p-5">
-                    <span className="flex h-full w-full justify-start text-7xl">
-                      {slideIdx + 1}
-                    </span>
-                    <span className="text-6xl flex h-full w-full justify-end items-end">
-                      {slide.title}
-                    </span>
-                  </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+          <div
+            ref={(el) => {
+              titleRef.current[slideIdx] = el;
+            }}
+            className="absolute inset-0 z-20 max-w-5xl mx-auto space-y-6 flex flex-col items-center justify-center p-5"
+          >
+            <span className="flex h-full w-full justify-start text-7xl">
+              {slideIdx + 1}
+            </span>
+            <span className="text-6xl flex h-full w-full justify-end items-end">
+              {slide.title}
+            </span>
+          </div>
         </Link>
       ))}
     </>
