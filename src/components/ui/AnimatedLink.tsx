@@ -23,6 +23,8 @@ export function AnimatedLink({
       initial="rest"
       whileHover="hover"
       animate="rest"
+      target="_blank"
+      rel="noopener noreferrer"
       href={href}
       className={`relative inline-block w-fit ${classname}`}
     >

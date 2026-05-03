@@ -102,10 +102,14 @@ export default function SectionEight() {
   return (
     <>
       <section
+        aria-labelledby="contact-info"
         ref={sectionRef}
         className="relative min-h-dvh bg-pink-600 flex flex-col items-center justify-center cursor-default overflow-hidden"
       >
-        <div className="absolute top-5 text-lg right-10 flex text-amber-200 z-20 gap-10">
+        <nav
+          aria-label="Social Links"
+          className="absolute top-5 text-lg right-10 flex text-amber-200 z-20 gap-10"
+        >
           <AnimatedLink
             underline="bg-amber-200"
             href="https://github.com/Nickopusan13"
@@ -124,15 +128,21 @@ export default function SectionEight() {
           >
             UPWORK
           </AnimatedLink>
-        </div>
+        </nav>
         <h1 className="z-0 text-center font-bold text-6xl lg:text-[200px] leading-none text-white">
-          <strong ref={scrambleTextOne} className="text-amber-200" />
-          <br /> <span ref={scrambleTextTwo} />{" "}
+          <strong ref={scrambleTextOne} className="text-amber-200">
+            DROP ME
+          </strong>
+          <br />
+          <span ref={scrambleTextTwo}>AN</span>{" "}
           <a
             className="underline"
             ref={scrambleTextThree}
             href="mailto:nickowork13@gmail.com"
-          />
+            aria-label="Email nickowork13@gmail.com"
+          >
+            EMAIL
+          </a>
         </h1>
         <motion.div
           className="mask hidden absolute inset-0 z-10 lg:flex items-center justify-center"
@@ -164,6 +174,7 @@ export default function SectionEight() {
           <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            aria-hidden="true"
             className="absolute text-white text-4xl top-20 right-15"
           >
             BOOO!!!

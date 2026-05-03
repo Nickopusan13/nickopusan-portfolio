@@ -5,73 +5,77 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { ScrambleTextPlugin } from "gsap/all";
-import Image from "next/image";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
 export default function SectionOne() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const strokePath = useRef<SVGPathElement>(null);
-  const asideRef = useRef(null);
+  const asideRef = useRef<HTMLSpanElement>(null);
   const scrambleText = useRef<HTMLDivElement>(null);
-  const scrambleTextOne = useRef(null);
-  const scrambleTextTwo = useRef(null);
-  const scrambleTextThree = useRef(null);
-  const lineRef = useRef(null);
+  const scrambleTextOne = useRef<HTMLSpanElement>(null);
+  const scrambleTextTwo = useRef<HTMLSpanElement>(null);
+  const scrambleTextThree = useRef<HTMLSpanElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    mm.add("(max-width: 768px", () => {
-      if (strokePath.current) {
-        const pathLength = strokePath.current.getTotalLength();
-        strokePath.current.style.strokeDasharray = pathLength.toString();
-        strokePath.current.style.strokeDashoffset = pathLength.toString();
-        gsap.to(strokePath.current, {
-          strokeDashoffset: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: asideRef.current,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        });
-      }
-      gsap
-        .timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-          },
-        })
-        .to(scrambleTextOne.current, {
-          duration: 0.3,
-          scrambleText: {
-            text: "WHAT",
-            revealDelay: 0.05,
-          },
-        })
-        .to(scrambleTextTwo.current, {
-          duration: 0.3,
-          scrambleText: {
-            text: "CAN I DO",
-            revealDelay: 0.05,
-          },
-        })
-        .to(scrambleTextThree.current, {
-          duration: 0.3,
-          scrambleText: {
-            text: "FOR YOU",
-            revealDelay: 0.05,
-          },
-        })
-        .fromTo(
-          lineRef.current,
-          { opacity: 0, scaleY: 0 },
-          { opacity: 1, scaleY: 1 },
-        );
-    });
+    mm.add(
+      "(max-width: 768px)",
+      () => {
+        if (strokePath.current) {
+          const pathLength = strokePath.current.getTotalLength();
+          strokePath.current.style.strokeDasharray = pathLength.toString();
+          strokePath.current.style.strokeDashoffset = pathLength.toString();
+          gsap.to(strokePath.current, {
+            strokeDashoffset: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: asideRef.current,
+              start: "top top",
+              end: "bottom bottom",
+              scrub: true,
+            },
+          });
+        }
+        gsap
+          .timeline({
+            defaults: { ease: "none" },
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+            },
+          })
+          .to(scrambleTextOne.current, {
+            duration: 0.3,
+            scrambleText: {
+              text: "WHAT",
+              revealDelay: 0.05,
+            },
+          })
+          .to(scrambleTextTwo.current, {
+            duration: 0.3,
+            scrambleText: {
+              text: "CAN I DO",
+              revealDelay: 0.05,
+            },
+          })
+          .to(scrambleTextThree.current, {
+            duration: 0.3,
+            scrambleText: {
+              text: "FOR YOU",
+              revealDelay: 0.05,
+            },
+          })
+          .fromTo(
+            lineRef.current,
+            { opacity: 0, scaleY: 0 },
+            { opacity: 1, scaleY: 1 },
+          );
+        return () => mm.revert();
+      },
+      { scope: sectionRef },
+    );
 
     if (strokePath.current) {
       const pathLength = strokePath.current.getTotalLength();
@@ -182,9 +186,9 @@ export default function SectionOne() {
               alt=""
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-2 sm:gap-5 z-20">
-              <h1 className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black">
+              <h2 className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black">
                 Interactive Experiences
-              </h1>
+              </h2>
               <motion.span
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -192,7 +196,7 @@ export default function SectionOne() {
                 viewport={{ once: true }}
                 className="text-justify leading-tight"
               >
-                I create lgooth animations and scroll based interactions with
+                I create smooth animations and scroll based interactions with
                 Motion, GSAP, and Three.js, turning web interfaces into engaging
                 and immersive experiences that delight users.
               </motion.span>
@@ -206,9 +210,9 @@ export default function SectionOne() {
               alt=""
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-3 sm:gap-5 z-20">
-              <h1 className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black">
+              <h2 className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black">
                 Scalable Backend Systems
-              </h1>
+              </h2>
               <motion.span
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -231,9 +235,9 @@ export default function SectionOne() {
               alt=""
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-3 sm:gap-5 z-20">
-              <h1 className="leading-tight text-5xl lg:text-4xl lg:text-start text-center text-black">
+              <h2 className="leading-tight text-5xl lg:text-4xl lg:text-start text-center text-black">
                 Deployment & Maintenance
-              </h1>
+              </h2>
               <motion.span
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
