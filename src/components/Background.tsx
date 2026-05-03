@@ -1,35 +1,52 @@
 "use client";
 
-import { useEffect } from "react";
+import { useRef, useMemo } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function LiveCirclesBG() {
-  useEffect(() => {
-    const circles = gsap.utils.toArray<HTMLElement>(".circle");
-
-    circles.forEach((circle) => {
-      gsap.to(circle, {
-        y: "+=200",
-        x: "+=50",
-        repeat: -1,
-        yoyo: true,
-        duration: gsap.utils.random(5, 15),
-        ease: "sine.inOut",
+  const bgRef = useRef<HTMLDivElement>(null);
+  const circles = useMemo(() => {
+    return Array.from({ length: 50 }).map(() => ({
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      size: 20,
+    }));
+  }, []);
+  useGSAP(() => {
+    if (!bgRef.current) return;
+    const ctx = gsap.context(() => {
+      const circles = gsap.utils.toArray<HTMLElement>(".circle");
+      circles.forEach((circle) => {
+        gsap.to(circle, {
+          y: "+=200",
+          x: "+=50",
+          repeat: -1,
+          yoyo: true,
+          duration: gsap.utils.random(5, 15),
+          ease: "sine.inOut",
+        });
       });
-    });
+    }, bgRef);
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <div className="absolute inset-0 z-10 overflow-hidden bg-linear-to-b from-yellow-200 via-orange-300 to-orange-500">
-      {Array.from({ length: 50 }).map((_, i) => (
-        <div
+    <div
+      ref={bgRef}
+      className="absolute inset-0 z-10 overflow-hidden bg-linear-to-b from-yellow-200 via-orange-300 to-orange-500"
+    >
+      {circles.map((circle, i) => (
+        <span
           key={i}
-          className="circle absolute bg-white/40 rounded-full"
+          className="circle absolute block bg-white/40 rounded-full"
           style={{
-            width: 20,
-            height: 20,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
+            width: circle.size,
+            height: circle.size,
+            top: circle.top,
+            left: circle.left,
           }}
         />
       ))}

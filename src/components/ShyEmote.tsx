@@ -23,27 +23,36 @@ export function ShyEmote({
   const springX = useSpring(x, { stiffness: 120, damping: 12 });
   const springY = useSpring(y, { stiffness: 120, damping: 12 });
   useEffect(() => {
+    let frame: number | null = null;
+
     const handleMove = (e: MouseEvent) => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const dist = Math.hypot(dx, dy);
-      const shyRadius = 300;
-      const fleeStrength = 42;
-      if (dist < shyRadius && dist > 1) {
-        const force = (1 - dist / shyRadius) * fleeStrength;
-        x.set((-dx / dist) * force);
-        y.set((-dy / dist) * force);
-      } else {
-        x.set(0);
-        y.set(0);
-      }
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.hypot(dx, dy);
+        const shyRadius = 300;
+        const fleeStrength = 42;
+        if (dist < shyRadius && dist > 1) {
+          const force = (1 - dist / shyRadius) * fleeStrength;
+          x.set((-dx / dist) * force);
+          y.set((-dy / dist) * force);
+        } else {
+          x.set(0);
+          y.set(0);
+        }
+      });
     };
     window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("mousemove", handleMove);
+    };
   }, [x, y]);
   return (
     <motion.div
@@ -81,12 +90,11 @@ export function ShyEmote({
               {title}
             </motion.h2>
             <Image
-              className={`w-full h-full object-contain ${imageClassName}`}
+              className={`object-contain ${imageClassName}`}
               src={src}
               alt={title}
-              width={176}
-              height={176}
-              priority
+              width={160}
+              height={160}
             />
           </motion.div>
         </a>

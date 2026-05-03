@@ -18,43 +18,53 @@ gsap.registerPlugin(ScrollTrigger);
 export default function OpeningSec() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef(null);
-  useGSAP(() => {
-    const splitTitle = SplitText.create(titleRef.current, {
-      type: "chars",
-    });
-    const tl = gsap.timeline({
-      repeat: -1,
-      repeatDelay: 7,
-    });
-    tl.to(".eye", {
-      scaleY: 0.02,
-      transformOrigin: "50% 50%",
-      duration: 0.5,
-      ease: "power2.in",
-    }).to(".eye", {
-      scaleY: 1,
-      duration: 0.5,
-      ease: "power2.out",
-    });
-    gsap.timeline({ delay: 1 }).from(splitTitle.chars, {
-      stagger: 0.05,
-      ease: "power2.inOut",
-      yPercent: 100,
-    });
-  });
+  useGSAP(
+    () => {
+      if (!titleRef.current) return;
+      const splitTitle = SplitText.create(titleRef.current, {
+        type: "chars",
+      });
+      const tl = gsap.timeline({
+        repeat: -1,
+        repeatDelay: 7,
+      });
+      tl.to(".eye", {
+        scaleY: 0.02,
+        transformOrigin: "50% 50%",
+        duration: 0.5,
+        ease: "power2.in",
+      }).to(".eye", {
+        scaleY: 1,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+      gsap.set(titleRef.current, { opacity: 1 });
+      gsap.from(splitTitle.chars, {
+        stagger: 0.05,
+        ease: "power2.inOut",
+        yPercent: 100,
+        delay: 1,
+      });
+      return () => {
+        splitTitle.revert();
+        tl.kill();
+      };
+    },
+    { scope: sectionRef },
+  );
   return (
     <>
-      <LiveCirclesBG />
       <section
         ref={sectionRef}
         className="h-dvh w-full relative flex-col flex overflow-hidden justify-center items-center bg-white"
       >
+        <LiveCirclesBG />
         <Emoticon />
         <div className="h-full w-full mt-5 items-center justify-center z-20 relative">
           <div className="w-full items-center justify-center flex flex-col">
             <h1
               ref={titleRef}
-              className="text-5xl md:text-7xl lg:text-8xl text-sky-400 font-bold overflow-hidden [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)]"
+              className="opacity-0 text-5xl md:text-7xl lg:text-8xl text-sky-400 font-bold overflow-hidden [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)]"
             >{`HEY, I'M NICKOPUSAN`}</h1>
           </div>
           <div className="absolute bottom-0 left-0 w-full">

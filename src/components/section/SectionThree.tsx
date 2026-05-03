@@ -41,7 +41,6 @@ export default function SectionThree() {
         end: "+=200%",
         pin: true,
         scrub: true,
-        markers: true,
       },
     });
     tl.to(pinkMaskRef.current, {
