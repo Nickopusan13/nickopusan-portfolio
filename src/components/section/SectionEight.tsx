@@ -104,7 +104,7 @@ export default function SectionEight() {
       <section
         aria-labelledby="contact-info"
         ref={sectionRef}
-        className="relative min-h-dvh bg-pink-600 flex flex-col items-center justify-center cursor-default overflow-hidden"
+        className="relative min-h-svh bg-pink-600 flex flex-col items-center justify-center cursor-default overflow-hidden"
       >
         <nav
           aria-label="Social Links"

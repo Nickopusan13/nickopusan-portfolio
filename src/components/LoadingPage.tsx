@@ -32,7 +32,7 @@ export default function LoadingPage({ onFinish }: { onFinish: () => void }) {
     return () => clearTimeout(timeout);
   }, []);
   return (
-    <div className="h-dvh overflow-hidden">
+    <div className="h-svh overflow-hidden">
       <div
         ref={overlayRef}
         className="fixed top-0 left-0 w-full h-full bg-amber-400 flex justify-center items-center z-50"

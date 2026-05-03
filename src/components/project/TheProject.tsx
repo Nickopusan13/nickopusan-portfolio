@@ -47,7 +47,7 @@ export default function TheProject({
     <div className="relative">
       <section
         ref={pinRef}
-        className="fixed inset-0 h-dvh w-screen z-0 pointer-events-none"
+        className="fixed inset-0 h-svh w-screen z-0 pointer-events-none"
       >
         <Image
           className="object-cover brightness-75"
@@ -58,7 +58,7 @@ export default function TheProject({
           fill
         />
       </section>
-      <section className="relative flex flex-col lg:flex-row justify-between z-10 px-5 lg:px-10 bg-zinc-900 min-h-dvh text-white gap-5 lg:gap-20">
+      <section className="relative flex flex-col lg:flex-row justify-between z-10 px-5 lg:px-10 bg-zinc-900 min-h-svh text-white gap-5 lg:gap-20">
         <div className="w-full lg:w-1/2">
           <div className="flex sticky h-screen top-0 items-center justify-center">
             <div className="flex flex-col gap-6 w-full text-base sm:text-lg lg:text-xl">

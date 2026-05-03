@@ -56,7 +56,7 @@ export default function OpeningSec() {
     <>
       <section
         ref={sectionRef}
-        className="h-dvh w-full relative flex-col flex overflow-hidden justify-center items-center bg-white"
+        className="h-svh w-full relative flex-col flex overflow-hidden justify-center items-center bg-white"
       >
         <LiveCirclesBG />
         <Emoticon />

@@ -43,6 +43,7 @@ export default function SectionTwo() {
   };
   useGSAP(
     () => {
+      const mm = gsap.matchMedia();
       if (!scrollSectionRef.current || !sliderRef.current) return;
       const firstTextSplit = SplitText.create(firstTextRef.current, {
         type: "chars",
@@ -80,22 +81,47 @@ export default function SectionTwo() {
       });
       const getScrollAmount = () => {
         if (!sliderRef.current) return 0;
-        return Math.max(0, sliderRef.current.scrollWidth - window.innerWidth);
+        return Math.max(
+          0,
+          sliderRef.current.scrollWidth - window.innerWidth + 100,
+        );
       };
-      gsap.to(sliderRef.current, {
-        x: () => -getScrollAmount(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: scrollSectionRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
+      mm.add("(max-width: 768px)", () => {
+        if (!scrollSectionRef.current || !sliderRef.current) return;
+        const scrollAmount = sliderRef.current?.scrollWidth - window.innerWidth;
+        const st = gsap.to(sliderRef.current, {
+          x: `-${scrollAmount + 50}px`,
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: scrollSectionRef.current,
+            start: "2% top",
+            end: `+=${scrollAmount + 30}px`,
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+        return () => st.kill();
+      });
+      mm.add("(min-width: 768px)", () => {
+        const st = gsap.to(sliderRef.current, {
+          x: () => -getScrollAmount(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: scrollSectionRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+        return () => st.kill();
       });
       return () => {
         firstTextSplit.revert();
         thirdTextSplit.revert();
+        mm.revert();
       };
     },
     { scope: scrollSectionRef },
@@ -103,7 +129,7 @@ export default function SectionTwo() {
   return (
     <section
       ref={scrollSectionRef}
-      className="relative min-h-[400svh] bg-orange-400"
+      className="relative min-h-svh md:min-h-[400svh] bg-orange-400"
     >
       <div className="sticky top-0 h-svh w-full overflow-hidden">
         <div
@@ -111,8 +137,8 @@ export default function SectionTwo() {
           className="h-full flex flex-row items-center gap-20 will-change-transform"
         >
           <div className="lg:w-[40vw] flex-none h-full">
-            <div className="md:text-8xl h-full text-5xl font-bold">
-              <h2 className="overflow-hidden items-center h-full justify-center flex text-8xl flex-col text-center px-20 text-black">
+            <div className="md:text-8xl h-full text-6xl font-bold">
+              <h2 className="overflow-hidden items-center h-full justify-center flex flex-col text-center px-5 md:px-20 text-black">
                 <span
                   ref={firstTextRef}
                   className="z-0 translate-y-5 whitespace-nowrap text-sky-500 [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)]"

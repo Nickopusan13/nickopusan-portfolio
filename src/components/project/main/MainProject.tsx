@@ -49,7 +49,7 @@ export default function MainProject() {
     setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
   };
   return (
-    <div className="min-h-dvh text-white overflow-hidden">
+    <div className="min-h-svh text-white overflow-hidden">
       <section className="flex flex-col items-center justify-center gap-4 lg:gap-8 px-5 lg:px-20">
         <h1 className="text-5xl font-semibold lg:text-8xl">Our Craft</h1>
         <div className="flex flex-col items-center justify-center text-lg text-white/50">

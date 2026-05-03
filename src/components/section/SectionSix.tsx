@@ -125,7 +125,7 @@ export default function SectionSix() {
   return (
     <section
       ref={sectionRef}
-      className="h-[500svh] relative min-h-svh bg-pink-800"
+      className="md:h-[500svh] relative min-h-svh bg-pink-800"
     >
       <div className="h-svh sticky top-0 flex-col lg:flex-wrap bg-pink-800 p-5 lg:p-10 overflow-hidden flex lg:justify-end justify-center">
         <aside

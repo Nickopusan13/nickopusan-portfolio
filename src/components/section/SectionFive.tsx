@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
@@ -69,16 +68,14 @@ export default function SectionFive() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-dvh relative bg-pink-800 z-20 flex flex-col items-center justify-center text-amber-200/20 lg:text-8xl text-4xl text-center font-bold uppercase py-20 overflow-hidden"
+      className="min-h-svh relative bg-pink-800 z-20 flex flex-col items-center justify-center text-amber-200/20 lg:text-8xl text-4xl text-center font-bold uppercase py-20 overflow-hidden"
     >
-      <motion.span
+      <span
         ref={firstMessage}
-        whileInView={isMobile ? { y: 10 } : { y: 20 }}
-        viewport={{ once: true }}
-        className="z-0"
+        className={`z-0 ${isMobile ? "translate-y-1" : "translate-y-5"}`}
       >
         Crafting
-      </motion.span>
+      </span>
       <span
         ref={experiencesRef}
         className="bg-amber-400 px-3 py-2 border-4 border-pink-800 text-pink-800 -rotate-3 z-20"
@@ -86,17 +83,15 @@ export default function SectionFive() {
       >
         Experiences
       </span>
-      <motion.div
-        whileInView={isMobile ? { y: -5 } : { y: -10 }}
-        viewport={{ once: true }}
-        className="flex flex-col items-center justify-center z-0"
+      <div
+        className={`flex flex-col items-center justify-center z-0 ${isMobile ? "translate-1" : "-translate-y-3"}`}
         ref={secondMessage}
       >
         <span> One Pixel at a Time</span>
         <span>
           Designing Worlds <br /> Through Motion
         </span>
-      </motion.div>
+      </div>
       <div
         ref={paragraphMessage}
         className="lg:text-base text-base max-w-3xl text-amber-200 mt-20 font-normal mx-5"

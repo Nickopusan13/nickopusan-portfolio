@@ -53,18 +53,16 @@ export default function SectionFour() {
   return (
     <section
       ref={sectionOneRef}
-      className="h-dvh w-full flex flex-col justify-center items-center text-pink-300 text-center px-10 bg-[#ec4899] z-10 will-change-transform overflow-hidden"
+      className="h-svh w-full flex flex-col justify-center items-center text-pink-300 text-center px-10 bg-[#ec4899] z-10 will-change-transform overflow-hidden"
     >
       <h1 className="text-4xl lg:text-[clamp(3rem,8vw,8rem)] font-bold flex flex-col">
-        <motion.span
-          whileInView={isMobile ? { y: 7 } : { y: 45 }}
-          viewport={{ once: true }}
+        <span
           ref={title1Ref}
-          className="z-0 whitespace-nowrap overflow-hidden"
+          className={`z-0 whitespace-nowrap overflow-hidden ${isMobile ? "translate-y-1" : "translate-y-7"}`}
         >
           {`I DON'T BUILD WEBSITES.`}
-        </motion.span>
-        <motion.span
+        </span>
+        <span
           style={{
             clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
           }}
@@ -72,7 +70,7 @@ export default function SectionFour() {
           className="z-10 inline-block text-pink-600 bg-amber-400 px-5 -rotate-2 border-pink-600 border-7"
         >
           I BUILD WORLDS.
-        </motion.span>
+        </span>
       </h1>
       <div className="mt-16 text-lg lg:text-2xl opacity-80 space-y-1">
         <motion.p
