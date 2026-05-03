@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { ScrambleTextPlugin } from "gsap/all";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
@@ -17,136 +18,85 @@ export default function SectionOne() {
   const scrambleTextTwo = useRef<HTMLSpanElement>(null);
   const scrambleTextThree = useRef<HTMLSpanElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
-
-    mm.add(
-      "(max-width: 768px)",
-      () => {
-        if (strokePath.current) {
-          const pathLength = strokePath.current.getTotalLength();
-          strokePath.current.style.strokeDasharray = pathLength.toString();
-          strokePath.current.style.strokeDashoffset = pathLength.toString();
-          gsap.to(strokePath.current, {
-            strokeDashoffset: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: asideRef.current,
-              start: "top top",
-              end: "bottom bottom",
-              scrub: true,
-            },
-          });
-        }
-        gsap
-          .timeline({
-            defaults: { ease: "none" },
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top top",
-            },
-          })
-          .to(scrambleTextOne.current, {
-            duration: 0.3,
-            scrambleText: {
-              text: "WHAT",
-              revealDelay: 0.05,
-            },
-          })
-          .to(scrambleTextTwo.current, {
-            duration: 0.3,
-            scrambleText: {
-              text: "CAN I DO",
-              revealDelay: 0.05,
-            },
-          })
-          .to(scrambleTextThree.current, {
-            duration: 0.3,
-            scrambleText: {
-              text: "FOR YOU",
-              revealDelay: 0.05,
-            },
-          })
-          .fromTo(
-            lineRef.current,
-            { opacity: 0, scaleY: 0 },
-            { opacity: 1, scaleY: 1 },
-          );
-        return () => mm.revert();
-      },
-      { scope: sectionRef },
-    );
-
-    if (strokePath.current) {
-      const pathLength = strokePath.current.getTotalLength();
-      strokePath.current.style.strokeDasharray = pathLength.toString();
-      strokePath.current.style.strokeDashoffset = pathLength.toString();
-      gsap.to(strokePath.current, {
-        strokeDashoffset: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: asideRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: true,
-        },
-      });
-    }
-    gsap
-      .timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-        },
-      })
-      .to(scrambleTextOne.current, {
-        duration: 0.3,
-        scrambleText: {
-          text: "WHAT",
-          revealDelay: 0.05,
-        },
-      })
-      .to(scrambleTextTwo.current, {
-        duration: 0.3,
-        scrambleText: {
-          text: "CAN I DO",
-          revealDelay: 0.05,
-        },
-      })
-      .to(scrambleTextThree.current, {
-        duration: 0.3,
-        scrambleText: {
-          text: "FOR YOU",
-          revealDelay: 0.05,
-        },
-      })
-      .fromTo(
-        lineRef.current,
-        { opacity: 0, scaleY: 0 },
-        { opacity: 1, scaleY: 1 },
-      );
-  });
+  useGSAP(
+    () => {
+      if (strokePath.current) {
+        const pathLength = strokePath.current.getTotalLength();
+        gsap.set(strokePath.current, {
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathLength,
+        });
+        gsap.to(strokePath.current, {
+          strokeDashoffset: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: asideRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        });
+      }
+      gsap
+        .timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+          },
+        })
+        .to(scrambleTextOne.current, {
+          duration: 0.3,
+          scrambleText: {
+            text: "WHAT",
+            revealDelay: 0.05,
+          },
+        })
+        .to(scrambleTextTwo.current, {
+          duration: 0.3,
+          scrambleText: {
+            text: "CAN I DO",
+            revealDelay: 0.05,
+          },
+        })
+        .to(scrambleTextThree.current, {
+          duration: 0.3,
+          scrambleText: {
+            text: "FOR YOU",
+            revealDelay: 0.05,
+          },
+        })
+        .fromTo(
+          lineRef.current,
+          { opacity: 0, scaleY: 0 },
+          { opacity: 1, scaleY: 1 },
+        );
+    },
+    { scope: sectionRef },
+  );
   return (
     <section
       ref={sectionRef}
-      className="bg-orange-400 text-white font-bold min-h-dvh py-20 lg:py-0"
+      className="bg-orange-400 text-white font-bold min-h-svh py-20 lg:py-0"
     >
-      <div className="flex flex-col lg:flex-row justify-between min-h-dvh gap-20 lg:gap-20 mx-5 sm:mx-20 lg:mx-50">
-        <div className="sticky left-0 top-0 lg:h-dvh lg:w-1/2 flex items-center justify-center lg:justify-start">
-          <div className="flex items-center justify-center gap-2 sm:gap-8">
+      <div className="flex flex-col lg:flex-row justify-between min-h-svh gap-20 lg:gap-20 mx-5 sm:mx-20 lg:mx-50">
+        <div className="sticky left-0 top-0 lg:h-svh lg:w-1/2 flex items-center justify-center lg:justify-start">
+          <div className="relative flex items-center justify-center gap-2 sm:gap-8">
             <div
               ref={lineRef}
               className="w-1 hidden lg:block border border-black rounded-full bg-yellow-200 lg:h-90 origin-top "
             />
-            <h1 className="lg:hidden flex flex-col leading-tight tracking-tight font-bold text-yellow-200 text-8xl lg:text-8xl [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)] opacity-0">
+            <h1
+              aria-hidden="true"
+              className="invisible flex md:flex-col leading-tight tracking-tight font-bold text-yellow-200 text-6xl md:text-8xl [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)] opacity-0"
+            >
               <span>WHAT</span>
               <span>CAN I DO</span>
               <span>FOR YOU</span>
             </h1>
             <h1
               ref={scrambleText}
-              className="absolute top-0 left-0 lg:static flex z-20 text-center  lg:text-start flex-col leading-tight tracking-tight font-bold text-yellow-200 text-8xl lg:text-8xl [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)]"
+              className="absolute top-0 left-20 md:left-5 flex z-20 text-center lg:text-start flex-col leading-tight tracking-tight font-bold text-yellow-200 text-6xl md:text-8xl [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)]"
             >
               <span ref={scrambleTextOne}></span>
               <span ref={scrambleTextTwo}></span>
@@ -159,11 +109,14 @@ export default function SectionOne() {
           className="relative h-full gap-30 lg:gap-0 flex flex-col w-full lg:w-1/2 text-2xl lg:text-2xl"
         >
           <div className="relative flex flex-col">
-            <img
+            <Image
               loading="lazy"
               className="will-change-transform w-[50%] sm:w-[30%] lg:w-[50%] absolute sm:-top-20 sm:right-30 -top-15 right-15 lg:top-20 lg:-right-10 z-10"
               src="/assets/logo/first.svg"
               alt=""
+              width={300}
+              height={300}
+              aria-hidden="true"
             />
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -179,11 +132,14 @@ export default function SectionOne() {
             </motion.div>
           </div>
           <div className="relative flex flex-col">
-            <img
+            <Image
               loading="lazy"
               className="will-change-transform w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 top-35 left-50 sm:top-0 lg:top-35 lg:left-50"
               src="/assets/logo/second.svg"
               alt=""
+              width={300}
+              height={300}
+              aria-hidden="true"
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-2 sm:gap-5 z-20">
               <h2 className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black">
@@ -203,11 +159,14 @@ export default function SectionOne() {
             </div>
           </div>
           <div className="relative flex flex-col">
-            <img
+            <Image
               className="w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 top-30 right-15 sm:right-30 lg:top-45 lg:right-0 will-change-transform"
               src="/assets/logo/third.svg"
               loading="lazy"
               alt=""
+              width={300}
+              height={300}
+              aria-hidden="true"
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-3 sm:gap-5 z-20">
               <h2 className="text-5xl leading-tight lg:text-4xl lg:text-start text-center text-black">
@@ -228,11 +187,14 @@ export default function SectionOne() {
             </div>
           </div>
           <div className="relative flex flex-col">
-            <img
+            <Image
               loading="lazy"
               className="will-change-transform w-[50%] sm:w-[30%] lg:w-[50%] absolute items-center justify-center z-10 -bottom-20 right-15 sm:right-20 lg:top-15 lg:-right-15"
               src="/assets/logo/fourth.svg"
               alt=""
+              width={300}
+              height={300}
+              aria-hidden="true"
             />
             <div className="h-[50vh] lg:h-screen lg:sticky items-center lg:items-start flex flex-col justify-center gap-3 sm:gap-5 z-20">
               <h2 className="leading-tight text-5xl lg:text-4xl lg:text-start text-center text-black">
@@ -257,7 +219,7 @@ export default function SectionOne() {
             height="1548"
             viewBox="0 0 538 1548"
             fill="none"
-            xmlns="http://www.w3.org/2000/motion.svg"
+            xmlns="http://www.w3.org/2000/svg"
             className="absolute w-[150%] z-0 h-full top-0 lg:top-0 -left-40 lg:-left-40"
           >
             <path

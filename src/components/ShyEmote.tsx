@@ -48,7 +48,7 @@ export function ShyEmote({
         }
       });
     };
-    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("mousemove", handleMove, { passive: true });
     return () => {
       if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("mousemove", handleMove);
