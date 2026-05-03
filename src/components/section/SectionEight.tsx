@@ -7,15 +7,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
 import { AnimatedLink } from "../ui/AnimatedLink";
-
-const list = (
-  <div className="flex items-center gap-1 w-fit">
-    <span>LET’S COLLABORATE 👾</span>
-    <span>DROP ME A LINE 🛸</span>
-    <span>OPEN FOR PROJECTS 👾</span>
-    <span>LET’S CREATE SOMETHING BEAUTIFUL 🛸</span>
-  </div>
-);
+import { marqueeList } from "@/utils/marqueeList";
 
 export default function SectionEight() {
   const isMobile = useMediaQuery();
@@ -187,8 +179,8 @@ export default function SectionEight() {
             className="bg-amber-300 py-3 lg:py-5 text-2xl lg:text-5xl whitespace-nowrap overflow-hidden"
           >
             <div ref={marqueeRef} className="flex w-fit">
-              {list}
-              {list}
+              {marqueeList}
+              {marqueeList}
             </div>
           </div>
         </div>
