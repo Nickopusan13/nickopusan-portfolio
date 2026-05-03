@@ -40,12 +40,10 @@ export const skill = [
     icon: (
       <RiNextjsFill className="text-8xl lg:text-9xl text-zinc-900 transition-transform duration-300 hover:text-zinc-800 hover:scale-110 hover:drop-shadow-[0_0_8px_#000]" />
     ),
-    top: 10,
-    topMobile: 10,
-    left: 10,
-    leftMobile: 5,
-    bottom: 10,
-    right: 10,
+    x: 10,
+    y: 10,
+    xMobile: 5,
+    yMobile: 10,
   },
   {
     number: "02",
@@ -54,12 +52,10 @@ export const skill = [
     icon: (
       <RiReactjsFill className="text-8xl lg:text-9xl text-cyan-400 transition-transform duration-300 hover:text-cyan-300 hover:scale-110 hover:drop-shadow-[0_0_8px_#22d3ee]" />
     ),
-    top: 30,
-    topMobile: 20,
-    left: 80,
-    leftMobile: 45,
-    bottom: 10,
-    right: 10,
+    x: 80,
+    y: 30,
+    xMobile: 45,
+    yMobile: 20,
   },
   {
     number: "03",
@@ -68,24 +64,20 @@ export const skill = [
     icon: (
       <TbBrandThreejs className="text-8xl lg:text-9xl text-slate-300 transition-transform duration-300 hover:text-white hover:scale-110 hover:drop-shadow-[0_0_10px_#ffffff]" />
     ),
-    top: 50,
-    topMobile: 30,
-    left: 150,
-    leftMobile: 85,
-    bottom: 10,
-    right: 10,
+    x: 150,
+    y: 50,
+    xMobile: 85,
+    yMobile: 30,
   },
   {
     number: "04",
     title: "GSAP",
     href: "https://gsap.com",
     icon: <GSAPIcon />,
-    top: 70,
-    topMobile: 40,
-    left: 220,
-    leftMobile: 125,
-    bottom: 10,
-    right: 10,
+    x: 220,
+    y: 70,
+    xMobile: 125,
+    yMobile: 40,
   },
   {
     number: "05",
@@ -94,12 +86,10 @@ export const skill = [
     icon: (
       <BiLogoTypescript className="text-8xl lg:text-9xl text-blue-500 transition-transform duration-300 hover:text-blue-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#3b82f6]" />
     ),
-    top: 90,
-    topMobile: 50,
-    leftMobile: 165,
-    left: 290,
-    bottom: 10,
-    right: 10,
+    x: 290,
+    y: 90,
+    xMobile: 165,
+    yMobile: 50,
   },
   {
     number: "06",
@@ -108,12 +98,10 @@ export const skill = [
     icon: (
       <SiFastapi className="text-8xl lg:text-9xl text-teal-400 transition-transform duration-300 hover:text-teal-300 hover:scale-110 hover:drop-shadow-[0_0_8px_#14b8a6]" />
     ),
-    top: 110,
-    topMobile: 210,
-    leftMobile: 5,
-    left: 360,
-    bottom: 10,
-    right: 10,
+    x: 360,
+    y: 110,
+    xMobile: 5,
+    yMobile: 210,
   },
   {
     number: "07",
@@ -122,24 +110,20 @@ export const skill = [
     icon: (
       <SiSupabase className="text-8xl lg:text-9xl text-[#3ECF8E] transition-transform duration-300 hover:text-[#33b77b] hover:scale-110 hover:drop-shadow-[0_0_8px_#3ECF8E]" />
     ),
-    top: 130,
-    topMobile: 220,
-    leftMobile: 45,
-    left: 430,
-    bottom: 10,
-    right: 10,
+    x: 430,
+    y: 130,
+    xMobile: 45,
+    yMobile: 220,
   },
   {
     number: "08",
     title: "Lenis",
     href: "https://lenis.darkroom.engineering",
     icon: <LenisIcon />,
-    top: 150,
-    topMobile: 230,
-    leftMobile: 85,
-    left: 500,
-    bottom: 10,
-    right: 10,
+    x: 500,
+    y: 150,
+    xMobile: 85,
+    yMobile: 230,
   },
   {
     number: "09",
@@ -148,12 +132,10 @@ export const skill = [
     icon: (
       <FaDocker className="text-8xl lg:text-9xl text-blue-500 transition-transform duration-300 hover:text-blue-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#0db7ed]" />
     ),
-    top: 170,
-    topMobile: 240,
-    leftMobile: 125,
-    left: 570,
-    bottom: 10,
-    right: 10,
+    x: 570,
+    y: 170,
+    xMobile: 125,
+    yMobile: 240,
   },
   {
     number: "10",
@@ -162,11 +144,9 @@ export const skill = [
     icon: (
       <SiGithub className="text-8xl lg:text-9xl text-black transition-transform duration-300 hover:text-gray-700 hover:scale-110 hover:drop-shadow-[0_0_8px_#000]" />
     ),
-    top: 190,
-    topMobile: 250,
-    leftMobile: 165,
-    left: 640,
-    bottom: 10,
-    right: 10,
+    x: 640,
+    y: 190,
+    xMobile: 165,
+    yMobile: 250,
   },
 ];

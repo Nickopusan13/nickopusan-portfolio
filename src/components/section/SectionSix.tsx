@@ -30,15 +30,21 @@ export default function SectionSix() {
           tl.fromTo(
             `.card-${i}`,
             {
-              bottom: item.bottom,
-              right: item.right,
+              xPercent: 200,
+              yPercent: 50,
+              x: item.xMobile,
+              y: item.yMobile,
+              scale: 0.8,
               opacity: 0,
               ease: "power3.out",
               duration: 1,
             },
             {
-              top: item.topMobile,
-              left: item.leftMobile,
+              xPercent: 0,
+              yPercent: 0,
+              x: item.xMobile,
+              y: item.yMobile,
+              scale: 1,
               opacity: 1,
               duration: 0.3,
               ease: "power3.out",
@@ -76,17 +82,23 @@ export default function SectionSix() {
           tl.fromTo(
             `.card-${i}`,
             {
-              bottom: item.bottom,
-              right: item.right,
+              xPercent: 200,
+              yPercent: 50,
+              x: item.x,
+              y: item.y,
               opacity: 0,
+              scale: 0.8,
               ease: "power3.out",
               duration: 1,
             },
             {
-              top: item.top,
-              left: item.left,
+              xPercent: 0,
+              yPercent: 0,
+              x: item.x,
+              y: item.y,
               opacity: 1,
               duration: 0.3,
+              scale: 1,
               ease: "power3.out",
             },
             i * 0.2,
@@ -123,25 +135,29 @@ export default function SectionSix() {
           <span>THE ENGINE</span>
           <span>BEHIND THE MAGIC</span>
         </aside>
-        <div className="relative w-full h-[80vh]">
+        <div className="relative w-full h-[80svh]">
           {skill.map((item, idx) => (
-            <motion.div
+            <div
               key={idx}
-              whileHover={{ y: -20 }}
-              className={`card-${idx} absolute w-50 h-50 sm:w-60 sm:h-60 lg:w-100 lg:h-100 bg-pink-900 text-amber-300 border-amber-300/50 border-2 shadow-2xl`}
+              className={`card-${idx} absolute w-50 h-50 sm:w-60 sm:h-60 lg:w-100 lg:h-100`}
             >
-              <div className="flex flex-col p-2 lg:p-5 w-full h-full text-3xl lg:text-5xl font-extrabold">
-                <p className="w-full h-full justify-start flex items-start">
-                  {item.number}
-                </p>
-                <div className="flex flex-col items-center justify-center px-2">
-                  <Link href={item.href}>{item.icon}</Link>
+              <motion.div
+                whileHover={{ y: -20 }}
+                className="w-full h-full bg-pink-900 text-amber-300 border-amber-300/50 border-2 shadow-2xl"
+              >
+                <div className="flex flex-col p-2 lg:p-5 w-full h-full text-3xl lg:text-5xl font-extrabold">
+                  <p className="w-full h-full justify-start flex items-start">
+                    {item.number}
+                  </p>
+                  <div className="flex flex-col items-center justify-center px-2">
+                    <Link href={item.href}>{item.icon}</Link>
+                  </div>
+                  <p className="w-full h-full justify-end flex items-end">
+                    {item.title}
+                  </p>
                 </div>
-                <p className="w-full h-full justify-end flex items-end">
-                  {item.title}
-                </p>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           ))}
         </div>
       </div>
