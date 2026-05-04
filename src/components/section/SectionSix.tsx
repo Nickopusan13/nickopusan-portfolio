@@ -140,7 +140,9 @@ export default function SectionSix() {
                     {item.number}
                   </p>
                   <div className="flex flex-col items-center justify-center px-2">
-                    <Link href={item.href}>{item.icon}</Link>
+                    <Link aria-label={item.title} href={item.href}>
+                      {item.icon}
+                    </Link>
                   </div>
                   <p className="w-full h-full justify-end flex items-end">
                     {item.title}
