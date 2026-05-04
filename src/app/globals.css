@@ -188,3 +188,28 @@ body {
 .eye {
   will-change: transform, cx, cy;
 }
+
+.cartoon-item {
+  position: relative;
+  padding: 0.45rem 0.8rem;
+  border: 2px solid #000;
+  background: #fbbf24;
+  color: #000;
+  border-radius: 0.75rem 0.2rem 0.75rem 0.2rem;
+  box-shadow: 3px 3px 0px #000;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.cartoon-item:hover {
+  transform: translate(-3px, -3px) rotate(-1deg);
+  box-shadow: 6px 6px 0px #000;
+  background: #f59e0b;
+}
+
+.cartoon-item:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
+}

@@ -7,15 +7,25 @@ import { useRef } from "react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
 import { AnimatedLink } from "../ui/AnimatedLink";
 
-const list = (
-  <div className="flex items-center gap-1 w-fit">
-    <span>LET’S COLLABORATE 👾</span>
-    <span>DROP ME A LINE 🛸</span>
-    <span>OPEN FOR PROJECTS 👾</span>
-    <span>LET’S CREATE SOMETHING BEAUTIFUL 🛸</span>
-  </div>
-);
+const marqueeItems = [
+  "LET’S COLLABORATE",
+  "DROP ME A LINE",
+  "OPEN FOR PROJECTS",
+  "LET’S CREATE SOMETHING BEAUTIFUL",
+];
 
+function MarqueeList() {
+  return (
+    <div className="flex shrink-0 items-center gap-8 pr-8 text-amber-100 font-black tracking-wide">
+      {marqueeItems.map((item, idx) => (
+        <div key={idx} className="flex items-center gap-8">
+          <span>{item}</span>
+          <span className="text-black">★</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 export default function ProjectFooter() {
   const isMobile = useMediaQuery();
   const marqueeRef = useRef<HTMLDivElement>(null);
@@ -60,39 +70,78 @@ export default function ProjectFooter() {
     }
   };
   return (
-    <div className="py-5 lg:py-10 mt-10 lg:mt-20 bg-zinc-900">
-      <div className="px-5 lg:px-10 mb-10 text-white flex flex-col">
-        <div className="flex lg:flex-row flex-col justify-between items-center">
-          <div className="flex flex-col items-center lg:items-start justify-center leading-relaxed">
-            <FaMapPin />
-            <span>Jl. Sudirman No. 45</span>{" "}
-            <span> Setiabudi, Jakarta Selatan 12920</span>
-            <span>Indonesia</span>
+    <footer className="mt-10 md:mt-10 md:pb-10 overflow-hidden bg-amber-600">
+      <div className="px-4 pt-8 md:px-5 md:pt-5 border-t-4 border-black">
+        <div className="relative z-10 mb-5 rounded-tr-4xl rounded-bl-4xl rounded-tl-md rounded-br-md border-4 border-black bg-amber-500 px-5 py-6 lg:px-8 lg:py-8 text-black shadow-[8px_8px_0px_#000]">
+          <div className="px-5 lg:px-10 mb-10 font-bold flex flex-col">
+            <div className="flex lg:flex-row flex-col justify-between items-center">
+              <div className="cartoon-item flex flex-col items-center lg:items-start justify-center leading-relaxed">
+                <FaMapPin />
+                <span>Jl. Sudirman No. 45</span>{" "}
+                <span> Setiabudi, Jakarta Selatan 12920</span>
+                <span>Indonesia</span>
+              </div>
+              <div className="flex md:grid md:grid-cols-2 gap-10 md:gap-2">
+                <AnimatedLink
+                  underline="bg-amber-700"
+                  classname="cartoon-item"
+                  href="/"
+                >
+                  GALLERY
+                </AnimatedLink>
+                <AnimatedLink
+                  underline="bg-amber-700"
+                  classname="cartoon-item"
+                  href="/"
+                >
+                  PROJECTS
+                </AnimatedLink>
+                <AnimatedLink
+                  underline="bg-amber-700"
+                  classname="cartoon-item"
+                  href="/"
+                >
+                  ABOUT
+                </AnimatedLink>
+                <AnimatedLink
+                  underline="bg-amber-700"
+                  classname="cartoon-item"
+                  href="/"
+                >
+                  CONTACT
+                </AnimatedLink>
+              </div>
+              <div className="flex mt-10 mb-5 gap-2 md:my-0 flex-col items-center lg:items-start justify-center">
+                <a
+                  className="cartoon-item transition hover:-translate-y-0.5 hover:text-amber-800"
+                  href=""
+                >
+                  nickowork13@gmail.com
+                </a>
+                <a
+                  className="cartoon-item transition hover:-translate-y-0.5 hover:text-amber-800"
+                  href=""
+                >
+                  +62 85156229898
+                </a>
+              </div>
+              <p className="cartoon-item">
+                © {new Date().getFullYear()} ALL RIGHTS RESERVED
+              </p>
+            </div>
           </div>
-          <div className="border w-full border-white/20 lg:hidden block my-5" />
-          <div className="flex lg:flex-col gap-10 lg:gap-0 lg:leading-relaxed">
-            <AnimatedLink href="/">GALLERY</AnimatedLink>
-            <AnimatedLink href="/">PROJECTS</AnimatedLink>
-            <AnimatedLink href="/">ABOUT</AnimatedLink>
-            <AnimatedLink href="/">CONTACT</AnimatedLink>
-          </div>
-          <div className="flex mt-10 mb-5 lg:my-0 flex-col items-center lg:items-start justify-center">
-            <a href="">nickowork13@gmail.com</a>
-            <a href="">+62 85156229898</a>
-          </div>
-          <p>© {new Date().getFullYear()} ALL RIGHTS RESERVED</p>
         </div>
       </div>
       <div
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
-        className="bg-amber-300 py-3 lg:py-5 text-2xl lg:text-5xl whitespace-nowrap overflow-hidden"
+        className="z-10 overflow-hidden whitespace-nowrap border-4 border-black bg-amber-900 py-3 text-2xl lg:py-4 lg:text-3xl shadow-[7px_7px_0px_#000] cursor-default"
       >
-        <div ref={marqueeRef} className="flex w-fit">
-          {list}
-          {list}
+        <div ref={marqueeRef} className="flex w-max will-change-transform">
+          <MarqueeList />
+          <MarqueeList />
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
