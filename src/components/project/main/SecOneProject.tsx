@@ -86,7 +86,7 @@ export default function SecOneProject() {
   return (
     <div
       ref={sectionRef}
-      className="w-full h-[80svh] bg-amber-500 border-y-4 border-black relative overflow-hidden"
+      className="w-full h-[90svh] bg-amber-500 border-y-4 border-black relative overflow-hidden"
       style={{
         backgroundImage: `
           repeating-linear-gradient(
@@ -112,7 +112,7 @@ export default function SecOneProject() {
         POW!
       </div>
       <div className="w-full h-full flex flex-col items-start justify-center">
-        <div className="flex mt-15 flex-col w-full h-full mx-40 items-start justify-center gap-7">
+        <div className="flex mt-20 flex-col w-full h-full mx-40 items-start justify-center gap-7">
           <motion.div
             initial={{ rotate: -4, scale: 0.95 }}
             whileInView={{ rotate: -2, scale: 1 }}
