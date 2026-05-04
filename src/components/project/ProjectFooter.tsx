@@ -6,6 +6,9 @@ import gsap from "gsap";
 import { useRef } from "react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
 import { AnimatedLink } from "../ui/AnimatedLink";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const marqueeItems = [
   "LET’S COLLABORATE",
@@ -30,6 +33,7 @@ export default function ProjectFooter() {
   const isMobile = useMediaQuery();
   const marqueeRef = useRef<HTMLDivElement>(null);
   const marqueeTimeline = useRef<GSAPTimeline>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
   const isReversed = false;
   useGSAP(
     () => {
@@ -37,7 +41,7 @@ export default function ProjectFooter() {
         xPercent: isReversed ? -50 : 0,
       });
       marqueeTimeline.current = gsap
-        .timeline({ defaults: { ease: "none", repeat: -1 } })
+        .timeline({ repeat: -1, defaults: { ease: "none" } })
         .to(marqueeRef.current, {
           xPercent: isReversed ? 0 : -50,
           duration: 10,
@@ -45,6 +49,15 @@ export default function ProjectFooter() {
         .set(marqueeRef.current, {
           xPercent: 0,
         });
+      ScrollTrigger.create({
+        trigger: footerRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => marqueeTimeline.current?.play(),
+        onEnterBack: () => marqueeTimeline.current?.play(),
+        onLeave: () => marqueeTimeline.current?.pause(),
+        onLeaveBack: () => marqueeTimeline.current?.pause(),
+      });
     },
     { dependencies: [isReversed] },
   );
@@ -70,7 +83,10 @@ export default function ProjectFooter() {
     }
   };
   return (
-    <footer className="mt-10 md:mt-10 md:pb-10 overflow-hidden bg-amber-600">
+    <footer
+      ref={footerRef}
+      className="mt-10 md:mt-10 md:pb-10 overflow-hidden bg-amber-600"
+    >
       <div className="px-4 pt-8 md:px-5 md:pt-5 border-t-4 border-black">
         <div className="relative z-10 mb-5 rounded-tr-4xl rounded-bl-4xl rounded-tl-md rounded-br-md border-4 border-black bg-amber-500 px-5 py-6 lg:px-8 lg:py-8 text-black shadow-[8px_8px_0px_#000]">
           <div className="px-5 lg:px-10 mb-10 font-bold flex flex-col">
