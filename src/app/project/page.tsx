@@ -5,7 +5,7 @@ import SecOneProject from "@/components/project/main/SecOneProject";
 
 export default function ProjectMain() {
   return (
-    <div className="bg-amber-900">
+    <div className="bg-amber-900 overflow-x-hidden">
       <ProjectNavbar />
       <SecOneProject />
       <div className="flex flex-col pt-25">
