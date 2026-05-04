@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
-import { ScrambleTextPlugin } from "gsap/all";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrambleTextPlugin);

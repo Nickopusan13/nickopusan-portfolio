@@ -3,56 +3,65 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { SplitText } from "gsap/all";
+import { SplitText } from "gsap/SplitText";
 import { motion } from "motion/react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
 
 export default function SectionFour() {
-  const sectionOneRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const title1Ref = useRef(null);
   const title2Ref = useRef(null);
   const isMobile = useMediaQuery();
-  useGSAP(() => {
-    const titleSplit = SplitText.create(title1Ref.current, {
-      type: "chars",
-    });
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionOneRef.current,
-        start: "top 25%",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-    tl.to(sectionOneRef.current, {
-      rotate: 10,
-      scale: 0.9,
-      yPercent: 30,
-      ease: "power1.inOut",
-    });
-    gsap.from(titleSplit.chars, {
-      yPercent: 50,
-      opacity: 0,
-      stagger: 0.02,
-      ease: "power2.inOut",
-      scrollTrigger: {
-        trigger: sectionOneRef.current,
-        start: "top 30%",
-      },
-    });
-    gsap.to(title2Ref.current, {
-      duration: 1,
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      ease: "circ.out,",
-      scrollTrigger: {
-        trigger: sectionOneRef.current,
-        start: "top 10%",
-      },
-    });
-  });
+  useGSAP(
+    () => {
+      const titleSplit = SplitText.create(title1Ref.current, {
+        type: "chars",
+      });
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 25%",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+        tl.to(sectionRef.current, {
+          rotate: 10,
+          scale: 0.9,
+          yPercent: 30,
+          ease: "power1.inOut",
+        });
+        gsap.from(titleSplit.chars, {
+          yPercent: 50,
+          opacity: 0,
+          stagger: 0.02,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 30%",
+          },
+        });
+        gsap.to(title2Ref.current, {
+          duration: 1,
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 10%",
+          },
+        });
+      });
+      return () => {
+        titleSplit.revert();
+        ctx.revert();
+      };
+    },
+    { scope: sectionRef },
+  );
   return (
     <section
-      ref={sectionOneRef}
+      ref={sectionRef}
       className="h-svh w-full flex flex-col justify-center items-center text-pink-300 text-center px-10 bg-[#ec4899] z-10 will-change-transform overflow-hidden"
     >
       <h1 className="text-4xl lg:text-[clamp(3rem,8vw,8rem)] font-bold flex flex-col">

@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
-import { SplitText } from "gsap/all";
+import { SplitText } from "gsap/SplitText";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { skill } from "../ui/Skill";
@@ -23,6 +23,8 @@ export default function SectionSix() {
             end: "+=400%",
             pin: true,
             scrub: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
           },
         });
 
@@ -51,20 +53,6 @@ export default function SectionSix() {
             },
             i * 0.2,
           );
-        });
-
-        const titleSplit = SplitText.create(titleRef.current, {
-          type: "chars",
-        });
-        gsap.from(titleSplit.chars, {
-          yPercent: 50,
-          opacity: 0,
-          stagger: 0.02,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 30%",
-          },
         });
       });
 
@@ -77,7 +65,6 @@ export default function SectionSix() {
             scrub: true,
           },
         });
-
         skill.forEach((item, i) => {
           tl.fromTo(
             `.card-${i}`,
@@ -104,21 +91,24 @@ export default function SectionSix() {
             i * 0.2,
           );
         });
-        const titleSplit = SplitText.create(titleRef.current, {
-          type: "chars",
-        });
-        gsap.from(titleSplit.chars, {
-          yPercent: 50,
-          opacity: 0,
-          stagger: 0.02,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 30%",
-          },
-        });
       });
-      return () => mm.revert();
+      const titleSplit = SplitText.create(titleRef.current, {
+        type: "chars",
+      });
+      gsap.from(titleSplit.chars, {
+        yPercent: 50,
+        opacity: 0,
+        stagger: 0.02,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top 30%",
+        },
+      });
+      return () => {
+        mm.revert();
+        titleSplit.revert();
+      };
     },
     { scope: sectionRef },
   );

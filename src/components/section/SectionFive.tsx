@@ -3,7 +3,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { SplitText } from "gsap/all";
+import { SplitText } from "gsap/SplitText";
 import { useMediaQuery } from "@/utils/useMediaQuery";
 
 export default function SectionFive() {
@@ -13,58 +13,66 @@ export default function SectionFive() {
   const secondMessage = useRef<HTMLDivElement>(null);
   const paragraphMessage = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery();
-  useGSAP(() => {
-    const firstMessageSplit = SplitText.create(firstMessage.current, {
-      type: "words",
-    });
-    const secondMessageSplit = SplitText.create(secondMessage.current, {
-      type: "words",
-    });
-    const paragraphMessageSplit = SplitText.create(paragraphMessage.current, {
-      type: "chars",
-    });
-    gsap.to(experiencesRef.current, {
-      duration: 1,
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      ease: "circ.out,",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 10%",
-      },
-    });
-    gsap.to(firstMessageSplit.words, {
-      color: "#fee685",
-      ease: "none",
-      stagger: 1,
-      scrollTrigger: {
-        trigger: firstMessage.current,
-        start: "top center",
-        end: "35% center",
-        scrub: 2,
-      },
-    });
-    gsap.to(secondMessageSplit.words, {
-      color: "#fee685",
-      ease: "none",
-      stagger: 1,
-      scrollTrigger: {
-        trigger: secondMessage.current,
-        start: "top center",
-        end: "40% center",
-        scrub: 2,
-      },
-    });
-    gsap.from(paragraphMessageSplit.chars, {
-      yPercent: 50,
-      opacity: 0,
-      stagger: 0.01,
-      ease: "power2.inOut",
-      scrollTrigger: {
-        trigger: paragraphMessage.current,
-        start: "bottom bottom",
-      },
-    });
-  });
+  useGSAP(
+    () => {
+      const firstMessageSplit = SplitText.create(firstMessage.current, {
+        type: "words",
+      });
+      const secondMessageSplit = SplitText.create(secondMessage.current, {
+        type: "words",
+      });
+      const paragraphMessageSplit = SplitText.create(paragraphMessage.current, {
+        type: "words",
+      });
+      gsap.to(experiencesRef.current, {
+        duration: 1,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "circ.out,",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 10%",
+        },
+      });
+      gsap.to(firstMessageSplit.words, {
+        color: "#fee685",
+        ease: "none",
+        stagger: 1,
+        scrollTrigger: {
+          trigger: firstMessage.current,
+          start: "top center",
+          end: "35% center",
+          scrub: 2,
+        },
+      });
+      gsap.to(secondMessageSplit.words, {
+        color: "#fee685",
+        ease: "none",
+        stagger: 1,
+        scrollTrigger: {
+          trigger: secondMessage.current,
+          start: "top center",
+          end: "40% center",
+          scrub: 2,
+        },
+      });
+      gsap.from(paragraphMessageSplit.words, {
+        yPercent: 50,
+        opacity: 0,
+        stagger: 0.01,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: paragraphMessage.current,
+          start: "bottom bottom",
+        },
+      });
+      return () => {
+        firstMessageSplit.revert();
+        secondMessageSplit.revert();
+        paragraphMessageSplit.revert();
+      };
+    },
+    { scope: sectionRef },
+  );
   return (
     <section
       ref={sectionRef}

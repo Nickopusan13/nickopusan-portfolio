@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
 import { AnimatedLink } from "../ui/AnimatedLink";
 import { marqueeList } from "@/utils/marqueeList";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SectionEight() {
   const isMobile = useMediaQuery();
@@ -35,6 +36,15 @@ export default function SectionEight() {
         .set(marqueeRef.current, {
           xPercent: 0,
         });
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => timeline.current?.play(),
+        onEnterBack: () => timeline.current?.play(),
+        onLeave: () => timeline.current?.pause(),
+        onLeaveBack: () => timeline.current?.pause(),
+      });
     },
     { dependencies: [isReversed] },
   );

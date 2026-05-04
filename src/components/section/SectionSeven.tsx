@@ -3,7 +3,7 @@
 import { useMediaQuery } from "@/utils/useMediaQuery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { SplitText } from "gsap/all";
+import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
 
 export default function SectionSeven() {
@@ -62,6 +62,9 @@ export default function SectionSeven() {
         clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
         ease: "circ.out",
       });
+      return () => {
+        titleSplit.revert();
+      };
     },
     { scope: sectionRef },
   );
