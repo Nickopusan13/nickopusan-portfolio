@@ -13,9 +13,9 @@ export default async function ProjectPage({ params }: Props) {
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
   return (
-    <div className="bg-zinc-900">
+    <div>
       <ProjectNavbar />
-      <div className="flex flex-col gap-0 lg:gap-10">
+      <div className="flex flex-col">
         <TheProject
           description={project.description}
           images={project.images}

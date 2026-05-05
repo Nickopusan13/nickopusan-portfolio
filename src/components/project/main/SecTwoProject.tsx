@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -204,15 +205,7 @@ export default function SecTwoProject() {
                 className={`grid w-full grid-cols-1 gap-6 rounded-tr-[2.5rem] rounded-bl-[2.5rem] border-4 border-black bg-amber-400 p-5 shadow-[10px_10px_0px_#000] md:absolute md:left-0 md:top-0 md:h-full lg:grid-cols-[20%_1fr_30%] lg:p-8`}
               >
                 <div className="flex items-start border-b-4 border-black pb-5 lg:border-b-0 lg:border-r-4 lg:pb-0 lg:pr-5">
-                  <span
-                    className="
-                flex size-20 items-center justify-center
-                rounded-tr-2xl rounded-bl-2xl
-                border-4 border-black bg-orange-500
-                text-5xl font-black text-black
-                shadow-[5px_5px_0px_#000]
-              "
-                  >
+                  <span className="flex size-20 items-center justify-center rounded-tr-2xl rounded-bl-2xl border-4 border-black bg-orange-500 text-5xl font-black text-black shadow-[5px_5px_0px_#000]">
                     {number}
                   </span>
                 </div>
@@ -264,7 +257,9 @@ export default function SecTwoProject() {
               "
                   >
                     <span>Learn More</span>
-                    <span>{`->`}</span>
+                    <span>
+                      <FaLongArrowAltRight />
+                    </span>
                   </motion.button>
                 </div>
                 <motion.div

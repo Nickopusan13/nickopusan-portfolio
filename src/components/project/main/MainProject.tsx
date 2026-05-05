@@ -18,6 +18,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { GiFlowerStar } from "react-icons/gi";
 
 const sortOptions = [
   { label: "WEB APP" },
@@ -158,9 +159,9 @@ export default function MainProject() {
                             stiffness: 400,
                             damping: 30,
                           }}
-                          className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xl text-orange-600 drop-shadow-[2px_2px_0px_#000]"
+                          className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xl text-orange-600 drop-shadow-[2px_2px_0px_#000]"
                         >
-                          ★
+                          <GiFlowerStar />
                         </motion.div>
                       )}
                     </motion.div>

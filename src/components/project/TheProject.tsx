@@ -9,15 +9,10 @@ import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { AnimatedLink } from "../ui/AnimatedLink";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
-import "swiper/css/zoom";
 
 gsap.registerPlugin(ScrollTrigger);
 const MotionLink = motion.create(Link);
+const MotionImage = motion.create(Image);
 
 interface ProjectProps {
   images: string[];
@@ -58,47 +53,102 @@ export default function TheProject({
           fill
         />
       </section>
-      <section className="relative flex flex-col lg:flex-row justify-between z-10 px-5 lg:px-10 bg-zinc-900 min-h-svh text-white gap-5 lg:gap-20">
+      <section className="relative py-10 flex flex-col lg:flex-row justify-between z-10 px-5 lg:px-10 bg-amber-600 min-h-svh text-black gap-5 lg:gap-20">
         <div className="w-full lg:w-1/2">
           <div className="flex sticky h-screen top-0 items-center justify-center">
-            <div className="flex flex-col gap-6 w-full text-base sm:text-lg lg:text-xl">
+            <div
+              className="-rotate-1 relative flex w-full flex-col gap-6 rounded-tr-4xl rounded-bl-4xl
+              border-4 border-black bg-amber-300 p-5 font-black
+              shadow-[10px_10px_0px_#000] sm:p-6 lg:p-7"
+            >
+              <div
+                className="absolute -right-4 -top-5 rotate-6 rounded-tr-xl rounded-bl-xl
+                border-2 border-black bg-orange-500 px-4 py-1 text-sm font-black
+                shadow-[4px_4px_0px_#000] sm:text-base"
+              >
+                CASE STUDY!
+              </div>
               <div className="justify-start items-center flex">
                 <MotionLink
+                  whileHover={{
+                    scale: 1.06,
+                    x: -4,
+                    y: -4,
+                    rotate: -2,
+                    boxShadow: "8px 8px 0px #000",
+                  }}
+                  whileTap={{
+                    scale: 0.94,
+                    x: 2,
+                    y: 2,
+                    rotate: 0,
+                    boxShadow: "2px 2px 0px #000",
+                  }}
+                  whileInView={{ boxShadow: "4px 4px 0px #000" }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 18,
+                  }}
                   href="/project"
-                  whileHover={{ opacity: 100 }}
-                  className="flex items-center justify-center gap-2 cursor-pointer opacity-70"
+                  className="flex cursor-pointer items-center gap-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-200 px-5 py-3 text-lg font-black text-black"
                 >
                   <FaArrowLeft />
                   BACK TO PROJECTS
                 </MotionLink>
               </div>
-              <div className="border border-white/20 w-full" />
+              <div className="border-2 border-black w-full" />
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-3">
-                  <p>Sep 24, 2025</p>
+                  <p
+                    className="w-fit -rotate-2 rounded-tr-xl rounded-bl-xl border-2 border-black
+                    bg-orange-500 px-3 py-1 text-sm font-black shadow-[3px_3px_0px_#000]"
+                  >
+                    Sep 24, 2025
+                  </p>
                   <div className="flex justify-start items-center">
-                    <p className="bg-zinc-400/50 px-2 rounded-full">
+                    <p
+                      className="w-fit rotate-1 rounded-full border-2 border-black bg-yellow-300
+                      px-4 py-1 text-sm font-black shadow-[3px_3px_0px_#000]"
+                    >
                       E-Commerce Platform
                     </p>
                   </div>
                 </div>
-                <div>
-                  <p className="text-justify">
-                    Echo Meridian operates where rhythm meets precision. We
-                    explore how motion, sound, and light can synchronize to form
-                    coherent, emotional experiences. Every brand we build
-                    carries a pulse — an echo that travels beyond the moment of
-                    first contact. Our approach blends sensory design with
-                    structural thinking. By aligning creative frequencies across
-                    mediums, we transform brands into living systems — fluid,
-                    resonant, and endlessly adaptable.
-                  </p>
+                <div className="flex flex-col gap-5">
+                  <h1
+                    className="text-4xl font-black leading-[0.9] text-amber-100
+                    drop-shadow-[4px_4px_0px_#000] sm:text-5xl lg:text-7xl"
+                  >
+                    {title}
+                  </h1>
+                  <div
+                    className="rounded-tr-2xl rounded-bl-2xl border-2 border-black bg-amber-100
+                    p-4 shadow-[5px_5px_0px_#000]"
+                  >
+                    <p className="text-justify text-base font-black leading-relaxed sm:text-lg">
+                      {description ||
+                        `Echo Meridian operates where rhythm meets precision. We explore how motion, sound, and light can synchronize to form coherent, emotional experiences. Every brand we build carries a pulse — an echo that travels beyond the moment of first contact.`}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="border border-white/20 w-full" />
+              <div className="border-2 border-black w-full" />
               <div className="flex justify-between items-center w-full">
-                <AnimatedLink href="/">PREVIOUS</AnimatedLink>
-                <AnimatedLink href="/">NEXT</AnimatedLink>
+                <AnimatedLink
+                  underline="bg-amber-700"
+                  classname="cartoon-item"
+                  href="/"
+                >
+                  PREVIOUS
+                </AnimatedLink>
+                <AnimatedLink
+                  classname="cartoon-item"
+                  underline="bg-amber-700"
+                  href="/"
+                >
+                  NEXT
+                </AnimatedLink>
               </div>
             </div>
           </div>
@@ -111,42 +161,36 @@ export default function TheProject({
                   key={idx}
                   className="hidden lg:block relative w-full h-50 lg:h-100"
                 >
-                  <Image src={src} alt={title} fill />
+                  <MotionImage
+                    src={src}
+                    alt={title}
+                    whileHover={{
+                      translateY: -5,
+                      translateX: -5,
+                      boxShadow: "12px 12px 0px #000",
+                    }}
+                    whileTap={{
+                      scale: 0.94,
+                      y: 3,
+                      x: 3,
+                      rotate: 0,
+                      boxShadow: "2px 2px 0px #000",
+                    }}
+                    whileInView={{ boxShadow: "8px 8px 0px #000" }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 18,
+                    }}
+                    className="object-cover overflow-hidden rounded-tr-4xl rounded-bl-4xl border-4 border-black bg-amber-200 p-2"
+                    fill
+                  />
                 </div>
               );
             })}
-            <ImageSection images={images} />
           </div>
         </aside>
       </section>
     </div>
-  );
-}
-
-function ImageSection({ images }: { images: string[] }) {
-  return (
-    <>
-      <Link href="/" className="block lg:hidden h-50 sm:h-100">
-        <Swiper
-          loop={true}
-          autoplay={{ delay: 8000, disableOnInteraction: false }}
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          speed={1200}
-          modules={[Autoplay, Pagination, EffectFade]}
-          pagination={{ clickable: true, dynamicBullets: true }}
-          className="w-full h-full"
-        >
-          {images.map((image, idx) => (
-            <SwiperSlide key={idx}>
-              <div className="relative bg-white h-full w-full overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent z-10" />
-                <Image fill src={image} alt="" className="z-5" />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Link>
-    </>
   );
 }
