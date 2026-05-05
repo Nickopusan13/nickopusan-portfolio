@@ -3,13 +3,14 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Draggable, ScrambleTextPlugin } from "gsap/all";
-import { motion, spring } from "motion/react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
 gsap.registerPlugin(Draggable, ScrambleTextPlugin);
 const MotionImage = motion.create(Image);
+const MotionLink = motion.create(Link);
 
 export function Grid2({
   images,
@@ -91,28 +92,31 @@ export function Grid2({
   }, [activeIndex]);
   return (
     <div className="w-full overflow-hidden">
-      <div ref={containerRef} className="flex select-none cursor-grab gap-5">
+      <div
+        ref={containerRef}
+        className="flex select-none cursor-grab gap-5 active:cursor-grabbing"
+      >
         {[...images, ...images].map((item, idx) => (
           <Link
             onMouseEnter={() => handleEnter(idx)}
             onMouseLeave={() => handleLeave(idx)}
             href="/"
             key={idx}
-            className={`min-w-[80vw] relative h-50 sm:h-80 lg:h-120 transition-all duration-500 overflow-hidden ${
+            className={`group relative min-w-[80vw] h-56 sm:h-80 lg:h-120 overflow-hidden rounded-tr-4xl rounded-bl-4xl border-4 border-black bg-amber-200 p-2 transition-all duration-500 ${
               activeIndex === idx % images.length
-                ? "scale-100 opacity-100"
-                : "scale-90 opacity-50"
+                ? "scale-95 opacity-100 shadow-[10px_10px_0px_#000]"
+                : "scale-90 opacity-60 shadow-[5px_5px_0px_#000]"
             }`}
           >
             <MotionImage
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 1 }}
-              transition={{ type: spring, stiffness: 300, damping: 30 }}
               alt=""
               fill
               src={item}
-              className="object-cover rounded-xl"
+              className="object-cover rounded-tr-[1.6rem] rounded-bl-[1.6rem] p-2"
             />
+            <div className="absolute right-5 top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
+              CASE STUDY
+            </div>
             <div className="absolute bottom-0 left-0 w-full p-2 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
                 ref={(el) => {
@@ -157,21 +161,51 @@ export function Grid4({ images }: { images: string[] }) {
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-x-5 gap-y-0 lg:gap-y-15 px-5 lg:px-10">
       {images.map((item, idx) => (
-        <>
-          <Link
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, y: 30, rotate: idx % 2 === 0 ? -2 : 2 }}
+          whileInView={{ opacity: 1, y: 0, rotate: idx % 2 === 0 ? -1 : 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 22,
+            delay: idx * 0.06,
+          }}
+        >
+          <MotionLink
             onMouseEnter={() => handleEnter(idx)}
             onMouseLeave={() => handleLeave(idx)}
+            whileHover={{
+              translateY: -5,
+              translateX: -5,
+              boxShadow: "12px 12px 0px #000",
+            }}
+            whileTap={{
+              scale: 0.94,
+              y: 3,
+              x: 3,
+              rotate: 0,
+              boxShadow: "2px 2px 0px #000",
+            }}
+            whileInView={{ boxShadow: "8px 8px 0px #000" }}
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 18,
+            }}
             href="/"
-            key={idx}
-            className="relative h-50 sm:h-100 lg:h-100 w-full overflow-hidden"
+            className="group relative block h-56 w-full overflow-hidden rounded-tr-4xl rounded-bl-4xl border-4 border-black bg-amber-200 p-2 sm:h-100 lg:h-100"
           >
             <MotionImage
-              whileHover={{ scale: 1.05 }}
               alt=""
               fill
               src={item}
-              className="rounded-xl object-cover"
+              className="rounded-tr-[1.6rem] rounded-bl-[1.6rem] object-cover p-2"
             />
+            <div className="absolute right-5 top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
+              PROJECT
+            </div>
             <div className="absolute bottom-0 left-0 w-full p-2 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
                 ref={(el) => {
@@ -185,9 +219,9 @@ export function Grid4({ images }: { images: string[] }) {
                 [MARKETING SITE] – [SPORTS]
               </p>
             </div>
-          </Link>
+          </MotionLink>
           <div className="lg:hidden block border-2 w-full my-5 border-white/20" />
-        </>
+        </motion.div>
       ))}
     </div>
   );

@@ -188,7 +188,7 @@ export default function SectionEight() {
             onPointerLeave={onPointerLeave}
             className="bg-amber-300 py-3 lg:py-5 text-2xl lg:text-5xl whitespace-nowrap overflow-hidden"
           >
-            <div ref={marqueeRef} className="flex w-fit">
+            <div ref={marqueeRef} className="flex w-fit gap-2">
               {marqueeList}
               {marqueeList}
             </div>

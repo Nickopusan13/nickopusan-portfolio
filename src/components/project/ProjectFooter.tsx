@@ -83,10 +83,7 @@ export default function ProjectFooter() {
     }
   };
   return (
-    <footer
-      ref={footerRef}
-      className="mt-10 md:mt-10 md:pb-10 overflow-hidden bg-amber-600"
-    >
+    <footer ref={footerRef} className="md:pb-10 overflow-hidden bg-amber-600">
       <div className="px-4 pt-8 md:px-5 md:pt-5 border-t-4 border-black">
         <div className="relative z-10 mb-5 rounded-tr-4xl rounded-bl-4xl rounded-tl-md rounded-br-md border-4 border-black bg-amber-500 px-5 py-6 lg:px-8 lg:py-8 text-black shadow-[8px_8px_0px_#000]">
           <div className="px-5 lg:px-10 mb-10 font-bold flex flex-col">

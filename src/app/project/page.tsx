@@ -8,7 +8,7 @@ export default function ProjectMain() {
     <div className="bg-amber-900 overflow-x-hidden">
       <ProjectNavbar />
       <SecOneProject />
-      <div className="flex flex-col pt-25">
+      <div className="flex flex-col">
         <MainProject />
       </div>
       <ProjectFooter />
