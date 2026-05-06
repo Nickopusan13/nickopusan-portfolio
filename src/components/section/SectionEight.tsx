@@ -22,6 +22,7 @@ export default function SectionEight() {
   const scrambleTextOne = useRef(null);
   const scrambleTextTwo = useRef(null);
   const scrambleTextThree = useRef(null);
+  const underline = "bg-amber-200";
   useGSAP(
     () => {
       gsap.set(marqueeRef.current, {
@@ -110,25 +111,28 @@ export default function SectionEight() {
       >
         <nav
           aria-label="Social Links"
-          className="absolute top-5 text-lg right-10 flex text-amber-200 z-20 gap-10"
+          className="absolute top-5 text-lg right-10 flex text-amber-200 z-20 gap-6"
         >
           <AnimatedLink
-            underline="bg-amber-200"
+            underline={underline}
             href="https://github.com/Nickopusan13"
           >
             GITHUB
           </AnimatedLink>
           <AnimatedLink
-            underline="bg-amber-200"
+            underline={underline}
             href="https://www.linkedin.com/in/nickopusan13"
           >
             LINKEDIN
           </AnimatedLink>
           <AnimatedLink
-            underline="bg-amber-200"
+            underline={underline}
             href="https://upwork.com/freelancers/nickopusan"
           >
             UPWORK
+          </AnimatedLink>
+          <AnimatedLink underline={underline} href="/project">
+            PROJECT
           </AnimatedLink>
         </nav>
         <h1 className="z-0 text-center font-bold text-6xl lg:text-[200px] leading-none text-white">
