@@ -151,7 +151,7 @@ export default function SecOneProject() {
                 stiffness: 500,
                 damping: 18,
               }}
-              className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-800 px-10 py-3 text-lg font-black text-amber-100 shadow-[5px_5px_0px_#000]"
+              className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-800 px-10 py-3 text-lg font-black text-amber-100"
             >
               Contact Us
             </motion.button>

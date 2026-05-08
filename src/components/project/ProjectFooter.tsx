@@ -17,6 +17,25 @@ const marqueeItems = [
   "LET’S CREATE SOMETHING BEAUTIFUL",
 ];
 
+const linksItem = [
+  {
+    title: "GALLERY",
+    href: "/",
+  },
+  {
+    title: "PROJECTS",
+    href: "/project",
+  },
+  {
+    title: "ABOUT",
+    href: "/",
+  },
+  {
+    title: "CONTACT",
+    href: "/contact",
+  },
+];
+
 function MarqueeList() {
   return (
     <div className="flex shrink-0 items-center gap-8 pr-8 text-amber-100 font-black tracking-wide">
@@ -95,45 +114,29 @@ export default function ProjectFooter() {
                 <span>Indonesia</span>
               </div>
               <div className="flex md:grid md:grid-cols-2 gap-10 md:gap-2">
-                <AnimatedLink
-                  underline="bg-amber-700"
-                  classname="cartoon-item"
-                  href="/"
-                >
-                  GALLERY
-                </AnimatedLink>
-                <AnimatedLink
-                  underline="bg-amber-700"
-                  classname="cartoon-item"
-                  href="/"
-                >
-                  PROJECTS
-                </AnimatedLink>
-                <AnimatedLink
-                  underline="bg-amber-700"
-                  classname="cartoon-item"
-                  href="/"
-                >
-                  ABOUT
-                </AnimatedLink>
-                <AnimatedLink
-                  underline="bg-amber-700"
-                  classname="cartoon-item"
-                  href="/"
-                >
-                  CONTACT
-                </AnimatedLink>
+                {linksItem.map((item, idx) => {
+                  return (
+                    <AnimatedLink
+                      key={idx}
+                      underline="bg-amber-700"
+                      classname="cartoon-item"
+                      href={item.href}
+                    >
+                      {item.title}
+                    </AnimatedLink>
+                  );
+                })}
               </div>
               <div className="flex mt-10 mb-5 gap-2 md:my-0 flex-col items-center lg:items-start justify-center">
                 <a
                   className="cartoon-item transition hover:-translate-y-0.5 hover:text-amber-800"
-                  href=""
+                  href="mailto:nickowork13@gmail.com"
                 >
                   nickowork13@gmail.com
                 </a>
                 <a
                   className="cartoon-item transition hover:-translate-y-0.5 hover:text-amber-800"
-                  href=""
+                  href="https://wa.me/6285156229898"
                 >
                   +62 85156229898
                 </a>

@@ -9,6 +9,17 @@ import Link from "next/link";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
+const linksItem = [
+  {
+    title: "PROJECTS",
+    href: "/project",
+  },
+  {
+    title: "CONTACT",
+    href: "/contact",
+  },
+];
+
 export default function ProjectNavbar() {
   const [hide, setHide] = useState<boolean>(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -77,27 +88,18 @@ export default function ProjectNavbar() {
           Nickopusan
         </Link>
         <div className="font-bold flex justify-center items-center lg:text-base text-sm gap-5 lg:gap-10">
-          <AnimatedLink
-            underline="bg-amber-700"
-            classname="cartoon-item"
-            href="/project"
-          >
-            PROJECTS
-          </AnimatedLink>
-          <AnimatedLink
-            underline="bg-amber-700"
-            classname="cartoon-item"
-            href="/"
-          >
-            ABOUT
-          </AnimatedLink>
-          <AnimatedLink
-            underline="bg-amber-700"
-            classname="cartoon-item"
-            href="/"
-          >
-            CONTACT
-          </AnimatedLink>
+          {linksItem.map((item, idx) => {
+            return (
+              <AnimatedLink
+                key={idx}
+                underline="bg-amber-700"
+                classname="cartoon-item"
+                href={item.href}
+              >
+                {item.title}
+              </AnimatedLink>
+            );
+          })}
         </div>
       </nav>
     </div>

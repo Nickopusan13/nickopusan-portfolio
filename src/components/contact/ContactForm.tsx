@@ -1,0 +1,92 @@
+"use client";
+
+import { motion } from "motion/react";
+import { AnimatedLink } from "../ui/AnimatedLink";
+
+export default function ContactForm() {
+  return (
+    <div className="bg-amber-300 rounded-bl-2xl rounded-tr-2xl border-4 border-black w-fit h-full px-10 py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
+      <h2 className="w-fit rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-600 text-amber-200 py-1 px-3 text-lg font-black shadow-[3px_3px_0px_#000]">
+        Got something in the works? Share it with us and we’ll get back to you
+        with next steps.
+      </h2>
+      <form className="flex flex-col w-full gap-8" action="">
+        <div className="flex flex-col w-full gap-5">
+          <div className="flex w-full justify-between gap-20">
+            <input
+              className="form-input"
+              placeholder="First Name"
+              type="text"
+              name=""
+              id=""
+            />
+            <input
+              className="form-input"
+              placeholder="Last Name"
+              type="text"
+              name=""
+              id=""
+            />
+          </div>
+          <input
+            className="form-input"
+            type="email"
+            placeholder="Email"
+            name=""
+            id=""
+          />
+          <textarea
+            className="form-input h-30"
+            name=""
+            id=""
+            placeholder="Tell us about your project"
+          ></textarea>
+        </div>
+        <div className="flex items-center justify-between">
+          <motion.button
+            whileHover={{
+              scale: 1.07,
+              y: -6,
+              x: -4,
+              rotate: -2,
+              boxShadow: "10px 10px 0px #000",
+            }}
+            whileTap={{
+              scale: 0.94,
+              y: 3,
+              x: 3,
+              rotate: 0,
+              boxShadow: "2px 2px 0px #000",
+            }}
+            whileInView={{ boxShadow: "5px 5px 0px #000" }}
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 18,
+            }}
+            type="submit"
+            className="bg-amber-700 text-amber-200 px-10 py-3 w-fit rounded-tr-xl rounded-bl-xl border-2 border-blacks focus:outline-none cursor-pointer"
+          >
+            <span className="drop-shadow-[3px_3px_0px_#000] leading-none">
+              SUBMIT
+            </span>
+          </motion.button>
+          <div className="flex flex-col text-base">
+            <span>{`If you'd prefer to email us instead,`}</span>
+            <span>
+              {" "}
+              reach out to{" "}
+              <AnimatedLink
+                classname="text-blue-700"
+                underline="bg-amber-800"
+                href="mailto:nickowork13@gmail.com"
+              >
+                nickowork13@gmail.com
+              </AnimatedLink>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}
