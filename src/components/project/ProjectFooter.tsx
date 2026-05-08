@@ -117,6 +117,7 @@ export default function ProjectFooter() {
                 {linksItem.map((item, idx) => {
                   return (
                     <AnimatedLink
+                      newTab={false}
                       key={idx}
                       underline="bg-amber-700"
                       classname="cartoon-item"

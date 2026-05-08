@@ -63,6 +63,7 @@ export default function RootLayout({
             smoothWheel: true,
             wheelMultiplier: 0.8,
             touchMultiplier: 1.2,
+            allowNestedScroll: true,
           }}
         >
           <CustomCursor />

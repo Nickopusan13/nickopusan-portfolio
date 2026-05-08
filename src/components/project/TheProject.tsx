@@ -136,6 +136,7 @@ export default function TheProject({
               <div className="border-2 border-black w-full" />
               <div className="flex justify-between items-center w-full">
                 <AnimatedLink
+                  newTab={false}
                   underline="bg-amber-700"
                   classname="cartoon-item"
                   href="/"
@@ -143,6 +144,7 @@ export default function TheProject({
                   PREVIOUS
                 </AnimatedLink>
                 <AnimatedLink
+                  newTab={false}
                   classname="cartoon-item"
                   underline="bg-amber-700"
                   href="/"

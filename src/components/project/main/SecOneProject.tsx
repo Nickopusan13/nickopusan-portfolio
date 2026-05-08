@@ -7,8 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { motion } from "motion/react";
 import { AiOutlineBug } from "react-icons/ai";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
+const MotionLink = motion.create(Link);
 
 const marqueeItem = [
   "HIGH-PERFORMANCE WEBSITES",
@@ -130,7 +132,8 @@ export default function SecOneProject() {
             <span>focused on performance, UX, and real results.</span>
           </p>
           <div className="flex gap-5">
-            <motion.button
+            <MotionLink
+              href="/contact"
               whileHover={{
                 scale: 1.07,
                 y: -6,
@@ -154,8 +157,9 @@ export default function SecOneProject() {
               className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-800 px-10 py-3 text-lg font-black text-amber-100"
             >
               Contact Us
-            </motion.button>
-            <motion.button
+            </MotionLink>
+            <MotionLink
+              href="/"
               whileHover={{
                 scale: 1.07,
                 y: -6,
@@ -179,7 +183,7 @@ export default function SecOneProject() {
               className="cursor-pointer rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-300 px-10 py-3 text-lg font-black text-black shadow-[5px_5px_0px_#000]"
             >
               About Us
-            </motion.button>
+            </MotionLink>
           </div>
         </div>
         <div

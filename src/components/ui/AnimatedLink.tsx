@@ -8,6 +8,7 @@ interface AnimatedLinkProps {
   children: React.ReactNode;
   classname?: string;
   underline?: string;
+  newTab?: boolean;
 }
 
 const MotionLink = motion.create(Link);
@@ -16,6 +17,7 @@ export function AnimatedLink({
   href,
   children,
   classname,
+  newTab = true,
   underline = "bg-white",
 }: AnimatedLinkProps) {
   return (
@@ -23,8 +25,8 @@ export function AnimatedLink({
       initial="rest"
       whileHover="hover"
       animate="rest"
-      target="_blank"
-      rel="noopener noreferrer"
+      target={newTab ? "_blank" : undefined}
+      rel={newTab ? "noopener noreferrer" : undefined}
       href={href}
       className={`relative inline-block w-fit ${classname}`}
     >

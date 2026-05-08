@@ -5,7 +5,7 @@ import { AnimatedLink } from "../ui/AnimatedLink";
 
 export default function ContactForm() {
   return (
-    <div className="bg-amber-300 rounded-bl-2xl rounded-tr-2xl border-4 border-black w-fit h-full px-10 py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
+    <div className="bg-amber-300 h-fit rounded-bl-2xl rounded-tr-2xl border-4 border-black w-fit px-10 py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
       <h2 className="w-fit rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-600 text-amber-200 py-1 px-3 text-lg font-black shadow-[3px_3px_0px_#000]">
         Got something in the works? Share it with us and we’ll get back to you
         with next steps.
@@ -77,6 +77,7 @@ export default function ContactForm() {
               {" "}
               reach out to{" "}
               <AnimatedLink
+                newTab={false}
                 classname="text-blue-700"
                 underline="bg-amber-800"
                 href="mailto:nickowork13@gmail.com"
