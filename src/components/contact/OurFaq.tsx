@@ -32,7 +32,7 @@ const faqItem = [
 
 export default function OurFaq() {
   return (
-    <div className="w-full px-10 flex flex-col items-center justify-center gap-10 min-h-svh">
+    <div className="w-full p-10 flex flex-col items-center justify-center gap-10 min-h-svh">
       <h2 className="text-center text-6xl text-amber-200 font-black leading-none drop-shadow-[5px_5px_0px_#000]">
         OUR FAQS
       </h2>

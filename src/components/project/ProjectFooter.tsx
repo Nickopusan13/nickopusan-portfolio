@@ -19,7 +19,7 @@ const marqueeItems = [
 
 const linksItem = [
   {
-    title: "GALLERY",
+    title: "HOME",
     href: "/",
   },
   {
@@ -28,7 +28,7 @@ const linksItem = [
   },
   {
     title: "ABOUT",
-    href: "/",
+    href: "/about",
   },
   {
     title: "CONTACT",
