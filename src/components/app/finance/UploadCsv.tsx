@@ -21,7 +21,7 @@ import { useDropzone } from "react-dropzone";
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import toast from "react-hot-toast";
-import ToasterProvider from "@/components/Toaster";
+import ToasterProvider from "@/components/ToasterProvider";
 import type { PreviewData, ChartSuggestion, ChartRow } from "@/utils/api";
 import AppDialog from "@/components/AppDialog";
 import { DialogTitle } from "@headlessui/react";

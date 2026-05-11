@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { ReactNode } from "react";
 import { motion } from "motion/react";
-import ToasterProvider from "@/components/Toaster";
+import ToasterProvider from "@/components/ToasterProvider";
 import ReactMarkDown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PreviewData, ChartSuggestion } from "@/utils/api";
