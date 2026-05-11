@@ -1,22 +1,19 @@
-from pydantic import BaseModel, EmailStr, ConfigDict
+from pydantic import EmailStr, Field
 from datetime import datetime
-from app.schemas import to_camel
+from app.schemas.to_camel import BaseConfigModel
+from typing import Optional
 
-
-class UserMessage(BaseModel):
-    name: str
-    email: EmailStr
-    message: str
-    time: datetime | None = None
-
-
-class ChatRequest(BaseModel):
+class ChatRequest(BaseConfigModel):
     prompt: str
     session_id: str | None = None
-    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
 
-
-class ChatResponse(BaseModel):
+class ChatResponse(BaseConfigModel):
     reply: str
     session_id: str | None = None
-    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
+
+class EmailRequest(BaseConfigModel):
+    email: EmailStr = Field(min_length=1, max_length=100)
+    first_name: str = Field(min_length=1, max_length=1000)
+    last_name: str = Field(min_length=1, max_length=1000)
+    subject: str = Field(min_length=1, max_length=100)
+    content: str = Field(min_length=1, max_length=1000)

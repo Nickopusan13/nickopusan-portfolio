@@ -1,11 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export interface UserMessage {
-  name: string;
-  email: string;
-  message: string;
-}
-
 export interface ChatRequest {
   prompt: string;
   session_id?: string;
@@ -16,23 +10,8 @@ export interface ChatResponse {
   session_id: string;
 }
 
-export async function postUserMessage(data: UserMessage) {
-  const res = await fetch(`${API_URL}/api/user`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) {
-    const error = await res.json().catch(() => ({}));
-    throw new Error(error.detail[0]?.msg || JSON.stringify(error.detail));
-  }
-  return await res.json();
-}
-
 export async function postUserChatBot(
-  data: ChatRequest
+  data: ChatRequest,
 ): Promise<ChatResponse> {
   const res = await fetch(`${API_URL}/api/chat`, {
     method: "POST",
@@ -93,7 +72,7 @@ export async function financeChart(
   file: File,
   x: string,
   y: string,
-  group?: string
+  group?: string,
 ): Promise<ChartData> {
   const formData = new FormData();
   formData.append("file", file);
@@ -116,7 +95,7 @@ export async function financeReport(
   file: File,
   x: string,
   y: string,
-  group?: string
+  group?: string,
 ) {
   const formData = new FormData();
   formData.append("file", file);

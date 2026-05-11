@@ -1,7 +1,6 @@
 "use client";
 
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "gsap/src/SplitText";
 import { useGSAP } from "@gsap/react";
 import { useRef, useEffect, useState } from "react";
