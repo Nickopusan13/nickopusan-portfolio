@@ -109,9 +109,10 @@ export function Grid2({
             }`}
           >
             <MotionImage
-              alt=""
+              alt={item}
               fill
               src={item}
+              sizes="100vw"
               className="object-cover rounded-tr-[1.6rem] rounded-bl-[1.6rem] p-2"
             />
             <div className="absolute right-5 top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
@@ -198,9 +199,10 @@ export function Grid4({ images }: { images: string[] }) {
             className="group relative block h-56 w-full overflow-hidden rounded-tr-4xl rounded-bl-4xl border-4 border-black bg-amber-200 p-2 sm:h-100 lg:h-100"
           >
             <MotionImage
-              alt=""
+              alt={item}
               fill
               src={item}
+              sizes="100vw"
               className="rounded-tr-[1.6rem] rounded-bl-[1.6rem] object-cover p-2"
             />
             <div className="absolute right-5 top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">

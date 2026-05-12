@@ -9,16 +9,21 @@ import ToasterProvider from "../ToasterProvider";
 export default function ContactForm() {
   const mutationEmailRequest = useCreateEmailRequest();
   const isLoading = mutationEmailRequest.isPending;
-  const [formData, setFormData] = useState({
+  const initialFormState = {
     firstName: "",
     lastName: "",
     email: "",
     subject: "",
     content: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFormState);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    mutationEmailRequest.mutate(formData);
+    mutationEmailRequest.mutate(formData, {
+      onSuccess: () => {
+        setFormData(initialFormState);
+      },
+    });
   };
   return (
     <div className="bg-amber-300 h-fit rounded-bl-2xl rounded-tr-2xl border-4 border-black w-fit px-10 py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
@@ -36,6 +41,7 @@ export default function ContactForm() {
           <div className="flex w-full justify-between gap-20">
             <input
               required
+              value={formData.firstName}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -48,6 +54,7 @@ export default function ContactForm() {
             />
             <input
               required
+              value={formData.lastName}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -62,6 +69,7 @@ export default function ContactForm() {
           <div className="flex w-full justify-between gap-20">
             <input
               required
+              value={formData.email}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -74,6 +82,7 @@ export default function ContactForm() {
             />
             <input
               required
+              value={formData.subject}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -87,6 +96,7 @@ export default function ContactForm() {
           </div>
           <textarea
             required
+            value={formData.content}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,

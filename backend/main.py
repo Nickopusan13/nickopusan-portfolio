@@ -4,12 +4,14 @@ from contextlib import asynccontextmanager
 from starlette.middleware.sessions import SessionMiddleware
 from dotenv import load_dotenv
 from app.routes import user
+from app.db.init_db import create_table
 import os
 
 load_dotenv()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    await create_table()
     yield
 
 app = FastAPI(title="Nickopusan Portfolio", lifespan=lifespan)

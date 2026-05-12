@@ -4,12 +4,12 @@ from app.schemas.to_camel import BaseConfigModel
 from typing import Optional
 
 class ChatRequest(BaseConfigModel):
-    prompt: str
-    session_id: str | None = None
+    prompt: str = Field(min_length=1, max_length=1000)
+    session_id: Optional[str] = Field(default=None)
 
 class ChatResponse(BaseConfigModel):
-    reply: str
-    session_id: str | None = None
+    reply: str = Field(min_length=1, max_length=1000)
+    session_id: Optional[str] = Field(default=None)
 
 class EmailRequest(BaseConfigModel):
     email: EmailStr = Field(min_length=1, max_length=100)

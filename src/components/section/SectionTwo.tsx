@@ -245,7 +245,7 @@ const BuiltSection = () => {
           >
             {slide.images.map((image, idx) => (
               <SwiperSlide key={idx}>
-                <div className="bg-white h-full w-full overflow-hidden">
+                <div className="relative bg-white h-full w-full overflow-hidden">
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent z-10" />
                   <Image
                     fill

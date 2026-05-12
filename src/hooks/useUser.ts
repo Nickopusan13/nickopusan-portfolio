@@ -1,5 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createUserEmailRequest, EmailRequest } from "@/api/user";
+import { useMutation } from "@tanstack/react-query";
+import { createUserEmailRequest, chatBotMessage } from "@/api/user";
+import type { EmailRequest, ChatRequest, ChatResponse } from "@/api/user";
 import toast from "react-hot-toast";
 
 type EmailResponse = {
@@ -12,6 +13,15 @@ export function useCreateEmailRequest() {
     onSuccess: (data) => {
       toast.success(data.message);
     },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+}
+
+export function useChatBotMessage() {
+  return useMutation<ChatResponse, Error, ChatRequest>({
+    mutationFn: chatBotMessage,
     onError: (err) => {
       toast.error(err.message);
     },
