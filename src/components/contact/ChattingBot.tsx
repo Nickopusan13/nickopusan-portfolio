@@ -56,18 +56,18 @@ export default function ChattingBot() {
     if (e.key === "Enter") sendMessage();
   };
   return (
-    <div className="bg-amber-300 h-110 rounded-2xl border-4 border-black w-lg px-10 py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
+    <div className="bg-amber-300 h-120 rounded-2xl border-4 border-black w-lg px-10 py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
       <div className="w-fit rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-600 text-amber-200 py-1 px-3 text-lg font-black shadow-[3px_3px_0px_#000]">
         <h2 className="text-center">Welcome To Chatbot!</h2>
       </div>
       <div
         ref={chatContainerRef}
-        className="flex-1 overflow-y-auto scrollbar-thin scrollbar-track-amber-300 scrollbar-thumb-amber-900 overflow-x-hidden space-y-2"
+        className="flex-1 text-sm overflow-y-auto scrollbar-thin scrollbar-track-amber-300 scrollbar-thumb-amber-900 overflow-x-hidden space-y-2"
       >
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`flex text-sm ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
               className={`max-w-[85%] px-4 py-3 rounded-2xl border-2 border-black shadow-[3px_3px_0px_#000] ${

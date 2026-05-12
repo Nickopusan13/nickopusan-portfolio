@@ -4,12 +4,13 @@ import { useMediaQuery } from "@/utils/useMediaQuery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
 import { motion } from "motion/react";
 import { AiOutlineBug } from "react-icons/ai";
 import Link from "next/link";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 const MotionLink = motion.create(Link);
 
 const marqueeItem = [
@@ -41,6 +42,19 @@ export default function SecOneProject() {
   const isReversed = false;
   useGSAP(
     () => {
+      const splitTile = SplitText.create(".title-split", {
+        type: "chars",
+      });
+      const splitTitleSec = SplitText.create(".title-split-two", {
+        type: "chars",
+      });
+      gsap.set(".title-split", { opacity: 1 });
+      gsap.from(splitTile.chars, {
+        stagger: 0.05,
+        ease: "power2.inOut",
+        yPercent: 110,
+        delay: 1,
+      });
       gsap.set(marqueeRef.current, {
         xPercent: isReversed ? -50 : 0,
       });
@@ -60,6 +74,10 @@ export default function SecOneProject() {
         onLeave: () => marqueeTimeline.current?.pause(),
         onLeaveBack: () => marqueeTimeline.current?.pause(),
       });
+      return () => {
+        splitTile.revert();
+        splitTitleSec.revert();
+      };
     },
     { dependencies: [isReversed] },
   );
@@ -116,7 +134,7 @@ export default function SecOneProject() {
       <div className="w-full h-full flex flex-col items-start justify-center">
         <div className="flex mt-20 flex-col w-full h-full mx-40 items-start justify-center gap-7">
           <motion.div
-            initial={{ rotate: -4, scale: 0.95 }}
+            initial={{ rotate: -4, scale: 0 }}
             whileInView={{ rotate: -2, scale: 1 }}
             transition={{ type: "spring", stiffness: 350, damping: 16 }}
             className="rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-300 px-4 py-1 font-black text-black shadow-[4px_4px_0px_#000]"
@@ -124,13 +142,21 @@ export default function SecOneProject() {
             FULLSTACK DEVELOPER
           </motion.div>
           <h1 className="flex flex-col items-start justify-center text-5xl font-black leading-[0.95] text-amber-200 md:text-7xl lg:text-8xl drop-shadow-[5px_5px_0px_#000]">
-            <span>High-performance websites</span>
-            <span>built for real users.</span>
+            <span className="title-split overflow-hidden opacity-0">
+              High-performance websites
+            </span>
+            <span className="title-split overflow-hidden opacity-0">
+              built for real users.
+            </span>
           </h1>
-          <p className="flex flex-col text-black font-bold text-xl">
-            <span>I build fast, responsive websites and web apps</span>
-            <span>focused on performance, UX, and real results.</span>
-          </p>
+          <h2 className="flex flex-col text-black font-bold text-xl">
+            <span className="title-split-two overflow-hidden opacity-0">
+              I build fast, responsive websites and web apps
+            </span>
+            <span className="title-split-two overflow-hidden opacity-0">
+              focused on performance, UX, and real results.
+            </span>
+          </h2>
           <div className="flex gap-5">
             <MotionLink
               href="/contact"
@@ -159,7 +185,7 @@ export default function SecOneProject() {
               Contact Us
             </MotionLink>
             <MotionLink
-              href="/"
+              href="/about"
               whileHover={{
                 scale: 1.07,
                 y: -6,
