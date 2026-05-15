@@ -52,14 +52,9 @@ export default function MainProject() {
   return (
     <div className="min-h-svh py-20 text-white overflow-hidden bg-amber-600">
       <section className="flex flex-col items-center justify-center gap-4 lg:gap-8 px-5 lg:px-20">
-        <motion.div
-          initial={{ rotate: -4, scale: 0.95 }}
-          whileInView={{ rotate: -2, scale: 1 }}
-          transition={{ type: "spring", stiffness: 350, damping: 16 }}
-          className="rounded-tr-2xl rounded-bl-2xl border-4 border-black bg-amber-300 px-5 py-2 text-sm font-black text-black shadow-[6px_6px_0px_#000] lg:text-base"
-        >
+        <div className="rounded-2xl border-4 border-black bg-amber-300 px-5 py-2 text-sm font-black text-black shadow-[4px_4px_0px_#000] lg:text-base">
           FEATURED PROJECTS
-        </motion.div>
+        </div>
         <h1 className="text-center text-6xl font-black leading-none text-amber-200 drop-shadow-[5px_5px_0px_#000] lg:text-9xl">
           Our Craft
         </h1>
@@ -144,7 +139,8 @@ export default function MainProject() {
                       <Image
                         fill
                         src={img}
-                        alt=""
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt={img}
                         className={`rounded-sm object-cover p-1 transition-all duration-300 ${
                           activeIndex === idx
                             ? "opacity-100"

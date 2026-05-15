@@ -112,8 +112,9 @@ export function Grid2({
               alt={item}
               fill
               src={item}
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover rounded-tr-[1.6rem] rounded-bl-[1.6rem] p-2"
+              priority={idx === 0}
             />
             <div className="absolute right-5 top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
               CASE STUDY
@@ -202,7 +203,7 @@ export function Grid4({ images }: { images: string[] }) {
               alt={item}
               fill
               src={item}
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="rounded-tr-[1.6rem] rounded-bl-[1.6rem] object-cover p-2"
             />
             <div className="absolute right-5 top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">

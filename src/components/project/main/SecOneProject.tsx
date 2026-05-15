@@ -46,10 +46,30 @@ export default function SecOneProject() {
         type: "chars",
       });
       const splitTitleSec = SplitText.create(".title-split-two", {
-        type: "chars",
+        type: "words",
       });
+      gsap.fromTo(
+        ".bg-blobs",
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          duration: 1,
+          delay: 0.3,
+          ease: "elastic.out(1, 0.45)",
+          stagger: 0.12,
+        },
+      );
       gsap.set(".title-split", { opacity: 1 });
       gsap.from(splitTile.chars, {
+        stagger: 0.05,
+        ease: "power2.inOut",
+        yPercent: 110,
+        delay: 1,
+      });
+      gsap.set(".title-split-two", { opacity: 1 });
+      gsap.from(splitTitleSec.words, {
         stagger: 0.05,
         ease: "power2.inOut",
         yPercent: 110,
@@ -119,22 +139,23 @@ export default function SecOneProject() {
         `,
       }}
     >
-      <div className="pointer-events-none absolute -top-20 -left-20 size-72 rounded-full bg-amber-300 border-4 border-black opacity-40" />
-      <div className="pointer-events-none absolute top-28 right-12 size-32 rounded-full bg-orange-500 border-4 border-black opacity-50" />
-      <div className="pointer-events-none absolute -bottom-32 right-32 size-80 rounded-full bg-yellow-300 border-4 border-black opacity-30" />
-      <div className="pointer-events-none absolute left-[8%] top-[22%] text-5xl font-black text-black opacity-20 rotate-12">
+      <div className="bg-blobs pointer-events-none absolute -top-20 -left-20 size-72 rounded-full bg-amber-300 border-4 border-black opacity-40" />
+      <div className="bg-blobs pointer-events-none absolute top-28 right-12 size-32 rounded-full bg-orange-500 border-4 border-black opacity-50" />
+      <div className="bg-blobs pointer-events-none absolute -bottom-32 right-32 size-80 rounded-full bg-yellow-300 border-4 border-black opacity-30" />
+      <div className="bg-blobs pointer-events-none absolute left-[8%] top-[22%] text-5xl font-black text-black opacity-20 rotate-12">
         <AiOutlineBug />
       </div>
-      <div className="pointer-events-none absolute right-[12%] top-[40%] text-6xl font-black text-black opacity-20 -rotate-12">
+      <div className="bg-blobs pointer-events-none absolute right-[12%] top-[40%] text-6xl font-black text-black opacity-20 -rotate-12">
         KICAW!
       </div>
-      <div className="pointer-events-none absolute right-[25%] bottom-[22%] text-5xl font-black text-black opacity-20 rotate-6">
+      <div className="bg-blobs pointer-events-none absolute right-[25%] bottom-[22%] text-5xl font-black text-black opacity-20 rotate-6">
         POW!
       </div>
       <div className="w-full h-full flex flex-col items-start justify-center">
         <div className="flex mt-20 flex-col w-full h-full mx-40 items-start justify-center gap-7">
           <motion.div
-            initial={{ rotate: -4, scale: 0 }}
+            viewport={{ once: true }}
+            initial={{ rotate: -10, scale: 0 }}
             whileInView={{ rotate: -2, scale: 1 }}
             transition={{ type: "spring", stiffness: 350, damping: 16 }}
             className="rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-300 px-4 py-1 font-black text-black shadow-[4px_4px_0px_#000]"
@@ -160,6 +181,8 @@ export default function SecOneProject() {
           <div className="flex gap-5">
             <MotionLink
               href="/contact"
+              viewport={{ once: true }}
+              initial={{ scale: 0, rotate: -2 }}
               whileHover={{
                 scale: 1.07,
                 y: -6,
@@ -174,7 +197,11 @@ export default function SecOneProject() {
                 rotate: 0,
                 boxShadow: "2px 2px 0px #000",
               }}
-              whileInView={{ boxShadow: "5px 5px 0px #000" }}
+              whileInView={{
+                boxShadow: "5px 5px 0px #000",
+                scale: 1,
+                rotate: 0,
+              }}
               transition={{
                 type: "spring",
                 stiffness: 500,
@@ -186,6 +213,8 @@ export default function SecOneProject() {
             </MotionLink>
             <MotionLink
               href="/about"
+              viewport={{ once: true }}
+              initial={{ scale: 0, rotate: 2 }}
               whileHover={{
                 scale: 1.07,
                 y: -6,
@@ -200,7 +229,11 @@ export default function SecOneProject() {
                 rotate: 0,
                 boxShadow: "2px 2px 0px #000",
               }}
-              whileInView={{ boxShadow: "5px 5px 0px #000" }}
+              whileInView={{
+                boxShadow: "5px 5px 0px #000",
+                scale: 1,
+                rotate: 0,
+              }}
               transition={{
                 type: "spring",
                 stiffness: 500,

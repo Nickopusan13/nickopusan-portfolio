@@ -23,7 +23,7 @@ export default function SectionSeven() {
         delay: 1,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 60%",
+          start: "top 30%%",
           end: "top top",
           scrub: 1.5,
         },

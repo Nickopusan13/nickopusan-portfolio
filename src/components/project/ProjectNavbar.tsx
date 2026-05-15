@@ -4,6 +4,7 @@ import { useLenis } from "lenis/react";
 import { useRef, useState } from "react";
 import { AnimatedLink } from "../ui/AnimatedLink";
 import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
 
@@ -18,12 +19,32 @@ const linksItem = [
     title: "CONTACT",
     href: "/contact",
   },
+  {
+    title: "ABOUT",
+    href: "/about",
+  },
 ];
 
 export default function ProjectNavbar() {
   const [hide, setHide] = useState<boolean>(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const textRef = useRef<HTMLAnchorElement>(null);
+  const navbarRef = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    gsap.fromTo(
+      navbarRef.current,
+      {
+        y: -120,
+      },
+      {
+        y: 0,
+        duration: 1.2,
+        ease: "back.out",
+        delay: 0.5,
+      },
+    );
+  });
+
   const handleEnter = () => {
     gsap.to(textRef.current, {
       duration: 2,
@@ -74,7 +95,10 @@ export default function ProjectNavbar() {
     <div
       className={`px-5 lg:px-15 py-2 w-full z-50 fixed top-0 left-0 transition-transform duration-500 ease-out text-white justify-between flex items-center ${hide ? `-translate-y-full` : `translate-y-0`}`}
     >
-      <nav className="relative flex items-center justify-between w-full px-5 lg:px-8 py-4 bg-amber-400 text-black border-2 border-black rounded-tr-3xl rounded-bl-3xl rounded-tl-md rounded-br-md shadow-[6px_6px_0px_#000] overflow-hidden">
+      <nav
+        ref={navbarRef}
+        className="relative flex items-center justify-between w-full px-5 lg:px-8 py-4 bg-amber-400 text-black border-2 border-black rounded-tr-3xl rounded-bl-3xl rounded-tl-md rounded-br-md shadow-[6px_6px_0px_#000] overflow-hidden"
+      >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_28%)]" />
         <Link
           onMouseEnter={() => handleEnter()}
