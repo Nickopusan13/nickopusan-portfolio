@@ -26,9 +26,9 @@ export default function ContactForm() {
     });
   };
   return (
-    <div className="bg-amber-300 h-fit rounded-bl-2xl rounded-tr-2xl border-4 border-black w-fit px-10 py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
+    <div className="bg-amber-300 h-fit rounded-bl-2xl rounded-tr-2xl border-4 border-black w-full md:w-fit px-3 py-3 md:px-10 md:py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
       <ToasterProvider />
-      <h2 className="w-fit rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-600 text-amber-200 py-1 px-3 text-lg font-black shadow-[3px_3px_0px_#000]">
+      <h2 className="w-fit rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-600 text-amber-200 py-1 px-2 text-base md:text-lg font-black shadow-[3px_3px_0px_#000]">
         Got something in the works? Share it with us and we’ll get back to you
         with next steps.
       </h2>
@@ -38,7 +38,7 @@ export default function ContactForm() {
         action=""
       >
         <div className="flex flex-col w-full gap-5">
-          <div className="flex w-full justify-between gap-20">
+          <div className="flex flex-col md:flex-row w-full justify-between gap-5 md:gap-20">
             <input
               required
               value={formData.firstName}
@@ -66,7 +66,7 @@ export default function ContactForm() {
               type="text"
             />
           </div>
-          <div className="flex w-full justify-between gap-20">
+          <div className="flex w-full flex-col md:flex-row justify-between gap-5 md:gap-20">
             <input
               required
               value={formData.email}
@@ -103,11 +103,11 @@ export default function ContactForm() {
                 content: e.target.value,
               }))
             }
-            className="form-input h-30 scrollbar-none"
+            className="form-input h-50 md:h-30 scrollbar-none"
             placeholder="Tell us about your project"
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-5 md:gap-0 md:flex-row items-center justify-between">
           <motion.button
             whileHover={
               !isLoading
@@ -139,13 +139,13 @@ export default function ContactForm() {
             }}
             type="submit"
             disabled={isLoading}
-            className="bg-amber-700 text-amber-200 px-10 py-3 w-fit rounded-tr-xl rounded-bl-xl border-2 border-blacks focus:outline-none cursor-pointer"
+            className="bg-amber-700 text-amber-200 px-10 py-3 w-full md:w-fit rounded-tr-xl rounded-bl-xl border-2 border-blacks focus:outline-none cursor-pointer"
           >
             <span className="drop-shadow-[3px_3px_0px_#000] leading-none">
               {isLoading ? "SEND.." : "SUBMIT"}
             </span>
           </motion.button>
-          <div className="flex flex-col text-base">
+          <div className="flex text-center md:text-start flex-col text-base">
             <span>{`If you'd prefer to email us instead,`}</span>
             <span>
               {" "}

@@ -21,13 +21,13 @@ export default function About() {
       titleBlock.current,
       {
         scale: 0,
-        rotate: -15,
         y: 60,
+        rotate: -15,
       },
       {
         delay: 0.5,
-        scale: 1,
         rotate: 0,
+        scale: 1,
         y: 0,
         duration: 1,
         ease: "elastic.out(1, 0.45)",
@@ -73,7 +73,7 @@ export default function About() {
     >
       <div
         ref={titleBlock}
-        className="flex flex-col h-fit gap-4 items-center w-fit justify-center bg-amber-500 p-8 rounded-2xl shadow-[7px_7px_0px_#000] border-4 border-black"
+        className="will-change-transform flex flex-col h-fit gap-4 items-center w-fit justify-center bg-amber-500 p-8 rounded-2xl shadow-[7px_7px_0px_#000] border-4 border-black"
       >
         <h1
           ref={titleRef}

@@ -44,7 +44,6 @@ export default function AboutFive() {
             trigger: sectionRef.current,
             start: "top top",
             end: "30% top",
-            markers: true,
             scrub: true,
           },
         },

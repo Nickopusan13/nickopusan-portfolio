@@ -36,13 +36,13 @@ const faqItem = [
 
 export default function OurFaq() {
   return (
-    <div className="w-full p-10 flex flex-col items-center justify-center gap-10 min-h-svh">
-      <h2 className="text-center text-6xl text-amber-200 font-black leading-none drop-shadow-[5px_5px_0px_#000]">
+    <div className="w-full p-5 md:p-10 flex flex-col items-center justify-center gap-5 md:gap-10 min-h-svh">
+      <h2 className="text-center text-4xl md:text-6xl text-amber-200 font-black leading-none drop-shadow-[5px_5px_0px_#000]">
         OUR FAQS
       </h2>
-      <div className="w-6xl gap-5 flex flex-col">
+      <div className="w-full md:w-6xl gap-5 flex flex-col">
         <div className="flex w-full items-center justify-center">
-          <h3 className="py-2 px-5 bg-amber-700 text-xl text-center border-4 border-black font-black shadow-[4px_4px_0px_#000] rounded-2xl text-amber-200">
+          <h3 className="py-2 px-2 md:px-5 bg-amber-700 text-base md:text-xl text-center border-4 border-black font-black shadow-[4px_4px_0px_#000] rounded-2xl text-amber-200">
             Have questions? We’ve got answers!
             <br />
             Can’t find yours? Just use the contact form above and we’ll get back
@@ -54,19 +54,19 @@ export default function OurFaq() {
             type="single"
             collapsible
             defaultValue="item-1"
-            className="flex flex-col gap-5"
+            className="flex flex-col gap-3 md:gap-5"
           >
             {faqItem.map((item, idx) => {
               return (
                 <AccordionItem
-                  className="bg-amber-200 border-3 border-black rounded-tl-xl rounded-br-xl shadow-[5px_5px_0px_#000] px-5"
+                  className="bg-amber-200 border-3 border-black rounded-tl-xl rounded-br-xl shadow-[5px_5px_0px_#000] px-3 md:px-5"
                   value={item.value}
                   key={idx}
                 >
-                  <AccordionTrigger className="text-3xl font-black text-orange-700">
+                  <AccordionTrigger className="text-lg md:text-3xl font-black text-orange-700">
                     {item.title}
                   </AccordionTrigger>
-                  <AccordionContent className="text-xl text-black">
+                  <AccordionContent className="text-base md:text-xl text-black">
                     {item.content}
                   </AccordionContent>
                 </AccordionItem>

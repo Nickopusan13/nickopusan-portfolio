@@ -7,6 +7,9 @@ import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
+import { useMediaQuery } from "@/utils/useMediaQuery";
+import { TiThMenuOutline } from "react-icons/ti";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
@@ -26,6 +29,7 @@ const linksItem = [
 ];
 
 export default function ProjectNavbar() {
+  const isMobile = useMediaQuery();
   const [hide, setHide] = useState<boolean>(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const textRef = useRef<HTMLAnchorElement>(null);
@@ -107,11 +111,15 @@ export default function ProjectNavbar() {
             textRef.current = el;
           }}
           href="/"
-          className="text-xl lg:text-3xl font-bold text-black"
+          className="text-lg lg:text-3xl font-bold text-black"
         >
           Nickopusan
         </Link>
-        <div className="font-bold flex justify-center items-center lg:text-base text-sm gap-5 lg:gap-10">
+
+        {/* NOT MOBILE DEVICE */}
+        <div
+          className={`${isMobile ? "hidden" : "block"} font-bold flex justify-center items-center lg:text-base text-sm gap-5 lg:gap-10`}
+        >
           {linksItem.map((item, idx) => {
             return (
               <AnimatedLink
@@ -125,6 +133,33 @@ export default function ProjectNavbar() {
               </AnimatedLink>
             );
           })}
+        </div>
+
+        {/* MOBILE DEVICE */}
+        <div
+          className={`${isMobile ? "block" : "hidden"} flex justify-center items-center text-2xl`}
+        >
+          <Sheet>
+            <SheetTrigger>
+              <TiThMenuOutline />
+            </SheetTrigger>
+            <SheetContent
+              side="top"
+              className="flex flex-col items-center justify-center bg-amber-700 pt-15 pb-10 px-5 border-b-4 shadow-[4px_4px_0px_#000]"
+            >
+              {linksItem.map((item, idx) => {
+                return (
+                  <Link
+                    key={idx}
+                    href={item.href}
+                    className="text-white text-lg bg-amber-600 font-black border-4 shadow-[4px_4px_0px_#000] border-black w-full py-3 text-center rounded-2xl"
+                  >
+                    {item.title}
+                  </Link>
+                );
+              })}
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
     </div>

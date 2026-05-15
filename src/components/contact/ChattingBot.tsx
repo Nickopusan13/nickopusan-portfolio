@@ -56,7 +56,7 @@ export default function ChattingBot() {
     if (e.key === "Enter") sendMessage();
   };
   return (
-    <div className="bg-amber-300 h-120 rounded-2xl border-4 border-black w-lg px-10 py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-8">
+    <div className="bg-amber-300 h-120 rounded-2xl border-4 border-black w-full md:w-lg px-2 md:px-10 py-3 md:py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-5 md:gap-8">
       <div className="w-fit rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-600 text-amber-200 py-1 px-3 text-lg font-black shadow-[3px_3px_0px_#000]">
         <h2 className="text-center">Welcome To Chatbot!</h2>
       </div>
@@ -88,9 +88,9 @@ export default function ChattingBot() {
           </div>
         )}
       </div>
-      <div className="flex gap-2 border-t border-black pt-2 px-3 pb-2 bg-transparent">
+      <div className="flex gap-2 border-t border-black pt-2 px-0 md:px-3 pb-2 bg-transparent">
         <input
-          className="flex-1 bg-amber-700 border-2 shadow-[2px_2px_0px_#000] text-white rounded-xl px-3 py-2 outline-none text-sm"
+          className="flex-1 bg-amber-700 border-2 shadow-[2px_2px_0px_#000] text-white rounded-xl px-2 md:px-3 py-2 outline-none text-sm"
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -120,7 +120,7 @@ export default function ChattingBot() {
             damping: 18,
           }}
           disabled={!input.trim() || isPending}
-          className="bg-amber-700 text-amber-300 px-3 py-1 rounded-2xl border-2"
+          className="bg-amber-700 text-base md:text-lg text-amber-300 px-3 py-1 rounded-2xl border-2"
         >
           {isPending ? "...." : "Send"}
         </motion.button>

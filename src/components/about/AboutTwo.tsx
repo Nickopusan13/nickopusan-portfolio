@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import SplitText from "gsap/SplitText";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 const item = [
   {
@@ -106,9 +107,26 @@ export default function AboutTwo() {
           >
             <div className="flex flex-col h-full items-center justify-center w-1/2 gap-10 pl-10 pr-25 overflow-hidden">
               <div className="flex flex-col overflow-hidden gap-2">
-                <div className="top-0 left-0 w-fit px-3 py-1 bg-amber-600 rounded-bl-2xl rounded-tr-2xl">
+                <motion.div
+                  initial={{
+                    rotate: 3,
+                    scale: 0,
+                  }}
+                  whileInView={{
+                    rotate: 0,
+                    scale: 1,
+                  }}
+                  transition={{
+                    delay: 0.5,
+                    duration: 0.8,
+                    type: "spring",
+                    bounce: 0.5,
+                  }}
+                  viewport={{ once: true, amount: "all" }}
+                  className="top-0 left-0 w-fit px-3 py-1 bg-amber-600 rounded-bl-2xl rounded-tr-2xl"
+                >
                   {idx + 1}
-                </div>
+                </motion.div>
                 <h3 className="title text-4xl font-black">{item.title}</h3>
               </div>
 

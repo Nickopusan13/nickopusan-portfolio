@@ -1,6 +1,5 @@
 "use client";
 
-import { useMediaQuery } from "@/utils/useMediaQuery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +8,7 @@ import { useRef } from "react";
 import { motion } from "motion/react";
 import { AiOutlineBug } from "react-icons/ai";
 import Link from "next/link";
+import { useMediaQuery } from "@/utils/useMediaQuery";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 const MotionLink = motion.create(Link);
@@ -42,8 +42,11 @@ export default function SecOneProject() {
   const isReversed = false;
   useGSAP(
     () => {
-      const splitTile = SplitText.create(".title-split", {
+      const splitTitleDesktop = SplitText.create(".title-split-desktop", {
         type: "chars",
+      });
+      const splitTitleMobile = SplitText.create(".title-split-mobile", {
+        type: "words",
       });
       const splitTitleSec = SplitText.create(".title-split-two", {
         type: "words",
@@ -61,18 +64,28 @@ export default function SecOneProject() {
           stagger: 0.12,
         },
       );
-      gsap.set(".title-split", { opacity: 1 });
-      gsap.from(splitTile.chars, {
-        stagger: 0.05,
-        ease: "power2.inOut",
-        yPercent: 110,
-        delay: 1,
-      });
+      if (isMobile) {
+        gsap.set(".title-split-mobile", { opacity: 1 });
+        gsap.from(splitTitleMobile.words, {
+          stagger: 0.05,
+          ease: "power2.inOut",
+          yPercent: 300,
+          delay: 1,
+        });
+      } else {
+        gsap.set(".title-split-desktop", { opacity: 1 });
+        gsap.from(splitTitleDesktop.chars, {
+          stagger: 0.05,
+          ease: "power2.inOut",
+          yPercent: 110,
+          delay: 1,
+        });
+      }
       gsap.set(".title-split-two", { opacity: 1 });
       gsap.from(splitTitleSec.words, {
         stagger: 0.05,
         ease: "power2.inOut",
-        yPercent: 110,
+        yPercent: 300,
         delay: 1,
       });
       gsap.set(marqueeRef.current, {
@@ -95,11 +108,12 @@ export default function SecOneProject() {
         onLeaveBack: () => marqueeTimeline.current?.pause(),
       });
       return () => {
-        splitTile.revert();
+        splitTitleDesktop.revert();
+        splitTitleMobile.revert();
         splitTitleSec.revert();
       };
     },
-    { dependencies: [isReversed] },
+    { dependencies: [isReversed, isMobile] },
   );
   const timelineTimeScaleTween = useRef<GSAPTween>(null);
   const onPointerEnter = () => {
@@ -126,7 +140,7 @@ export default function SecOneProject() {
   return (
     <div
       ref={sectionRef}
-      className="w-full h-[90svh] bg-amber-500 border-y-4 border-black relative overflow-hidden"
+      className="w-full h-full bg-amber-500 border-y-4 border-black relative overflow-hidden"
       style={{
         backgroundImage: `
           repeating-linear-gradient(
@@ -151,31 +165,52 @@ export default function SecOneProject() {
       <div className="bg-blobs pointer-events-none absolute right-[25%] bottom-[22%] text-5xl font-black text-black opacity-20 rotate-6">
         POW!
       </div>
-      <div className="w-full h-full flex flex-col items-start justify-center">
-        <div className="flex mt-20 flex-col w-full h-full mx-40 items-start justify-center gap-7">
+      <div className="w-full h-full gap-20 flex flex-col items-start justify-center">
+        <div className="flex mt-25 md:mt-30 flex-col w-full h-full px-5 md:px-0 md:mx-40 items-start justify-center gap-7">
           <motion.div
             viewport={{ once: true }}
             initial={{ rotate: -10, scale: 0 }}
             whileInView={{ rotate: -2, scale: 1 }}
             transition={{ type: "spring", stiffness: 350, damping: 16 }}
-            className="rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-300 px-4 py-1 font-black text-black shadow-[4px_4px_0px_#000]"
+            className="rounded-tr-xl text-sm rounded-bl-xl border-2 border-black bg-amber-300 px-3 md:px-4 py-1 font-black text-black shadow-[4px_4px_0px_#000]"
           >
             FULLSTACK DEVELOPER
           </motion.div>
-          <h1 className="flex flex-col items-start justify-center text-5xl font-black leading-[0.95] text-amber-200 md:text-7xl lg:text-8xl drop-shadow-[5px_5px_0px_#000]">
-            <span className="title-split overflow-hidden opacity-0">
+          {/* NOT MOBILE DEVICE */}
+          <h1
+            className={`${isMobile ? "hidden" : "block"}  flex flex-col items-start justify-center text-5xl font-black leading-[0.95] text-amber-200 md:text-7xl lg:text-8xl drop-shadow-[5px_5px_0px_#000]`}
+          >
+            <span className="title-split-desktop overflow-hidden opacity-0">
               High-performance websites
             </span>
-            <span className="title-split overflow-hidden opacity-0">
+            <span className="title-split-desktop overflow-hidden opacity-0">
               built for real users.
             </span>
           </h1>
-          <h2 className="flex flex-col text-black font-bold text-xl">
+          <h2
+            className={`${isMobile ? "hidden" : "block"} flex flex-col text-black font-bold text-base md:text-xl`}
+          >
             <span className="title-split-two overflow-hidden opacity-0">
               I build fast, responsive websites and web apps
             </span>
             <span className="title-split-two overflow-hidden opacity-0">
               focused on performance, UX, and real results.
+            </span>
+          </h2>
+          {/* MOBILE DEVICE */}
+          <h1
+            className={`${isMobile ? "block" : "hidden"}  flex flex-col items-start justify-center text-3xl font-black leading-[0.95] text-amber-200 drop-shadow-[5px_5px_0px_#000] w-full`}
+          >
+            <span className="title-split-mobile overflow-hidden opacity-0">
+              High-performance websites built for real users.
+            </span>
+          </h1>
+          <h2
+            className={`${isMobile ? "block" : "hidden"} flex flex-col text-black font-bold text-base md:text-xl`}
+          >
+            <span className="title-split-two overflow-hidden opacity-0">
+              I build fast, responsive websites and web apps focused on
+              performance, UX, and real results.
             </span>
           </h2>
           <div className="flex gap-5">
@@ -207,7 +242,7 @@ export default function SecOneProject() {
                 stiffness: 500,
                 damping: 18,
               }}
-              className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-800 px-10 py-3 text-lg font-black text-amber-100"
+              className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-800 px-5 md:px-10 py-3 text-base md:text-lg font-black text-amber-100"
             >
               Contact Us
             </MotionLink>
@@ -239,7 +274,7 @@ export default function SecOneProject() {
                 stiffness: 500,
                 damping: 18,
               }}
-              className="cursor-pointer rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-300 px-10 py-3 text-lg font-black text-black shadow-[5px_5px_0px_#000]"
+              className="cursor-pointer rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-300 px-5 md:px-10 py-3 text-base md:text-lg font-black text-black shadow-[5px_5px_0px_#000]"
             >
               About Us
             </MotionLink>
@@ -250,7 +285,10 @@ export default function SecOneProject() {
           onPointerEnter={onPointerEnter}
           onPointerLeave={onPointerLeave}
         >
-          <div ref={marqueeRef} className="flex w-fit text-lg gap-2">
+          <div
+            ref={marqueeRef}
+            className="flex w-fit text-base md:text-lg gap-2"
+          >
             {marqueeListProject}
             {marqueeListProject}
             {marqueeListProject}
