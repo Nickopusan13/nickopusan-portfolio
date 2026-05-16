@@ -94,7 +94,7 @@ export function Grid2({
     <div className="w-full overflow-hidden">
       <div
         ref={containerRef}
-        className="flex select-none cursor-grab gap-5 active:cursor-grabbing"
+        className="flex select-none cursor-grab gap-2 md:gap-5 active:cursor-grabbing"
       >
         {[...images, ...images].map((item, idx) => (
           <Link
@@ -102,10 +102,10 @@ export function Grid2({
             onMouseLeave={() => handleLeave(idx)}
             href="/"
             key={idx}
-            className={`group relative min-w-[80vw] h-56 sm:h-80 lg:h-120 overflow-hidden rounded-tr-4xl rounded-bl-4xl border-4 border-black bg-amber-200 p-2 transition-all duration-500 ${
+            className={`group relative min-w-screen md:min-w-[80vw] h-50 sm:h-80 lg:h-120 overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 transition-all duration-500 ${
               activeIndex === idx % images.length
-                ? "scale-95 opacity-100 shadow-[10px_10px_0px_#000]"
-                : "scale-90 opacity-60 shadow-[5px_5px_0px_#000]"
+                ? "scale-95 opacity-100 shadow-[5px_5px_0px_#000] md:shadow-[10px_10px_0px_#000]"
+                : "scale-90 opacity-60 shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]"
             }`}
           >
             <MotionImage
@@ -113,18 +113,18 @@ export function Grid2({
               fill
               src={item}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover rounded-tr-[1.6rem] rounded-bl-[1.6rem] p-2"
+              className="object-cover rounded-tr-xl md:rounded-tr-3xl rounded-bl-xl md:rounded-bl-3xl p-1.5 md:p-2"
               priority={idx === 0}
             />
-            <div className="absolute right-5 top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
+            <div className="absolute right-3 top-3 md:right-5 md:top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
               CASE STUDY
             </div>
-            <div className="absolute bottom-0 left-0 w-full p-2 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
+            <div className="absolute bottom-0 left-0 w-full p-3 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
                 ref={(el) => {
                   textRef.current[idx] = el;
                 }}
-                className="text-xl sm:text-2xl lg:text-3xl font-semibold"
+                className="text-base md:text-3xl font-semibold"
               >
                 CAUFI
               </p>
@@ -161,7 +161,7 @@ export function Grid4({ images }: { images: string[] }) {
     });
   };
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-x-5 gap-y-0 lg:gap-y-15 px-5 lg:px-10">
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-x-5 gap-y-0 lg:gap-y-15 px-2 lg:px-10">
       {images.map((item, idx) => (
         <motion.div
           key={idx}
@@ -197,24 +197,24 @@ export function Grid4({ images }: { images: string[] }) {
               damping: 18,
             }}
             href="/"
-            className="group relative block h-56 w-full overflow-hidden rounded-tr-4xl rounded-bl-4xl border-4 border-black bg-amber-200 p-2 sm:h-100 lg:h-100"
+            className="group relative block h-50 w-full overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 md:h-100"
           >
             <MotionImage
               alt={item}
               fill
               src={item}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="rounded-tr-[1.6rem] rounded-bl-[1.6rem] object-cover p-2"
+              className="md:rounded-tr-3xl rounded-tr-xl rounded-bl-xl md:rounded-bl-3xl object-cover p-1 md:p-2"
             />
-            <div className="absolute right-5 top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
+            <div className="absolute md:right-5 md:top-5 right-3 top-3 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
               PROJECT
             </div>
-            <div className="absolute bottom-0 left-0 w-full p-2 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
+            <div className="absolute bottom-0 left-0 w-full p-3 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
                 ref={(el) => {
                   textRef.current[idx] = el;
                 }}
-                className="text-xl sm:text-2xl lg:text-2xl font-semibold"
+                className="text-base md:text-2xl font-semibold"
               >
                 CAUFI
               </p>

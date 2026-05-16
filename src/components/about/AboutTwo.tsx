@@ -6,6 +6,7 @@ import { useRef } from "react";
 import SplitText from "gsap/SplitText";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useMediaQuery } from "@/utils/useMediaQuery";
 
 const item = [
   {
@@ -40,6 +41,7 @@ export default function AboutTwo() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<(HTMLDivElement | null)[]>([]);
   const pinRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery();
   useGSAP(
     () => {
       itemRef.current.forEach((section, idx) => {
@@ -66,7 +68,7 @@ export default function AboutTwo() {
         });
         gsap.from(split.words, {
           delay: 0.5,
-          yPercent: 210,
+          yPercent: 300,
           stagger: 0.2,
           duration: 1,
           ease: "power4.out",
@@ -79,7 +81,7 @@ export default function AboutTwo() {
         });
         gsap.from(splitSub.words, {
           delay: 0.5,
-          yPercent: 210,
+          yPercent: 400,
           stagger: 0.2,
           duration: 1,
           ease: "power4.out",
@@ -105,7 +107,7 @@ export default function AboutTwo() {
             }}
             className={`item-section h-svh flex sticky top-0 items-center justify-center text-white overflow-hidden border-4`}
           >
-            <div className="flex flex-col h-full items-center justify-center w-1/2 gap-10 pl-10 pr-25 overflow-hidden">
+            <div className="flex flex-col h-full items-center justify-center w-full md:w-1/2 gap-10 pl-5 pr-5 md:pl-10 md:pr-25 overflow-hidden">
               <div className="flex flex-col overflow-hidden gap-2">
                 <motion.div
                   initial={{
@@ -127,16 +129,20 @@ export default function AboutTwo() {
                 >
                   {idx + 1}
                 </motion.div>
-                <h3 className="title text-4xl font-black">{item.title}</h3>
+                <h3 className="title text-3xl md:text-start text-center md:text-4xl font-black">
+                  {item.title}
+                </h3>
               </div>
 
               <div className="overflow-hidden">
-                <span className="subtitle block text-lg">{item.subTitle}</span>
+                <span className="subtitle block text-base text-justify md:text-start md:text-lg">
+                  {item.subTitle}
+                </span>
               </div>
             </div>
             <div
               ref={pinRef}
-              className="flex flex-col w-1/2 h-full overflow-hidden"
+              className={`${isMobile ? "hidden" : "block"} flex flex-col w-1/2 h-full overflow-hidden`}
             >
               <div className="relative h-full w-full">
                 <Image

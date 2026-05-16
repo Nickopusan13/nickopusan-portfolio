@@ -42,12 +42,7 @@ export default function SecOneProject() {
   const isReversed = false;
   useGSAP(
     () => {
-      const splitTitleDesktop = SplitText.create(".title-split-desktop", {
-        type: "chars",
-      });
-      const splitTitleMobile = SplitText.create(".title-split-mobile", {
-        type: "words",
-      });
+      const mm = gsap.matchMedia();
       const splitTitleSec = SplitText.create(".title-split-two", {
         type: "words",
       });
@@ -64,7 +59,12 @@ export default function SecOneProject() {
           stagger: 0.12,
         },
       );
-      if (isMobile) {
+
+      // MOBILE
+      mm.add("(max-width: 768px)", () => {
+        const splitTitleMobile = SplitText.create(".title-split-mobile", {
+          type: "words",
+        });
         gsap.set(".title-split-mobile", { opacity: 1 });
         gsap.from(splitTitleMobile.words, {
           stagger: 0.05,
@@ -72,7 +72,14 @@ export default function SecOneProject() {
           yPercent: 300,
           delay: 1,
         });
-      } else {
+        return () => splitTitleMobile.revert();
+      });
+
+      // DESKTOP
+      mm.add("(min-width: 768px)", () => {
+        const splitTitleDesktop = SplitText.create(".title-split-desktop", {
+          type: "chars",
+        });
         gsap.set(".title-split-desktop", { opacity: 1 });
         gsap.from(splitTitleDesktop.chars, {
           stagger: 0.05,
@@ -80,7 +87,9 @@ export default function SecOneProject() {
           yPercent: 110,
           delay: 1,
         });
-      }
+        return () => splitTitleDesktop.revert();
+      });
+
       gsap.set(".title-split-two", { opacity: 1 });
       gsap.from(splitTitleSec.words, {
         stagger: 0.05,
@@ -108,8 +117,7 @@ export default function SecOneProject() {
         onLeaveBack: () => marqueeTimeline.current?.pause(),
       });
       return () => {
-        splitTitleDesktop.revert();
-        splitTitleMobile.revert();
+        mm.revert();
         splitTitleSec.revert();
       };
     },

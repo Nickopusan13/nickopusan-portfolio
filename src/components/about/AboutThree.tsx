@@ -19,7 +19,7 @@ export default function AboutThree() {
       });
       tl.fromTo(
         ".text-animate",
-        { yPercent: 100 },
+        { yPercent: 150 },
         { yPercent: 0, ease: "power3.out" },
       );
       const tl2 = gsap.timeline({
@@ -42,16 +42,16 @@ export default function AboutThree() {
   return (
     <section
       ref={sectionRef}
-      className="flex relative gap-5 flex-col z-10 will-change-transform h-svh w-full items-center justify-center bg-amber-300 overflow-hidden"
+      className="flex relative gap-5 flex-col z-10 will-change-transform h-svh w-full items-center justify-center bg-amber-300 overflow-hidden md:px-0 px-3"
     >
       <div className="overflow-hidden">
-        <h3 className="text-animate text-8xl font-black">
+        <h3 className="text-animate text-6xl text-center md:text-start md:text-8xl font-black">
           {" "}
           Build. Automate. Innovate.
         </h3>
       </div>
       <div className="overflow-hidden">
-        <span className="text-animate inline-block text-lg">
+        <span className="text-animate inline-block text-center md:text-start text-base md:text-lg">
           Fullstack Developer crafting scalable apps, automation systems, and
           interactive web experiences.
         </span>

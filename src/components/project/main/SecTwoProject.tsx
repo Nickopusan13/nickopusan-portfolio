@@ -104,18 +104,10 @@ export default function SecTwoProject() {
     },
   );
   return (
-    <section
-      className="
-        relative min-h-svh w-full overflow-hidden
-        bg-amber-500 text-black
-        border-y-4 border-black
-      "
-    >
-      <div className="relative z-10 px-5 py-10 lg:px-10 lg:py-16">
+    <section className="relative min-h-svh w-full overflow-hidden bg-amber-500 text-black border-y-4 border-black">
+      <div className="relative z-10 px-3 py-5 md:px-10 md:py-16">
         <div
-          className="
-            grid w-full grid-cols-1 gap-5
-            lg:grid-cols-2
+          className="grid w-full grid-cols-1 gap-5 md:grid-cols-2
           "
         >
           <motion.div
@@ -123,44 +115,17 @@ export default function SecTwoProject() {
             whileInView={{ opacity: 1, y: 0, rotate: -1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="
-              flex flex-col items-start justify-center gap-5
-              rounded-tr-4xl rounded-bl-4xl
-              border-4 border-black bg-amber-300
-              px-6 py-8 font-bold
-              shadow-[8px_8px_0px_#000]
-              lg:px-10
-            "
+            className="flex flex-col items-start justify-center gap-5 md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl border-3 md:rounded-bl-4xl md:border-4 border-black bg-amber-300 px-3 py-4 font-bold shadow-[5px_5px_0px_#000] md:shadow-[8px_8px_0px_#000] md:px-10"
           >
             <div className="flex w-full items-center justify-between text-black">
-              <span
-                className="
-                  rounded-tr-xl rounded-bl-xl border-2 border-black
-                  bg-orange-500 px-3 py-1
-                  text-sm font-black
-                  shadow-[3px_3px_0px_#000]
-                "
-              >
+              <span className="rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-sm font-black shadow-[3px_3px_0px_#000]">
                 SOLUTIONS
               </span>
-              <span
-                className="
-                  flex size-8 items-center justify-center
-                  rounded-full border-2 border-black
-                  bg-amber-100 font-black
-                  shadow-[3px_3px_0px_#000]
-                "
-              >
+              <span className="flex size-8 items-center justify-center rounded-full border-2 border-black bg-amber-100 font-black shadow-[3px_3px_0px_#000]">
                 X
               </span>
             </div>
-            <h2
-              className="
-                text-4xl font-black leading-tight text-black
-                drop-shadow-[3px_3px_0px_rgba(255,255,255,0.65)]
-                lg:text-5xl
-              "
-            >
+            <h2 className="text-2xl md:text-4xl font-black leading-tight text-black drop-shadow-[3px_3px_0px_rgba(255,255,255,0.65)]">
               Industrialized technology for an evolving environment
             </h2>
           </motion.div>
@@ -174,12 +139,7 @@ export default function SecTwoProject() {
               damping: 20,
               delay: 0.1,
             }}
-            className="
-              hidden min-h-64 rounded-tl-4xl rounded-br-4xl
-              border-4 border-black bg-amber-200
-              shadow-[8px_8px_0px_#000]
-              lg:block
-            "
+            className="hidden min-h-64 rounded-tl-4xl rounded-br-4xl border-4 border-black bg-amber-200 shadow-[8px_8px_0px_#000] md:block"
           >
             <div
               className="h-full w-full opacity-[0.18]"
@@ -192,7 +152,7 @@ export default function SecTwoProject() {
         </div>
         <div
           ref={scrollSection}
-          className="relative mt-10 flex flex-col gap-10 md:block md:h-[78svh]"
+          className="relative mt-8 md:mt-10 flex flex-col gap-8 md:gap-10 md:block md:h-[78svh]"
         >
           {item.map((item, idx) => {
             const number = idx + 1;
@@ -202,30 +162,23 @@ export default function SecTwoProject() {
                   cardRefs.current[idx] = el;
                 }}
                 key={idx}
-                className={`grid w-full grid-cols-1 gap-6 rounded-tr-[2.5rem] rounded-bl-[2.5rem] border-4 border-black bg-amber-400 p-5 shadow-[10px_10px_0px_#000] md:absolute md:left-0 md:top-0 md:h-full lg:grid-cols-[20%_1fr_30%] lg:p-8`}
+                className={`grid w-full grid-cols-1 gap-4 md:gap-6 md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-400 p-3 shadow-[7px_7px_0px_#000] md:shadow-[10px_10px_0px_#000] md:absolute md:left-0 md:top-0 md:h-full md:grid-cols-[20%_1fr_30%] md:p-8`}
               >
-                <div className="flex items-start border-b-4 border-black pb-5 lg:border-b-0 lg:border-r-4 lg:pb-0 lg:pr-5">
-                  <span className="flex size-20 items-center justify-center rounded-tr-2xl rounded-bl-2xl border-4 border-black bg-orange-500 text-5xl font-black text-black shadow-[5px_5px_0px_#000]">
+                <div className="flex items-start border-b-3 border-black pb-4 md:border-b-0 md:border-r-4 md:pb-0 md:pr-5">
+                  <span className="flex size-10 md:size-20 items-center justify-center md:rounded-tr-2xl rounded-tr-xl rounded-bl-xl md:rounded-bl-2xl border-3 md:border-4 border-black bg-orange-500 text-2xl md:text-5xl font-black text-black shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]">
                     {number}
                   </span>
                 </div>
-                <div className="flex flex-col gap-8">
-                  <div className="flex flex-col gap-4">
-                    <h3
-                      className="
-                  w-fit rounded-tr-xl rounded-bl-xl
-                  border-2 border-black bg-amber-200
-                  px-3 py-1 text-lg font-black
-                  shadow-[3px_3px_0px_#000]
-                "
-                    >
+                <div className="flex flex-col gap-4 md:gap-8 items-center md:items-start">
+                  <div className="flex flex-col items-center md:items-start gap-4">
+                    <h3 className="w-fit rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-200 px-2 md:px-3 py-1 text-base md:text-lg font-black shadow-[3px_3px_0px_#000]">
                       {item.title1}
                     </h3>
-                    <h3 className="text-3xl font-black leading-tight lg:text-5xl">
+                    <h3 className="text-2xl text-center md:text-start font-black leading-tight md:text-5xl">
                       {item.title2}
                     </h3>
                   </div>
-                  <p className="max-w-3xl text-base font-bold leading-relaxed text-black/75 lg:text-lg">
+                  <p className="md:max-w-3xl text-base font-bold text-justify md:text-start leading-relaxed text-black/75 md:text-lg">
                     {item.description}
                   </p>
                   <motion.button
@@ -249,12 +202,7 @@ export default function SecTwoProject() {
                       stiffness: 500,
                       damping: 18,
                     }}
-                    className="
-                flex w-fit cursor-pointer items-center gap-3
-                rounded-tr-xl rounded-bl-xl
-                border-2 border-black bg-amber-200
-                px-5 py-3 text-lg font-black text-black
-              "
+                    className="flex w-fit cursor-pointer items-center gap-2 md:gap-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-200 px-3 py-2 md:px-5 md:py-3 text-lg font-black text-black"
                   >
                     <span>Learn More</span>
                     <span>
@@ -274,10 +222,7 @@ export default function SecTwoProject() {
                     stiffness: 300,
                     damping: 20,
                   }}
-                  className="
-              min-h-72 overflow-hidden
-              rounded-tl-4xl rounded-br-4xl
-              border-4 border-black bg-amber-100
+                  className="hidden md:block min-h-72 overflow-hidden rounded-tl-4xl rounded-br-4xl border-4 border-black bg-amber-100
             "
                 >
                   <div

@@ -52,21 +52,21 @@ export default function MainProject() {
   return (
     <div className="min-h-svh py-20 text-white overflow-hidden bg-amber-600">
       <section className="flex flex-col items-center justify-center gap-4 lg:gap-8 px-5 lg:px-20">
-        <div className="rounded-2xl border-4 border-black bg-amber-300 px-5 py-2 text-sm font-black text-black shadow-[4px_4px_0px_#000] lg:text-base">
+        <div className="rounded-2xl border-2 md:border-4 border-black bg-amber-300 px-3 md:px-5 py-2 text-sm font-black text-black shadow-[4px_4px_0px_#000] md:text-base">
           FEATURED PROJECTS
         </div>
-        <h1 className="text-center text-6xl font-black leading-none text-amber-200 drop-shadow-[5px_5px_0px_#000] lg:text-9xl">
+        <h1 className="text-center text-5xl md:text-6xl font-black leading-none text-amber-200 drop-shadow-[5px_5px_0px_#000] lg:text-9xl">
           Our Craft
         </h1>
-        <div className="cartoon-item font-bold flex flex-col items-center justify-center text-lg text-white/50">
+        <div className="cartoon-item font-bold flex flex-col items-center justify-center text-sm md:text-lg text-white/50">
           <span>50+ projects shipped. </span>
           <span>500M+ page views delivered.</span>
         </div>
       </section>
       <section className="pt-10 flex-col">
-        <div className="mx-5 mb-15 rounded-tr-3xl rounded-bl-3xl border-4 border-black bg-amber-400 px-4 py-7 shadow-[8px_8px_0px_#000] md:mx-30">
+        <div className="mx-3 mb-10 md:mb-15 rounded-tr-3xl rounded-bl-3xl border-3 md:border-4 border-black bg-amber-400 px-2 md:px-4 py-4 md:py-7 shadow-[5px_5px_0px_#000] md:shadow-[8px_8px_0px_#000] md:mx-30">
           <div className="flex justify-between items-center md:px-5">
-            <div className="flex gap-2">
+            <div className="flex">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <motion.button
@@ -90,7 +90,7 @@ export default function MainProject() {
                       stiffness: 500,
                       damping: 18,
                     }}
-                    className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-300 px-10 py-3 text-lg font-black text-black shadow-[5px_5px_0px_#000]"
+                    className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-300 px-3 md:px-10 py-2 md:py-3 text-base md:text-lg font-black text-black shadow-[5px_5px_0px_#000]"
                   >
                     FILTER
                   </motion.button>
@@ -117,7 +117,7 @@ export default function MainProject() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="hidden lg:flex gap-3 justify-center items-center"
+                  className="hidden md:flex gap-3 justify-center items-center"
                 >
                   {images.map((img, idx) => (
                     <motion.div
@@ -190,7 +190,7 @@ export default function MainProject() {
                         }}
                         whileInView={{ boxShadow: "3px 3px 0px #000" }}
                         onClick={() => setActiveGrid(item.id as GridType)}
-                        className="relative cursor-pointer rounded-lg border-2 border-black bg-amber-300 p-2 text-2xl text-black overflow-hidden"
+                        className="relative cursor-pointer rounded-lg border-2 border-black bg-amber-300 p-2 text-xl md:text-2xl text-black overflow-hidden"
                       >
                         {activeGrid === item.id && (
                           <motion.div
@@ -206,7 +206,7 @@ export default function MainProject() {
                         <span className="relative z-10">{item.icon}</span>
                       </motion.button>
                     </TooltipTrigger>
-                    <TooltipContent className="hidden border-2 border-black bg-amber-300 font-black text-black shadow-[4px_4px_0px_#000] lg:block">
+                    <TooltipContent className="hidden border-2 border-black bg-amber-300 font-black text-black shadow-[4px_4px_0px_#000] md:block">
                       <p>{item.label}</p>
                     </TooltipContent>
                   </Tooltip>
@@ -219,7 +219,7 @@ export default function MainProject() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="flex gap-2 text-black"
+                    className="flex gap-2 text-black text-base md:text-xl"
                   >
                     <NextPrevBtn content="Previous" onClick={handlePrevious}>
                       <IoMdArrowRoundBack />
@@ -255,22 +255,23 @@ export default function MainProject() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="flex lg:hidden mt-5 lg:mt-0 gap-2 lg:gap-3 justify-center items-center"
+                  className="flex md:hidden mt-5 gap-2 justify-center items-center"
                 >
                   {images.map((img, idx) => (
                     <div
-                      className="relative w-20 sm:w-25 h-12"
+                      className="relative w-18 h-12 rounded-md border border-black bg-amber-200 p-1 shadow-[3px_3px_0px_#000]"
                       key={idx}
                       onClick={() => setActiveIndex(idx)}
                     >
                       <Image
                         fill
                         src={img}
-                        alt=""
-                        className={`object-cover rounded-md transition-all duration-300 hover:scale-110 active:scale-95 ${
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt={img}
+                        className={`object-cover p-1 rounded-md transition-all duration-300 ${
                           activeIndex === idx
                             ? "opacity-100"
-                            : "opacity-40 hover:opacity-70"
+                            : "opacity-50 hover:opacity-70"
                         }`}
                       />
                       {activeIndex === idx && (
@@ -281,8 +282,10 @@ export default function MainProject() {
                             stiffness: 400,
                             damping: 30,
                           }}
-                          className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-orange-600/80 rounded-sm"
-                        />
+                          className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-base text-orange-600 drop-shadow-[2px_2px_0px_#000]"
+                        >
+                          <GiFlowerStar />
+                        </motion.div>
                       )}
                     </div>
                   ))}

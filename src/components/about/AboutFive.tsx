@@ -57,8 +57,8 @@ export default function AboutFive() {
         ref={sectionRef}
         className="min-h-svh justify-center flex items-center bg-amber-300"
       >
-        <div className="flex flex-col items-center text-center gap-6 px-6">
-          <span className="text-zinc-900 text-lg font-medium tracking-wide">
+        <div className="flex flex-col items-center text-center gap-6 px-2 md:px-6">
+          <span className="text-zinc-900 text-base md:text-lg font-medium tracking-wide">
             Ready to build something impactful?
           </span>
           <div
@@ -66,13 +66,13 @@ export default function AboutFive() {
             style={{
               clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
             }}
-            className="bg-amber-700 px-5 py-3 rounded-lg border-4 border-black"
+            className="bg-amber-700 px-3 md:px-5 py-3 rounded-lg border-4 border-black"
           >
-            <h2 className="text-6xl md:text-8xl font-black text-amber-300 drop-shadow-[6px_6px_0px_#000] leading-none">
+            <h2 className="text-4xl md:text-8xl font-black text-amber-300 drop-shadow-[6px_6px_0px_#000] leading-none">
               Let’s Create Together.
             </h2>
           </div>
-          <p className="max-w-2xl text-zinc-800 text-lg md:text-xl leading-relaxed">
+          <p className="max-w-2xl text-zinc-800 text-base md:text-xl leading-relaxed">
             From fullstack applications and automation systems to immersive
             digital experiences. I turn ideas into scalable and interactive
             products.
