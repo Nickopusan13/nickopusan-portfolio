@@ -48,6 +48,9 @@ export default function AboutFive() {
           },
         },
       );
+      return () => {
+        tl.revert();
+      };
     },
     { scope: sectionRef },
   );

@@ -119,9 +119,10 @@ export default function SecOneProject() {
       return () => {
         mm.revert();
         splitTitleSec.revert();
+        marqueeTimeline.current?.kill();
       };
     },
-    { dependencies: [isReversed, isMobile] },
+    { scope: sectionRef, dependencies: [isReversed, isMobile] },
   );
   const timelineTimeScaleTween = useRef<GSAPTween>(null);
   const onPointerEnter = () => {
@@ -174,7 +175,7 @@ export default function SecOneProject() {
         POW!
       </div>
       <div className="w-full h-full gap-20 flex flex-col items-start justify-center">
-        <div className="flex mt-25 md:mt-30 flex-col w-full h-full px-5 lg:px-10 items-start justify-center gap-7">
+        <div className="flex mt-25 md:mt-30 flex-col w-full h-full px-5 lg:px-10 xl:px-20 items-start justify-center gap-7">
           <motion.div
             viewport={{ once: true }}
             initial={{ rotate: -10, scale: 0 }}

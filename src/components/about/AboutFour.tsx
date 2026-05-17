@@ -56,18 +56,19 @@ export default function AboutFour() {
             start: "top 70%",
           },
         });
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-          },
-        });
-        tl.fromTo(
+        gsap.fromTo(
           titleRef.current,
           {
             yPercent: 100,
           },
-          { yPercent: 0, ease: "power3.out" },
+          {
+            yPercent: 0,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+            },
+          },
         );
       });
     },

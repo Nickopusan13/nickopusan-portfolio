@@ -90,6 +90,11 @@ export default function AboutTwo() {
             scrub: 1.5,
           },
         });
+        return () => {
+          splitSub.revert();
+          split.revert();
+          tl.revert();
+        };
       });
     },
     { scope: sectionRef },

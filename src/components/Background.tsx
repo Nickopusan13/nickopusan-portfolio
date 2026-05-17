@@ -13,25 +13,28 @@ export default function LiveCirclesBG() {
       size: 20,
     }));
   }, []);
-  useGSAP(() => {
-    if (!bgRef.current) return;
-    const ctx = gsap.context(() => {
-      const circles = gsap.utils.toArray<HTMLElement>(".circle");
-      circles.forEach((circle) => {
-        gsap.to(circle, {
-          y: "+=200",
-          x: "+=50",
-          repeat: -1,
-          yoyo: true,
-          duration: gsap.utils.random(5, 15),
-          ease: "sine.inOut",
+  useGSAP(
+    () => {
+      if (!bgRef.current) return;
+      const ctx = gsap.context(() => {
+        const circles = gsap.utils.toArray<HTMLElement>(".circle");
+        circles.forEach((circle) => {
+          gsap.to(circle, {
+            y: "+=200",
+            x: "+=50",
+            repeat: -1,
+            yoyo: true,
+            duration: gsap.utils.random(5, 15),
+            ease: "sine.inOut",
+          });
         });
-      });
-    }, bgRef);
-    return () => {
-      ctx.revert();
-    };
-  }, []);
+      }, bgRef);
+      return () => {
+        ctx.revert();
+      };
+    },
+    { scope: bgRef },
+  );
 
   return (
     <div

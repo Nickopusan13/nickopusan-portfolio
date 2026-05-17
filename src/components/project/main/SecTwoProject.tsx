@@ -152,7 +152,7 @@ export default function SecTwoProject() {
         </div>
         <div
           ref={scrollSection}
-          className="relative mt-8 md:mt-10 flex flex-col gap-8 lg:gap-10 lg:block lg:h-[85svh]"
+          className="relative mt-8 md:mt-10 flex flex-col gap-8 lg:gap-10 lg:block lg:h-[80svh]"
         >
           {item.map((item, idx) => {
             const number = idx + 1;
