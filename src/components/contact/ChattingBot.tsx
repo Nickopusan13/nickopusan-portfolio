@@ -56,7 +56,7 @@ export default function ChattingBot() {
     if (e.key === "Enter") sendMessage();
   };
   return (
-    <div className="bg-amber-300 h-120 rounded-2xl border-4 border-black w-full md:w-lg px-2 md:px-10 py-3 md:py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-5 md:gap-8">
+    <div className="bg-amber-300 h-140 rounded-2xl border-4 border-black w-full lg:w-lg px-2 md:px-5 xl:px-10 py-3 xl:py-6 shadow-[8px_8px_0px_#000] flex flex-col gap-5 xl:gap-8">
       <div className="w-fit rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-600 text-amber-200 py-1 px-3 text-lg font-black shadow-[3px_3px_0px_#000]">
         <h2 className="text-center">Welcome To Chatbot!</h2>
       </div>

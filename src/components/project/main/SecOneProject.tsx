@@ -174,7 +174,7 @@ export default function SecOneProject() {
         POW!
       </div>
       <div className="w-full h-full gap-20 flex flex-col items-start justify-center">
-        <div className="flex mt-25 md:mt-30 flex-col w-full h-full px-5 md:px-0 md:mx-40 items-start justify-center gap-7">
+        <div className="flex mt-25 md:mt-30 flex-col w-full h-full px-5 lg:px-10 items-start justify-center gap-7">
           <motion.div
             viewport={{ once: true }}
             initial={{ rotate: -10, scale: 0 }}
@@ -186,7 +186,7 @@ export default function SecOneProject() {
           </motion.div>
           {/* NOT MOBILE DEVICE */}
           <h1
-            className={`${isMobile ? "hidden" : "block"}  flex flex-col items-start justify-center text-5xl font-black leading-[0.95] text-amber-200 md:text-7xl lg:text-8xl drop-shadow-[5px_5px_0px_#000]`}
+            className={`${isMobile ? "hidden" : "block"}  flex flex-col items-start justify-center font-black leading-[0.95] text-amber-200 md:5xl lg:text-7xl xl:text-8xl drop-shadow-[5px_5px_0px_#000]`}
           >
             <span className="title-split-desktop overflow-hidden opacity-0">
               High-performance websites

@@ -82,13 +82,13 @@ export default function AboutFour() {
         <div className="overflow-hidden">
           <h3
             ref={titleRef}
-            className="text-white text-4xl md:text-8xl text-center px-5 md:px-20 font-black drop-shadow-[6px_6px_0px_#000] md:drop-shadow-[10px_10px_0px_#000]"
+            className="text-white text-4xl md:text-5xl lg:text-6xl xl:text-8xl text-center px-5 lg:px-20 font-black drop-shadow-[6px_6px_0px_#000] md:drop-shadow-[10px_10px_0px_#000]"
           >
             The principles behind how I design and build experiences
           </h3>
         </div>
       </div>
-      <div className="w-full flex flex-col px-5 md:px-20 text-white gap-50">
+      <div className="w-full flex flex-col px-5 lg:px-10 xl:px-20 text-white gap-50">
         {item.map((item, idx) => {
           const isEven = idx % 2 === 0;
           return (
@@ -97,11 +97,11 @@ export default function AboutFour() {
               ref={(el) => {
                 itemRef.current[idx] = el;
               }}
-              className={`w-full items-center flex justify-center md:${isEven ? "justify-start" : "justify-end"}`}
+              className={`w-full  items-center flex justify-center lg:${isEven ? "justify-start" : "justify-end"}`}
             >
-              <div className="h-fit relative max-w-lg">
+              <div className="h-fit relative md:max-w-2xl lg:max-w-lg">
                 <span className="absolute left-0 top-0">{idx + 1}</span>
-                <div className="flex flex-col pl-4 md:pl-5 gap-5">
+                <div className="flex flex-col pl-4 lg:pl-5 gap-5">
                   <div
                     style={{
                       clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",

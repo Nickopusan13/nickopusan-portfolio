@@ -98,10 +98,10 @@ export default function About() {
     >
       <div
         ref={titleBlock}
-        className="will-change-transform flex flex-col h-fit gap-4 items-center w-fit justify-center bg-amber-500 p-5 md:p-8 rounded-2xl shadow-[5px_5px_0px_#000] md:shadow-[7px_7px_0px_#000] border-4 border-black"
+        className="will-change-transform flex flex-col h-fit gap-4 items-center w-fit justify-center bg-amber-500 p-5 lg:p-8 rounded-2xl shadow-[5px_5px_0px_#000] md:shadow-[7px_7px_0px_#000] border-4 border-black"
       >
         <h1
-          className={`title-desktop ${isMobile ? "hidden" : "block"} opacity-0 leading-none font-black w-fit h-fit text-7xl drop-shadow-[5px_5px_0px_#000] text-amber-600 overflow-hidden`}
+          className={`title-desktop ${isMobile ? "hidden" : "block"} opacity-0 leading-none font-black w-fit h-fit md:text-6xl lg:text-7xl drop-shadow-[5px_5px_0px_#000] text-amber-600 overflow-hidden`}
         >
           Crafting Motion & Code
         </h1>

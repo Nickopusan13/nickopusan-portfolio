@@ -102,7 +102,7 @@ export function Grid2({
             onMouseLeave={() => handleLeave(idx)}
             href="/"
             key={idx}
-            className={`group relative min-w-screen md:min-w-[80vw] h-50 sm:h-80 lg:h-120 overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 transition-all duration-500 ${
+            className={`group relative min-w-screen xl:min-w-[80vw] h-50 md:h-80 lg:h-120 overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 transition-all duration-500 ${
               activeIndex === idx % images.length
                 ? "scale-95 opacity-100 shadow-[5px_5px_0px_#000] md:shadow-[10px_10px_0px_#000]"
                 : "scale-90 opacity-60 shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]"
@@ -119,7 +119,7 @@ export function Grid2({
             <div className="absolute right-3 top-3 md:right-5 md:top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
               CASE STUDY
             </div>
-            <div className="absolute bottom-0 left-0 w-full p-3 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
+            <div className="absolute bottom-0 left-0 w-full p-3 md:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
                 ref={(el) => {
                   textRef.current[idx] = el;
@@ -161,7 +161,7 @@ export function Grid4({ images }: { images: string[] }) {
     });
   };
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-x-5 gap-y-0 lg:gap-y-15 px-2 lg:px-10">
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-x-5 gap-y-0 lg:gap-y-15 px-2 md:px-5 lg:px-10">
       {images.map((item, idx) => (
         <motion.div
           key={idx}
@@ -209,7 +209,7 @@ export function Grid4({ images }: { images: string[] }) {
             <div className="absolute md:right-5 md:top-5 right-3 top-3 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
               PROJECT
             </div>
-            <div className="absolute bottom-0 left-0 w-full p-3 lg:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
+            <div className="absolute bottom-0 left-0 w-full p-3 md:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
                 ref={(el) => {
                   textRef.current[idx] = el;

@@ -55,7 +55,7 @@ export default function MainProject() {
         <div className="rounded-2xl border-2 md:border-4 border-black bg-amber-300 px-3 md:px-5 py-2 text-sm font-black text-black shadow-[4px_4px_0px_#000] md:text-base">
           FEATURED PROJECTS
         </div>
-        <h1 className="text-center text-5xl md:text-6xl font-black leading-none text-amber-200 drop-shadow-[5px_5px_0px_#000] lg:text-9xl">
+        <h1 className="text-center text-5xl md:text-6xl font-black leading-none text-amber-200 drop-shadow-[5px_5px_0px_#000] lg:text-8xl xl:text-9xl">
           Our Craft
         </h1>
         <div className="cartoon-item font-bold flex flex-col items-center justify-center text-sm md:text-lg text-white/50">
@@ -63,173 +63,175 @@ export default function MainProject() {
           <span>500M+ page views delivered.</span>
         </div>
       </section>
-      <section className="pt-10 flex-col">
-        <div className="mx-3 mb-10 md:mb-15 rounded-tr-3xl rounded-bl-3xl border-3 md:border-4 border-black bg-amber-400 px-2 md:px-4 py-4 md:py-7 shadow-[5px_5px_0px_#000] md:shadow-[8px_8px_0px_#000] md:mx-30">
-          <div className="flex justify-between items-center md:px-5">
-            <div className="flex">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <motion.button
-                    whileHover={{
-                      scale: 1.07,
-                      y: -6,
-                      x: -4,
-                      rotate: -2,
-                      boxShadow: "10px 10px 0px #000",
-                    }}
-                    whileTap={{
-                      scale: 0.94,
-                      y: 3,
-                      x: 3,
-                      rotate: 0,
-                      boxShadow: "2px 2px 0px #000",
-                    }}
-                    whileInView={{ boxShadow: "5px 5px 0px #000" }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 18,
-                    }}
-                    className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-300 px-3 md:px-10 py-2 md:py-3 text-base md:text-lg font-black text-black shadow-[5px_5px_0px_#000]"
-                  >
-                    FILTER
-                  </motion.button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="z-50 border-2 border-black bg-amber-300 text-black shadow-[5px_5px_0px_#000]">
-                  {sortOptions.map((item, idx) => {
-                    return (
-                      <DropdownMenuItem
-                        className="cursor-pointer font-black focus:bg-orange-500 focus:text-black"
-                        key={idx}
-                      >
-                        {item.label}
-                      </DropdownMenuItem>
-                    );
-                  })}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <AnimatePresence mode="wait">
-              {activeGrid !== "grid4" && (
-                <motion.div
-                  key="thumbnails"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="hidden md:flex gap-3 justify-center items-center"
-                >
-                  {images.map((img, idx) => (
-                    <motion.div
+      <section className="pt-10 flex-col flex px-2 sm:px-15 md:px-3">
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="mb-10 w-full xl:mb-15 rounded-tr-3xl rounded-bl-3xl border-3 md:border-4 border-black bg-amber-400 px-2 md:px-0 lg:px-4 py-4 md:py-7 shadow-[5px_5px_0px_#000] md:shadow-[8px_8px_0px_#000] lg:mx-10 xl:mx-30">
+            <div className="flex justify-between items-center md:px-5">
+              <div className="flex">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <motion.button
                       whileHover={{
-                        scale: 1.08,
-                        rotate: idx % 2 === 0 ? -2 : 2,
-                        y: -4,
+                        scale: 1.07,
+                        y: -6,
+                        x: -4,
+                        rotate: -2,
+                        boxShadow: "10px 10px 0px #000",
                       }}
-                      whileTap={{ scale: 0.94 }}
+                      whileTap={{
+                        scale: 0.94,
+                        y: 3,
+                        x: 3,
+                        rotate: 0,
+                        boxShadow: "2px 2px 0px #000",
+                      }}
+                      whileInView={{ boxShadow: "5px 5px 0px #000" }}
                       transition={{
                         type: "spring",
                         stiffness: 500,
                         damping: 18,
                       }}
-                      className="relative h-12 w-24 cursor-pointer rounded-md border-2 border-black bg-amber-200 p-1 shadow-[4px_4px_0px_#000]"
-                      key={idx}
-                      onClick={() => setActiveIndex(idx)}
+                      className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-300 px-3 lg:px-10 md:px-5 py-2 lg:py-3 text-base md:text-lg font-black text-black shadow-[5px_5px_0px_#000]"
                     >
-                      <Image
-                        fill
-                        src={img}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt={img}
-                        className={`rounded-sm object-cover p-1 transition-all duration-300 ${
-                          activeIndex === idx
-                            ? "opacity-100"
-                            : "opacity-50 hover:opacity-80"
-                        }`}
-                      />
-                      {activeIndex === idx && (
-                        <motion.div
-                          layoutId="activeIndicator"
-                          transition={{
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 30,
-                          }}
-                          className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xl text-orange-600 drop-shadow-[2px_2px_0px_#000]"
+                      FILTER
+                    </motion.button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="z-50 border-2 border-black bg-amber-300 text-black shadow-[5px_5px_0px_#000]">
+                    {sortOptions.map((item, idx) => {
+                      return (
+                        <DropdownMenuItem
+                          className="cursor-pointer font-black focus:bg-orange-500 focus:text-black"
+                          key={idx}
                         >
-                          <GiFlowerStar />
-                        </motion.div>
-                      )}
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <div className="flex gap-4 text-xl">
-              <div className="flex gap-2">
-                {gridButtons.map((item) => (
-                  <Tooltip key={item.id}>
-                    <TooltipTrigger asChild>
-                      <motion.button
+                          {item.label}
+                        </DropdownMenuItem>
+                      );
+                    })}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+              <AnimatePresence mode="wait">
+                {activeGrid !== "grid4" && (
+                  <motion.div
+                    key="thumbnails"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="hidden md:flex md:gap-2 lg:gap-3 justify-center items-center"
+                  >
+                    {images.map((img, idx) => (
+                      <motion.div
                         whileHover={{
                           scale: 1.08,
-                          y: -3,
-                          rotate: item.id === "grid2" ? -2 : 2,
-                          boxShadow: "6px 6px 0px #000",
+                          rotate: idx % 2 === 0 ? -2 : 2,
+                          y: -4,
                         }}
-                        whileTap={{
-                          scale: 0.92,
-                          x: 2,
-                          y: 2,
-                          boxShadow: "1px 1px 0px #000",
-                        }}
+                        whileTap={{ scale: 0.94 }}
                         transition={{
                           type: "spring",
                           stiffness: 500,
                           damping: 18,
                         }}
-                        whileInView={{ boxShadow: "3px 3px 0px #000" }}
-                        onClick={() => setActiveGrid(item.id as GridType)}
-                        className="relative cursor-pointer rounded-lg border-2 border-black bg-amber-300 p-2 text-xl md:text-2xl text-black overflow-hidden"
+                        className="relative w-22 h-12 lg:h-12 lg:w-24 cursor-pointer rounded-md border-2 border-black bg-amber-200 p-1 shadow-[4px_4px_0px_#000]"
+                        key={idx}
+                        onClick={() => setActiveIndex(idx)}
                       >
-                        {activeGrid === item.id && (
+                        <Image
+                          fill
+                          src={img}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          alt={img}
+                          className={`rounded-sm object-cover p-1 transition-all duration-300 ${
+                            activeIndex === idx
+                              ? "opacity-100"
+                              : "opacity-50 hover:opacity-80"
+                          }`}
+                        />
+                        {activeIndex === idx && (
                           <motion.div
-                            layoutId="activeGridBg"
-                            className="absolute inset-0 rounded-md bg-orange-500"
+                            layoutId="activeIndicator"
                             transition={{
                               type: "spring",
                               stiffness: 400,
                               damping: 30,
                             }}
-                          />
+                            className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xl text-orange-600 drop-shadow-[2px_2px_0px_#000]"
+                          >
+                            <GiFlowerStar />
+                          </motion.div>
                         )}
-                        <span className="relative z-10">{item.icon}</span>
-                      </motion.button>
-                    </TooltipTrigger>
-                    <TooltipContent className="hidden border-2 border-black bg-amber-300 font-black text-black shadow-[4px_4px_0px_#000] md:block">
-                      <p>{item.label}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
-              </div>
-              <AnimatePresence>
-                {activeGrid !== "grid4" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex gap-2 text-black text-base md:text-xl"
-                  >
-                    <NextPrevBtn content="Previous" onClick={handlePrevious}>
-                      <IoMdArrowRoundBack />
-                    </NextPrevBtn>
-                    <NextPrevBtn content="Next" onClick={handleNext}>
-                      <IoMdArrowRoundForward />
-                    </NextPrevBtn>
+                      </motion.div>
+                    ))}
                   </motion.div>
                 )}
               </AnimatePresence>
+              <div className="flex gap-4 text-xl">
+                <div className="flex gap-2">
+                  {gridButtons.map((item) => (
+                    <Tooltip key={item.id}>
+                      <TooltipTrigger asChild>
+                        <motion.button
+                          whileHover={{
+                            scale: 1.08,
+                            y: -3,
+                            rotate: item.id === "grid2" ? -2 : 2,
+                            boxShadow: "6px 6px 0px #000",
+                          }}
+                          whileTap={{
+                            scale: 0.92,
+                            x: 2,
+                            y: 2,
+                            boxShadow: "1px 1px 0px #000",
+                          }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 500,
+                            damping: 18,
+                          }}
+                          whileInView={{ boxShadow: "3px 3px 0px #000" }}
+                          onClick={() => setActiveGrid(item.id as GridType)}
+                          className="relative cursor-pointer rounded-lg border-2 border-black bg-amber-300 p-2 text-xl lg:text-2xl text-black overflow-hidden"
+                        >
+                          {activeGrid === item.id && (
+                            <motion.div
+                              layoutId="activeGridBg"
+                              className="absolute inset-0 rounded-md bg-orange-500"
+                              transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 30,
+                              }}
+                            />
+                          )}
+                          <span className="relative z-10">{item.icon}</span>
+                        </motion.button>
+                      </TooltipTrigger>
+                      <TooltipContent className="hidden border-2 border-black bg-amber-300 font-black text-black shadow-[4px_4px_0px_#000] md:block">
+                        <p>{item.label}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  ))}
+                </div>
+                <AnimatePresence>
+                  {activeGrid !== "grid4" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex gap-2 text-black text-base lg:text-xl"
+                    >
+                      <NextPrevBtn content="Previous" onClick={handlePrevious}>
+                        <IoMdArrowRoundBack />
+                      </NextPrevBtn>
+                      <NextPrevBtn content="Next" onClick={handleNext}>
+                        <IoMdArrowRoundForward />
+                      </NextPrevBtn>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </div>

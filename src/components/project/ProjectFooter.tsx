@@ -103,17 +103,17 @@ export default function ProjectFooter() {
   };
   return (
     <footer ref={footerRef} className="pb-10 overflow-hidden bg-amber-600">
-      <div className="px-3 md:px-5 pt-5 border-t-4 border-black">
-        <div className="relative z-10 mb-5 rounded-tr-4xl rounded-bl-4xl rounded-tl-md rounded-br-md border-4 border-black bg-amber-500 px-5 py-6 lg:px-8 lg:py-8 text-black shadow-[8px_8px_0px_#000]">
-          <div className="md:px-10 mb-10 font-bold flex flex-col">
-            <div className="flex gap-5 md:gap-0 lg:flex-row flex-col justify-between items-center">
-              <div className="cartoon-item w-full text-center md:text-start md:w-fit flex flex-col items-center lg:items-start justify-center leading-relaxed">
+      <div className="px-3 lg:px-5 pt-5 border-t-4 border-black">
+        <div className="relative z-10 mb-5 rounded-tr-4xl rounded-bl-4xl rounded-tl-md rounded-br-md border-4 border-black bg-amber-500 px-5 py-6 xl:px-8 lg:py-10 text-black shadow-[8px_8px_0px_#000]">
+          <div className="xl:px-10 md:mb-0 mb-10 font-bold flex flex-col">
+            <div className="flex gap-5 lg:gap-0 lg:flex-row flex-col justify-between items-center">
+              <div className="cartoon-item w-full text-center lg:text-start md:w-fit flex flex-col items-center lg:items-start justify-center leading-relaxed">
                 <FaMapPin />
                 <span>Jl. Sudirman No. 45</span>{" "}
                 <span> Setiabudi, Jakarta Selatan 12920</span>
                 <span>Indonesia</span>
               </div>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 md:flex md:gap-4 lg:grid lg:grid-cols-2 lg:gap-2">
                 {linksItem.map((item, idx) => {
                   return (
                     <AnimatedLink
@@ -128,7 +128,7 @@ export default function ProjectFooter() {
                   );
                 })}
               </div>
-              <div className="flex md:mt-10 md:mb-5 gap-2 flex-col items-center lg:items-start justify-center">
+              <div className="flex gap-2 flex-col items-center lg:items-start justify-center">
                 <a
                   className="cartoon-item transition hover:-translate-y-0.5 hover:text-amber-800"
                   href="mailto:nickowork13@gmail.com"

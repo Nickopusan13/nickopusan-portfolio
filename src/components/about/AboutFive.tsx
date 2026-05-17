@@ -68,7 +68,7 @@ export default function AboutFive() {
             }}
             className="bg-amber-700 px-3 md:px-5 py-3 rounded-lg border-4 border-black"
           >
-            <h2 className="text-4xl md:text-8xl font-black text-amber-300 drop-shadow-[6px_6px_0px_#000] leading-none">
+            <h2 className="text-4xl md:text-6xl xl:text-8xl lg:text-7xl font-black text-amber-300 drop-shadow-[6px_6px_0px_#000] leading-none">
               Let’s Create Together.
             </h2>
           </div>

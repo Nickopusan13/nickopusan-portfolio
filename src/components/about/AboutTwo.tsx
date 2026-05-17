@@ -6,7 +6,6 @@ import { useRef } from "react";
 import SplitText from "gsap/SplitText";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { useMediaQuery } from "@/utils/useMediaQuery";
 
 const item = [
   {
@@ -41,7 +40,6 @@ export default function AboutTwo() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<(HTMLDivElement | null)[]>([]);
   const pinRef = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery();
   useGSAP(
     () => {
       itemRef.current.forEach((section, idx) => {
@@ -107,7 +105,7 @@ export default function AboutTwo() {
             }}
             className={`item-section h-svh flex sticky top-0 items-center justify-center text-white overflow-hidden border-4`}
           >
-            <div className="flex flex-col h-full items-center justify-center w-full md:w-1/2 gap-10 pl-5 pr-5 md:pl-10 md:pr-25 overflow-hidden">
+            <div className="flex flex-col h-full items-center justify-center md:items-start lg:items-center w-full lg:w-1/2 gap-10 pl-5 pr-5 lg:pl-10 lg:pr-10 xl:pr-25 overflow-hidden">
               <div className="flex flex-col overflow-hidden gap-2">
                 <motion.div
                   initial={{
@@ -142,7 +140,7 @@ export default function AboutTwo() {
             </div>
             <div
               ref={pinRef}
-              className={`${isMobile ? "hidden" : "block"} flex flex-col w-1/2 h-full overflow-hidden`}
+              className={`hidden lg:flex flex-col w-1/2 h-full overflow-hidden`}
             >
               <div className="relative h-full w-full">
                 <Image

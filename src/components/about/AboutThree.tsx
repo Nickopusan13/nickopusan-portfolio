@@ -42,16 +42,16 @@ export default function AboutThree() {
   return (
     <section
       ref={sectionRef}
-      className="flex relative gap-5 flex-col z-10 will-change-transform h-svh w-full items-center justify-center bg-amber-300 overflow-hidden md:px-0 px-3"
+      className="flex relative gap-5 flex-col z-10 will-change-transform h-svh w-full items-center justify-center bg-amber-300 overflow-hidden lg:px-0 px-3"
     >
       <div className="overflow-hidden">
-        <h3 className="text-animate text-6xl text-center md:text-start md:text-8xl font-black">
+        <h3 className="text-animate text-6xl text-center md:text-7xl lg:text-8xl font-black">
           {" "}
           Build. Automate. Innovate.
         </h3>
       </div>
       <div className="overflow-hidden">
-        <span className="text-animate inline-block text-center md:text-start text-base md:text-lg">
+        <span className="text-animate inline-block text-center lg:text-start text-base md:text-xl lg:text-lg">
           Fullstack Developer crafting scalable apps, automation systems, and
           interactive web experiences.
         </span>
