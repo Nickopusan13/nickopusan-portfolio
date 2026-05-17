@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://www.nickopusan.dev
-
-# Sitemaps
-Sitemap: https://www.nickopusan.dev/sitemap.xml
