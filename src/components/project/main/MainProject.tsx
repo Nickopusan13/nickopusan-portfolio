@@ -63,7 +63,7 @@ export default function MainProject() {
           <span>500M+ page views delivered.</span>
         </div>
       </section>
-      <section className="pt-10 flex-col flex px-2 sm:px-15 md:px-3">
+      <section className="pt-10 flex-col flex px-2 sm:px-2 md:px-3">
         <div className="w-full h-full flex items-center justify-center">
           <div className="mb-10 w-full xl:mb-15 rounded-tr-3xl rounded-bl-3xl border-3 md:border-4 border-black bg-amber-400 px-2 md:px-0 lg:px-4 py-4 md:py-7 shadow-[5px_5px_0px_#000] md:shadow-[8px_8px_0px_#000] lg:mx-10 xl:mx-30">
             <div className="flex justify-between items-center md:px-5">

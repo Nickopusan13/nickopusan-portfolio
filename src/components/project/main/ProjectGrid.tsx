@@ -102,7 +102,7 @@ export function Grid2({
             onMouseLeave={() => handleLeave(idx)}
             href="/"
             key={idx}
-            className={`group relative min-w-screen xl:min-w-[80vw] h-50 md:h-80 lg:h-120 overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 transition-all duration-500 ${
+            className={`group relative min-w-screen xl:min-w-[80vw] h-50 sm:h-60 md:h-80 lg:h-120 overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 transition-all duration-500 ${
               activeIndex === idx % images.length
                 ? "scale-95 opacity-100 shadow-[5px_5px_0px_#000] md:shadow-[10px_10px_0px_#000]"
                 : "scale-90 opacity-60 shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]"

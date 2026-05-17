@@ -152,7 +152,7 @@ export default function SecTwoProject() {
         </div>
         <div
           ref={scrollSection}
-          className="relative mt-8 md:mt-10 flex flex-col gap-8 lg:gap-10 lg:block lg:h-[78svh]"
+          className="relative mt-8 md:mt-10 flex flex-col gap-8 lg:gap-10 lg:block lg:h-[85svh]"
         >
           {item.map((item, idx) => {
             const number = idx + 1;
@@ -162,7 +162,7 @@ export default function SecTwoProject() {
                   cardRefs.current[idx] = el;
                 }}
                 key={idx}
-                className={`grid w-full grid-cols-1 gap-4 lg:gap-6 md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-400 p-3 shadow-[7px_7px_0px_#000] md:shadow-[10px_10px_0px_#000] lg:absolute lg:left-0 lg:top-0 lg:h-full lg:grid-cols-2 xl:grid-cols-[20%_1fr_30%] md:p-8`}
+                className={`grid w-full grid-cols-1 gap-4 lg:gap-6 md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-400 p-3 shadow-[7px_7px_0px_#000] md:shadow-[10px_10px_0px_#000] lg:absolute lg:left-0 lg:top-0 lg:h-full lg:flex xl:grid xl:grid-cols-[20%_1fr_30%] md:p-8`}
               >
                 <div className="flex lg:w-fit xl:w-full items-start border-b-3 border-black pb-4 lg:border-b-0 lg:border-r-4 lg:pb-0 lg:pr-5">
                   <span className=" flex size-10 md:size-20 items-center justify-center md:rounded-tr-2xl rounded-tr-xl rounded-bl-xl md:rounded-bl-2xl border-3 md:border-4 border-black bg-orange-500 text-2xl md:text-5xl font-black text-black shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]">
