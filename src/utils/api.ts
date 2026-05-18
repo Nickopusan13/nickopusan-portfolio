@@ -1,11 +1,11 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export interface ChatRequest {
+interface ChatRequest {
   prompt: string;
   session_id?: string;
 }
 
-export interface ChatResponse {
+interface ChatResponse {
   reply: string;
   session_id: string;
 }

@@ -7,7 +7,6 @@ import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
-import { useMediaQuery } from "@/utils/useMediaQuery";
 import { TiThMenuOutline } from "react-icons/ti";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
@@ -29,7 +28,6 @@ const linksItem = [
 ];
 
 export default function ProjectNavbar() {
-  const isMobile = useMediaQuery();
   const [hide, setHide] = useState<boolean>(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const textRef = useRef<HTMLAnchorElement>(null);
@@ -118,7 +116,7 @@ export default function ProjectNavbar() {
 
         {/* NOT MOBILE DEVICE */}
         <div
-          className={`${isMobile ? "hidden" : "block"} font-bold flex justify-center items-center lg:text-base text-sm gap-5 lg:gap-10`}
+          className={`hidden md:flex font-bold justify-center items-center lg:text-base text-sm gap-5 lg:gap-10`}
         >
           {linksItem.map((item, idx) => {
             return (
@@ -136,9 +134,7 @@ export default function ProjectNavbar() {
         </div>
 
         {/* MOBILE DEVICE */}
-        <div
-          className={`${isMobile ? "block" : "hidden"} flex justify-center items-center text-2xl`}
-        >
+        <div className={`flex md:hidden justify-center items-center text-2xl`}>
           <Sheet>
             <SheetTrigger>
               <TiThMenuOutline />

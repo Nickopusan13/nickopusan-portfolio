@@ -5,14 +5,12 @@ import SplitText from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 import { useRef, useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { useMediaQuery } from "@/utils/useMediaQuery";
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleBlock = useRef<HTMLDivElement>(null);
   const [time, setTime] = useState<string>("");
   const [greeting, setGreeting] = useState("");
-  const isMobile = useMediaQuery();
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
@@ -90,7 +88,7 @@ export default function About() {
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, [isMobile]);
+  }, []);
   return (
     <section
       ref={sectionRef}
@@ -101,12 +99,12 @@ export default function About() {
         className="will-change-transform flex flex-col h-fit gap-4 items-center w-fit justify-center bg-amber-500 p-5 lg:p-8 rounded-2xl shadow-[5px_5px_0px_#000] md:shadow-[7px_7px_0px_#000] border-4 border-black"
       >
         <h1
-          className={`title-desktop ${isMobile ? "hidden" : "block"} opacity-0 leading-none font-black w-fit h-fit md:text-6xl lg:text-7xl drop-shadow-[5px_5px_0px_#000] text-amber-600 overflow-hidden`}
+          className={`title-desktop hidden md:block opacity-0 leading-none font-black w-fit h-fit md:text-6xl lg:text-7xl drop-shadow-[5px_5px_0px_#000] text-amber-600 overflow-hidden`}
         >
           Crafting Motion & Code
         </h1>
         <h1
-          className={`title-mobile ${isMobile ? "block" : "hidden"} opacity-0 text-center leading-none font-black w-fit h-fit text-4xl drop-shadow-[3px_3px_0px_#000] text-amber-600 overflow-hidden`}
+          className={`title-mobile block md:hidden opacity-0 text-center leading-none font-black w-fit h-fit text-4xl drop-shadow-[3px_3px_0px_#000] text-amber-600 overflow-hidden`}
         >
           Crafting <br /> Motion & Code
         </h1>

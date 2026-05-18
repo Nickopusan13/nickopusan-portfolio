@@ -56,7 +56,7 @@ export default function OpeningSec() {
     <>
       <section
         ref={sectionRef}
-        className="h-svh w-full relative flex-col flex overflow-hidden justify-center items-center bg-white"
+        className="h-svh w-full relative flex-col flex overflow-hidden justify-center items-center bg-linear-to-b from-yellow-200 via-orange-300 to-orange-500"
       >
         <LiveCirclesBG />
         <Emoticon />
@@ -64,10 +64,14 @@ export default function OpeningSec() {
           <div className="w-full items-center justify-center flex flex-col">
             <h1
               ref={titleRef}
-              className="opacity-0 text-5xl md:text-7xl lg:text-8xl text-sky-400 font-bold overflow-hidden [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)]"
+              className="sm:block hidden opacity-0 text-5xl md:text-7xl lg:text-8xl text-sky-400 font-bold overflow-hidden [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)]"
             >{`HEY, I'M NICKOPUSAN`}</h1>
+            <h1 className="sm:hidden text-center flex opacity-100 flex-col text-5xl text-sky-400 font-bold overflow-hidden [text-shadow:4px_4px_0_#000,8px_8px_0_rgba(0,0,0,0.4)]">
+              <span>{`HEY I'M`}</span>
+              <span>NICKOPUSAN</span>
+            </h1>
           </div>
-          <div className="absolute bottom-0 left-0 w-full">
+          <div className="absolute bottom-0 flex w-full">
             <BigEmoticon />
           </div>
         </div>
@@ -78,31 +82,34 @@ export default function OpeningSec() {
 
 const Emoticon = () => {
   return (
-    <div className="lg:min-w-7xl w-full min-h-1/2 top-30 absolute flex items-center justify-center z-30">
+    <div className="w-full xl:top-30 absolute h-1/2 place-items-center grid grid-cols-2 md:grid md:grid-cols-4 md:px-5 gap-10 z-30">
       <ShyEmote
         src="/assets/emote/emote_1.svg"
-        className="lg:bottom-30 bottom-0 right-5 lg:right-40 "
+        className="bottom-10 left-[8%]"
         imageClassName="absolute w-30 h-30 lg:w-40 lg:h-40 mt-2"
         link="https://github.com/Nickopusan13"
         title="GITHUB"
       />
+
       <ShyEmote
         src="/assets/emote/emote_2.svg"
-        className="top-0 right-10 lg:top-10 lg:right-120"
+        className="bottom-32 left-[30%]"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-1"
         link="https://www.linkedin.com/in/nickopusan13/"
         title="LINKEDIN"
       />
+
       <ShyEmote
         src="/assets/emote/emote_3.svg"
-        className="bottom-6 lg:bottom-30 left-7 lg:left-140"
+        className="bottom-32 right-[30%]"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-5"
         link="https://upwork.com/freelancers/nickopusan"
         title="UPWORK"
       />
+
       <ShyEmote
         src="/assets/emote/emote_4.svg"
-        className="top-5 left-10 lg:left-70 lg:top-20"
+        className="bottom-10 right-[8%]"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-7"
         link="mailto:nickowork13@gmail.com"
         title="EMAIL"

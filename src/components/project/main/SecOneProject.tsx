@@ -187,7 +187,7 @@ export default function SecOneProject() {
           </motion.div>
           {/* NOT MOBILE DEVICE */}
           <h1
-            className={`${isMobile ? "hidden" : "block"}  flex flex-col items-start justify-center font-black leading-[0.95] text-amber-200 md:5xl lg:text-7xl xl:text-8xl drop-shadow-[5px_5px_0px_#000]`}
+            className={`hidden md:flex flex-col items-start justify-center font-black leading-[0.95] text-amber-200 md:text-5xl lg:text-7xl xl:text-8xl drop-shadow-[5px_5px_0px_#000]`}
           >
             <span className="title-split-desktop overflow-hidden opacity-0">
               High-performance websites
@@ -197,7 +197,7 @@ export default function SecOneProject() {
             </span>
           </h1>
           <h2
-            className={`${isMobile ? "hidden" : "block"} flex flex-col text-black font-bold text-base md:text-xl`}
+            className={`hidden md:flex flex-col text-black font-bold text-base md:text-xl`}
           >
             <span className="title-split-two overflow-hidden opacity-0">
               I build fast, responsive websites and web apps
@@ -208,14 +208,14 @@ export default function SecOneProject() {
           </h2>
           {/* MOBILE DEVICE */}
           <h1
-            className={`${isMobile ? "block" : "hidden"}  flex flex-col items-start justify-center text-3xl font-black leading-[0.95] text-amber-200 drop-shadow-[5px_5px_0px_#000] w-full`}
+            className={`md:hidden flex flex-col items-start justify-center text-3xl font-black leading-[0.95] text-amber-200 drop-shadow-[3px_3px_0px_#000] w-full`}
           >
             <span className="title-split-mobile overflow-hidden opacity-0">
               High-performance websites built for real users.
             </span>
           </h1>
           <h2
-            className={`${isMobile ? "block" : "hidden"} flex flex-col text-black font-bold text-base md:text-xl`}
+            className={`md:hidden flex flex-col text-black font-bold text-base md:text-xl`}
           >
             <span className="title-split-two overflow-hidden opacity-0">
               I build fast, responsive websites and web apps focused on
@@ -251,7 +251,7 @@ export default function SecOneProject() {
                 stiffness: 500,
                 damping: 18,
               }}
-              className="cursor-pointer rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-800 px-5 md:px-10 py-3 text-base md:text-lg font-black text-amber-100"
+              className="cursor-pointer z-10 rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-800 px-5 md:px-10 py-3 text-base md:text-lg font-black text-amber-100"
             >
               Contact Us
             </MotionLink>
@@ -283,7 +283,7 @@ export default function SecOneProject() {
                 stiffness: 500,
                 damping: 18,
               }}
-              className="cursor-pointer rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-300 px-5 md:px-10 py-3 text-base md:text-lg font-black text-black shadow-[5px_5px_0px_#000]"
+              className="cursor-pointer z-10 rounded-tl-xl rounded-br-xl border-2 border-black bg-amber-300 px-5 md:px-10 py-3 text-base md:text-lg font-black text-black shadow-[5px_5px_0px_#000]"
             >
               About Us
             </MotionLink>

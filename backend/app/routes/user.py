@@ -60,7 +60,7 @@ async def gemini_chat(data: ChatRequest, db: AsyncSession = Depends(get_db)):
             model="gemini-3.1-flash-lite",
             contents=context,
             config=types.GenerateContentConfig(
-                thinking_config=types.ThinkingConfig(thinking_budget=1500),
+                thinking_config=types.ThinkingConfig(thinking_budget=500),
                 system_instruction=SYSTEM_INSTRUCTION,
             ),
         )

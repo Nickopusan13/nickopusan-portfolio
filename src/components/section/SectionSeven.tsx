@@ -1,19 +1,52 @@
 "use client";
 
-import { useMediaQuery } from "@/utils/useMediaQuery";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
-import { useRef } from "react";
+import { useRef, forwardRef } from "react";
+
+const item = [
+  {
+    title: "Fast Delivery",
+    className:
+      "bg-amber-400 text-pink-900 border-pink-800 rotate-2 translate-y-7 z-10",
+  },
+  {
+    title: "Smooth Interaction",
+    className:
+      "bg-pink-300 text-purple-800 border-pink-800 -rotate-1 translate-y-3 z-0",
+  },
+  {
+    title: "Dynamic Designs",
+    className: "bg-teal-400 text-yellow-900 border-pink-900 rotate-0.5 z-10",
+  },
+  {
+    title: "Reliable Solutions",
+    className:
+      "bg-purple-500 text-amber-300 border-pink-900 -rotate-1 -translate-y-3 z-0",
+  },
+];
+
+function ItemSec(
+  { title, className }: { title: string; className: string },
+  ref: React.ForwardedRef<HTMLSpanElement>,
+) {
+  return (
+    <span
+      ref={ref}
+      style={{ clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)" }}
+      className={`item-animate w-full border-pink-800 px-2 py-3 md:py-4 text-center rounded-4xl border-7 ${className}`}
+    >
+      {title}
+    </span>
+  );
+}
+const ForwardItemSec = forwardRef(ItemSec);
 
 export default function SectionSeven() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef(null);
-  const firstText = useRef<HTMLDivElement>(null);
-  const secText = useRef<HTMLDivElement>(null);
-  const thirdText = useRef<HTMLDivElement>(null);
-  const fourText = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery();
+  const itemRefs = useRef<HTMLSpanElement[]>([]);
   useGSAP(
     () => {
       const titleSplit = SplitText.create(titleRef.current, {
@@ -23,7 +56,7 @@ export default function SectionSeven() {
         delay: 1,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 30%%",
+          start: "top 30%",
           end: "top top",
           scrub: 1.5,
         },
@@ -38,29 +71,13 @@ export default function SectionSeven() {
           start: "top 30%",
         },
       });
-      tl.to(firstText.current, {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      });
-      tl.to(secText.current, {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      });
-      tl.to(thirdText.current, {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      });
-      tl.to(fourText.current, {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
-        ease: "circ.out",
+      itemRefs.current.forEach((el) => {
+        tl.to(el, {
+          duration: 1,
+          opacity: 1,
+          clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+        });
       });
       return () => {
         titleSplit.revert();
@@ -75,42 +92,23 @@ export default function SectionSeven() {
     >
       <h2
         ref={titleRef}
-        className="text-5xl lg:text-6xl font-extrabold mb-10 text-center text-amber-200"
+        className="text-4xl sm:text-7xl font-extrabold mb-10 text-center text-amber-200"
       >
         Why Choose Us
       </h2>
-      <div className="flex flex-col items-center justify-center h-full text-4xl lg:text-9xl">
-        <span
-          ref={firstText}
-          style={{ clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)" }}
-          className={`bg-amber-400 text-pink-900 px-3 py-2 border-pink-800 rounded-4xl border-7 rotate-1 z-10 ${isMobile ? "translate-y-3" : "translate-3"}`}
-        >
-          Fast Delivery
-        </span>
-        <span
-          className="bg-pink-300 text-purple-800 px-3 py-2 border-pink-800 rounded-4xl border-7 -rotate-1 z-0"
-          ref={secText}
-          style={{ clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)" }}
-        >
-          {" "}
-          Smooth Interaction
-        </span>
-        <span
-          className={`bg-teal-400 text-yellow-900 px-3 py-2 border-pink-900 rounded-4xl border-7 rotate-0.5 z-10 ${isMobile ? "-translate-y-4" : "-translate-y-4"}`}
-          ref={thirdText}
-          style={{ clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)" }}
-        >
-          {" "}
-          Dynamic Designs
-        </span>
-        <span
-          className={`bg-purple-500 text-amber-300 px-3 py-2 border-pink-900 rounded-4xl border-7 -rotate-1 z-0 ${isMobile ? "-translate-y-8" : "-translate-y-8"}`}
-          ref={fourText}
-          style={{ clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)" }}
-        >
-          {" "}
-          Reliable Solutions
-        </span>
+      <div className="flex flex-col items-center justify-center w-full px-1 md:px-10 h-full text-[32px] md:text-7xl sm:text-6xl lg:text-8xl xl:text-9xl">
+        {item.map((item, idx) => {
+          return (
+            <ForwardItemSec
+              key={idx}
+              ref={(el) => {
+                if (el) itemRefs.current[idx] = el;
+              }}
+              title={item.title}
+              className={item.className}
+            />
+          );
+        })}
       </div>
     </section>
   );

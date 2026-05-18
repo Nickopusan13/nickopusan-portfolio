@@ -39,7 +39,7 @@ export default function LiveCirclesBG() {
   return (
     <div
       ref={bgRef}
-      className="absolute inset-0 z-10 overflow-hidden bg-linear-to-b from-yellow-200 via-orange-300 to-orange-500"
+      className="absolute md:block hidden inset-0 z-10 overflow-hidden bg-linear-to-b from-yellow-200 via-orange-300 to-orange-500"
     >
       {circles.map((circle, i) => (
         <span

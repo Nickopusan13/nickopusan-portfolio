@@ -111,7 +111,7 @@ export default function SectionEight() {
       >
         <nav
           aria-label="Social Links"
-          className="absolute top-5 text-lg right-10 flex text-amber-200 z-20 gap-6"
+          className="absolute top-10 md:top-5  text-base md:text-lg md:right-10 flex text-amber-200 z-20 gap-4 md:gap-6"
         >
           <AnimatedLink
             underline={underline}
@@ -135,7 +135,7 @@ export default function SectionEight() {
             PROJECT
           </AnimatedLink>
         </nav>
-        <h1 className="z-0 text-center font-bold text-6xl lg:text-[200px] leading-none text-white">
+        <h1 className="z-0 text-center font-bold text-6xl lg:text-9xl xl:text-[170px] leading-none text-white">
           <strong ref={scrambleTextOne} className="text-amber-200">
             DROP ME
           </strong>
@@ -161,7 +161,7 @@ export default function SectionEight() {
           <h1
             onMouseEnter={() => !isMobile && setIsHovered(true)}
             onMouseLeave={() => !isMobile && setIsHovered(false)}
-            className="lg:block hidden text-center font-bold text-[200px] leading-none text-white"
+            className="lg:block hidden text-center font-bold text-6xl lg:text-9xl xl:text-[170px] leading-none text-white"
           >
             <strong>
               <span className="text-cyan-300">DROP</span>
@@ -190,7 +190,7 @@ export default function SectionEight() {
           <div
             onPointerEnter={onPointerEnter}
             onPointerLeave={onPointerLeave}
-            className="bg-amber-300 py-3 lg:py-5 text-2xl lg:text-5xl whitespace-nowrap overflow-hidden"
+            className="bg-amber-300 py-3 lg:py-5 text-xl md:text-2xl lg:text-5xl whitespace-nowrap overflow-hidden"
           >
             <div ref={marqueeRef} className="flex w-fit gap-2">
               {marqueeList}

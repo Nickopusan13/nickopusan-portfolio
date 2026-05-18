@@ -15,7 +15,7 @@ export default function SectionSix() {
     () => {
       if (!sectionRef.current || !titleRef.current) return;
       const mm = gsap.matchMedia();
-      mm.add("(max-width: 768px)", () => {
+      mm.add("(max-width: 760px)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -56,7 +56,7 @@ export default function SectionSix() {
         });
       });
 
-      mm.add("(min-width: 769px)", () => {
+      mm.add("(min-width: 761px)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -117,25 +117,25 @@ export default function SectionSix() {
       ref={sectionRef}
       className="md:h-[500svh] relative min-h-svh bg-pink-800"
     >
-      <div className="h-svh sticky top-0 flex-col lg:flex-wrap bg-pink-800 p-5 lg:p-10 overflow-hidden flex lg:justify-end justify-center">
+      <div className="h-svh sticky top-0 flex-col md:flex-wrap bg-pink-800 p-5 lg:p-10 overflow-hidden flex md:justify-end justify-center">
         <aside
           ref={titleRef}
-          className="lg:absolute justify-center w-full lg:justify-end lg:top-10 lg:right-10 flex flex-col gap-3 lg:gap-0 lg:flex-col font-bold text-4xl lg:text-5xl tracking-tight items-end lg:w-fit text-amber-200"
+          className="lg:absolute lg:justify-end lg:top-10 lg:right-10 justify-center w-full flex flex-col gap-3 font-bold text-3xl md:text-5xl tracking-tight items-center md:items-end lg:w-fit text-amber-200"
         >
           <span>THE ENGINE</span>
           <span>BEHIND THE MAGIC</span>
         </aside>
-        <div className="relative w-full h-[80svh]">
+        <div className="relative w-full h-[80svh] flex justify-start">
           {skill.map((item, idx) => (
             <div
               key={idx}
-              className={`card-${idx} absolute w-50 h-50 sm:w-60 sm:h-60 lg:w-100 lg:h-100`}
+              className={`card-${idx} absolute w-45 h-45 sm:w-80 sm:h-80 lg:w-90 lg:h-90 xl:w-100 xl:h-100`}
             >
               <motion.div
                 whileHover={{ y: -20 }}
                 className="w-full h-full bg-pink-900 text-amber-300 border-amber-300/50 border-2 shadow-2xl"
               >
-                <div className="flex flex-col p-2 lg:p-5 w-full h-full text-3xl lg:text-5xl font-extrabold">
+                <div className="flex flex-col p-2 md:p-5 w-full h-full text-xl md:text-5xl font-extrabold">
                   <p className="w-full h-full justify-start flex items-start">
                     {item.number}
                   </p>

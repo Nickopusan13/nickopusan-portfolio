@@ -12,11 +12,11 @@ const item = [
 ];
 
 export const marqueeList = (
-  <div className="flex items-center w-fit gap-2">
+  <div className="flex items-center w-fit">
     {item.map((item, idx) => {
       return (
         <span key={idx} className="flex">
-          <p className="mx-10">{item.desc}</p>
+          <p className="mx-5 md:mx-10">{item.desc}</p>
           <span>*</span>
         </span>
       );

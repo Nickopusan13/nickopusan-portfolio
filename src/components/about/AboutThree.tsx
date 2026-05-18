@@ -8,37 +8,32 @@ export default function AboutThree() {
   const sectionRef = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          delay: 1,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 20%",
-            end: "top top",
-            scrub: 1.5,
-          },
-        });
-        tl.fromTo(
-          ".text-animate",
-          { yPercent: 150 },
-          { yPercent: 0, ease: "power3.out" },
-        );
-        const tl2 = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-        tl2.to(sectionRef.current, {
-          yPercent: 50,
-          ease: "power1.inOut",
-          backgroundColor: "#18181b",
-        });
-        return () => {
-          ctx.revert();
-        };
+      const tl = gsap.timeline({
+        delay: 1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 20%",
+          end: "top top",
+          scrub: 1.5,
+        },
+      });
+      tl.fromTo(
+        ".text-animate",
+        { yPercent: 150 },
+        { yPercent: 0, ease: "power3.out" },
+      );
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+      tl2.to(sectionRef.current, {
+        yPercent: 50,
+        ease: "power1.inOut",
+        backgroundColor: "#18181b",
       });
     },
     { scope: sectionRef },

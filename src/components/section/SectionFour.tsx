@@ -5,13 +5,11 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { SplitText } from "gsap/SplitText";
 import { motion } from "motion/react";
-import { useMediaQuery } from "@/utils/useMediaQuery";
 
 export default function SectionFour() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const title1Ref = useRef(null);
   const title2Ref = useRef(null);
-  const isMobile = useMediaQuery();
   useGSAP(
     () => {
       const titleSplit = SplitText.create(title1Ref.current, {
@@ -62,12 +60,12 @@ export default function SectionFour() {
   return (
     <section
       ref={sectionRef}
-      className="h-svh w-full flex flex-col justify-center items-center text-pink-300 text-center px-10 bg-[#ec4899] z-10 will-change-transform overflow-hidden"
+      className="h-svh w-full flex flex-col gap-15 justify-center items-center text-pink-300 text-center px-10 bg-[#ec4899] z-10 will-change-transform overflow-hidden"
     >
-      <h1 className="text-4xl lg:text-[clamp(3rem,8vw,8rem)] font-bold flex flex-col">
+      <h1 className="text-3xl sm:text-6xl lg:text-8xl xl:text-9xl font-bold flex flex-col">
         <span
           ref={title1Ref}
-          className={`z-0 whitespace-nowrap overflow-hidden ${isMobile ? "translate-y-1" : "translate-y-7"}`}
+          className="z-0 whitespace-nowrap overflow-hidden translate-y-2 md:translate-y-3 lg:translate-y-5 xl:translate-y-7"
         >
           {`I DON'T BUILD WEBSITES.`}
         </span>
@@ -76,12 +74,12 @@ export default function SectionFour() {
             clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
           }}
           ref={title2Ref}
-          className="z-10 inline-block text-pink-600 bg-amber-400 px-5 -rotate-2 border-pink-600 border-7"
+          className="z-10 inline-block text-pink-600 bg-amber-400 px-5 -rotate-1 md:-rotate-1.5 xl:-rotate-2 border-pink-600 border-7"
         >
           I BUILD WORLDS.
         </span>
       </h1>
-      <div className="mt-16 text-lg lg:text-2xl opacity-80 space-y-1">
+      <div className="text-lg sm:text-2xl md:text-2xl lg:text-2xl opacity-90 space-y-1">
         <motion.p
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}

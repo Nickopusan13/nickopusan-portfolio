@@ -83,27 +83,9 @@ export default function SectionTwo() {
         if (!sliderRef.current) return 0;
         return Math.max(
           0,
-          sliderRef.current.scrollWidth - window.innerWidth + 100,
+          sliderRef.current.scrollWidth - window.innerWidth - 1000,
         );
       };
-      mm.add("(max-width: 768px)", () => {
-        if (!scrollSectionRef.current || !sliderRef.current) return;
-        const scrollAmount = sliderRef.current?.scrollWidth - window.innerWidth;
-        const st = gsap.to(sliderRef.current, {
-          x: `-${scrollAmount + 50}px`,
-          ease: "power1.inOut",
-          scrollTrigger: {
-            trigger: scrollSectionRef.current,
-            start: "2% top",
-            end: `+=${scrollAmount + 30}px`,
-            scrub: true,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-        return () => st.kill();
-      });
       mm.add("(min-width: 768px)", () => {
         const st = gsap.to(sliderRef.current, {
           x: () => -getScrollAmount(),
@@ -131,13 +113,13 @@ export default function SectionTwo() {
       ref={scrollSectionRef}
       className="relative min-h-svh md:min-h-[400svh] bg-orange-400"
     >
-      <div className="sticky top-0 h-svh w-full overflow-hidden">
+      <div className="md:sticky top-0 h-auto min-h-svh md:h-svh py-20 md:py-0 w-full overflow-hidden">
         <div
           ref={sliderRef}
-          className="h-full flex flex-row items-center gap-20 will-change-transform"
+          className="h-full flex flex-col md:flex-row items-center gap-20 md:gap-10 lg:gap-20 md:will-change-transform"
         >
-          <div className="lg:w-[40vw] flex-none h-full">
-            <div className="md:text-8xl h-full text-6xl font-bold">
+          <div className="lg:w-[40vw] flex-none items-center h-full">
+            <div className="md:text-7xl lg:text-8xl h-full text-6xl font-bold">
               <h2 className="overflow-hidden items-center h-full justify-center flex flex-col text-center px-5 md:px-20 text-black">
                 <span
                   ref={firstTextRef}
@@ -161,17 +143,17 @@ export default function SectionTwo() {
               </h2>
             </div>
           </div>
-          <div className="h-svh w-[150vw] mt-0 md:mt-20 xl:mt-0">
-            <div className="h-full w-full flex flex-row items-center gap-40 flex-nowrap text-white">
+          <div className="h-auto md:h-svh w-full md:w-[150vw]">
+            <div className="h-full w-full flex flex-col md:flex-row items-center gap-10 lg:gap-40 md:flex-nowrap text-white">
               <BuiltSection />
               <div
                 onMouseEnter={handleEnter}
                 onMouseLeave={handleLeave}
-                className="flex flex-none w-2xl md:text-4xl"
+                className="flex flex-none w-full px-1 md:text-4xl"
               >
                 <Link
                   href="/project"
-                  className="flex-none w-2xl h-100 border-15 bg-white/10 rounded-2xl backdrop-blur-md flex flex-col justify-center items-center group relative overflow-hidden"
+                  className="flex-none w-full h-60 lg:w-2xl lg:h-100 border-4 lg:border-15 bg-white/10 rounded-2xl backdrop-blur-md flex flex-col justify-center items-center group relative overflow-hidden"
                 >
                   <div
                     ref={(el) => {
@@ -232,7 +214,7 @@ const BuiltSection = () => {
           onMouseLeave={() => handleLeave(slideIdx)}
           key={slideIdx}
           href={`project/${slide.slug}`}
-          className="relative flex-none overflow-hidden border-15 w-2xl h-100 rounded-2xl"
+          className="relative flex-none overflow-hidden px-1 w-full h-60 md:w-2xl lg:h-100 rounded-2xl"
         >
           <Swiper
             loop={true}
@@ -245,13 +227,13 @@ const BuiltSection = () => {
           >
             {slide.images.map((image, idx) => (
               <SwiperSlide key={idx}>
-                <div className="relative bg-white h-full w-full overflow-hidden">
+                <div className="relative h-full w-full bg-black overflow-hidden">
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent z-10" />
                   <Image
                     fill
                     src={image}
                     alt={slide.title}
-                    className="z-5 object-cover"
+                    className="z-5 object-cover p-1 md:p-2 rounded-2xl"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
@@ -262,12 +244,12 @@ const BuiltSection = () => {
             ref={(el) => {
               titleRef.current[slideIdx] = el;
             }}
-            className="absolute inset-0 z-20 max-w-5xl mx-auto space-y-6 flex flex-col items-center justify-center p-5"
+            className="absolute inset-0 z-20 lg:max-w-5xl mx-auto lg:space-y-6 flex flex-col items-center justify-center p-3 md:p-5"
           >
-            <span className="flex h-full w-full justify-start text-7xl">
+            <span className="flex h-full w-full justify-start text-2xl lg:text-7xl">
               {slideIdx + 1}
             </span>
-            <span className="text-6xl flex h-full w-full justify-end items-end">
+            <span className="text-2xl lg:text-6xl flex h-full w-full justify-end items-end">
               {slide.title}
             </span>
           </div>

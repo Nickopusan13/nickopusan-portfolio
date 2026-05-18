@@ -3,8 +3,6 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { useMediaQuery } from "@/utils/useMediaQuery";
-
 export default function SectionThree() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const pinkMaskRef = useRef<HTMLDivElement>(null);
@@ -13,7 +11,6 @@ export default function SectionThree() {
   const textTwo = useRef<HTMLDivElement>(null);
   const textThree = useRef<HTMLDivElement>(null);
   const textFour = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery();
   useGSAP(
     () => {
       gsap.set(pinkMaskRef.current, {
@@ -98,30 +95,29 @@ export default function SectionThree() {
   return (
     <section
       ref={sectionRef}
-      className="overflow-hidden flex h-svh py-0 lg:py-15 px-3 lg:px-10 bg-orange-400"
+      className="overflow-hidden flex h-svh px-2 py-20 md:py-15 sm:px-5 lg:px-10 bg-orange-400 will-change-transform"
     >
       <div className="flex flex-col lg:gap-10 font-bold relative w-full">
-        <h2 className="lg:text-9xl text-5xl absolute top-20 left-0 lg:top-0 lg:left-0 ">
+        <h2 className="lg:text-7xl xl:text-8xl sm:text-5xl md:text-6xl text-[28px] absolute top-20 left-0 lg:top-0 lg:left-0 flex flex-col">
           <span ref={textOne} className="inline-block text-cyan-300" />
-          <br />
           <span ref={textTwo} className="text-yellow-300 inline-block" />
         </h2>
         <div
           ref={pinkMaskRef}
           className="inset-0 z-50 pointer-events-none h-full"
         >
-          <div className="text-center flex items-center justify-center h-full md:text-[10px] lg:text-sm text-[5px]">
-            <span className="text-amber-200 ">Welcome to the</span>
+          <div className="overflow-hidden text-center flex flex-col sm:flex-row items-center justify-center h-full sm:text-[9px] md:text-[10px] lg:text-sm text-[7px]">
+            <span className="text-amber-200">Welcome to the</span>
             <span
               style={{ clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)" }}
-              className={`bg-amber-400 border lg:border-2 border-amber-200 px-1 lg:px-2 text-[#ec4899] md:rounded-sm rounded-xs md:-rotate-2 -rotate-1.5 ${isMobile ? "-translate-x-[1.2px]" : "-translate-0.5"}`}
+              className={`bg-amber-400 border lg:border-2 border-amber-200 px-1 lg:px-2 text-[#ec4899] rounded-xs lg:rounded-sm sm:-rotate-1 sm:-translate-x-0.5 md:-translate-x-0.75`}
               ref={pinkText}
             >
               Pink Realm
             </span>
           </div>
         </div>
-        <h2 className="lg:text-9xl text-5xl absolute bottom-20 right-0 lg:bottom-0 lg:right-0 lg:gap-10 flex lg:flex-row flex-col">
+        <h2 className="lg:text-7xl xl:text-8xl md:text-6xl sm:text-5xl text-[28px] absolute bottom-20 right-0 gap-2 lg:bottom-0 lg:right-0 sm:gap-3 md:gap-5 lg:gap-10 flex flex-row">
           <span ref={textThree} className="text-sky-600" />
           <span ref={textFour} className="text-purple-900" />
         </h2>
