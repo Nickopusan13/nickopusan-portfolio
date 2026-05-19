@@ -83,7 +83,7 @@ export default function SectionTwo() {
         if (!sliderRef.current) return 0;
         return Math.max(
           0,
-          sliderRef.current.scrollWidth - window.innerWidth - 1000,
+          sliderRef.current.scrollWidth - window.innerWidth - 600,
         );
       };
       mm.add("(min-width: 768px)", () => {
@@ -93,9 +93,11 @@ export default function SectionTwo() {
           scrollTrigger: {
             trigger: scrollSectionRef.current,
             start: "top top",
-            end: "bottom bottom",
+            end: "+=300%",
             scrub: true,
             invalidateOnRefresh: true,
+            pin: true,
+            anticipatePin: 1,
           },
         });
         return () => st.kill();
@@ -111,15 +113,15 @@ export default function SectionTwo() {
   return (
     <section
       ref={scrollSectionRef}
-      className="relative min-h-svh md:min-h-[400svh] bg-orange-400"
+      className="relative min-h-svh md:h-svh bg-orange-400"
     >
       <div className="md:sticky top-0 h-auto min-h-svh md:h-svh py-20 md:py-0 w-full overflow-hidden">
         <div
           ref={sliderRef}
           className="h-full flex flex-col md:flex-row items-center gap-20 md:gap-10 lg:gap-20 md:will-change-transform"
         >
-          <div className="lg:w-[40vw] flex-none items-center h-full">
-            <div className="md:text-7xl lg:text-8xl h-full text-6xl font-bold">
+          <div className="xl:w-[40vw] flex-none items-center h-full">
+            <div className="md:text-7xl xl:text-8xl h-full text-6xl font-bold">
               <h2 className="overflow-hidden items-center h-full justify-center flex flex-col text-center px-5 md:px-20 text-black">
                 <span
                   ref={firstTextRef}
@@ -153,7 +155,7 @@ export default function SectionTwo() {
               >
                 <Link
                   href="/project"
-                  className="flex-none w-full h-60 lg:w-2xl lg:h-100 border-4 lg:border-15 bg-white/10 rounded-2xl backdrop-blur-md flex flex-col justify-center items-center group relative overflow-hidden"
+                  className="flex-none w-full h-60 md:w-md lg:w-2xl lg:h-100 border-4 lg:border-15 bg-white/10 rounded-2xl backdrop-blur-md flex flex-col justify-center items-center group relative overflow-hidden"
                 >
                   <div
                     ref={(el) => {
@@ -214,7 +216,7 @@ const BuiltSection = () => {
           onMouseLeave={() => handleLeave(slideIdx)}
           key={slideIdx}
           href={`project/${slide.slug}`}
-          className="relative flex-none overflow-hidden px-1 w-full h-60 md:w-2xl lg:h-100 rounded-2xl"
+          className="relative flex-none overflow-hidden px-1 w-full h-60 md:w-md lg:w-2xl lg:h-100 rounded-2xl"
         >
           <Swiper
             loop={true}

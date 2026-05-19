@@ -201,7 +201,7 @@ export default function SectionOne() {
             viewBox="0 0 538 1548"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="absolute w-[150%] z-0 h-full top-0 xl:w-[120%] xl:-left-20 -left-40"
+            className="absolute hidden lg:block w-[150%] z-0 h-full top-0 xl:w-[120%] xl:-left-20 -left-40"
           >
             <path
               ref={strokePath}

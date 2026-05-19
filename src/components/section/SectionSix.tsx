@@ -56,13 +56,58 @@ export default function SectionSix() {
         });
       });
 
-      mm.add("(min-width: 761px)", () => {
+      mm.add("(min-width: 761px) and (max-width: 1024px)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            end: "bottom bottom",
+            end: "+=400%",
             scrub: true,
+            pin: true,
+            markers: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+        skill.forEach((item, i) => {
+          tl.fromTo(
+            `.card-${i}`,
+            {
+              xPercent: 200,
+              yPercent: 50,
+              x: item.xTablet,
+              y: item.yTablet,
+              opacity: 0,
+              scale: 0.8,
+              ease: "power3.out",
+              duration: 1,
+            },
+            {
+              xPercent: 0,
+              yPercent: 0,
+              x: item.xTablet,
+              y: item.yTablet,
+              opacity: 1,
+              duration: 0.3,
+              scale: 1,
+              ease: "power3.out",
+            },
+            i * 0.2,
+          );
+        });
+      });
+
+      mm.add("(min-width: 1025px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=400%",
+            scrub: true,
+            pin: true,
+            markers: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
           },
         });
         skill.forEach((item, i) => {
@@ -113,14 +158,11 @@ export default function SectionSix() {
     { scope: sectionRef },
   );
   return (
-    <section
-      ref={sectionRef}
-      className="md:h-[500svh] relative min-h-svh bg-pink-800"
-    >
+    <section ref={sectionRef} className="relative min-h-svh bg-pink-800">
       <div className="h-svh sticky top-0 flex-col md:flex-wrap bg-pink-800 p-5 lg:p-10 overflow-hidden flex md:justify-end justify-center">
         <aside
           ref={titleRef}
-          className="lg:absolute lg:justify-end lg:top-10 lg:right-10 justify-center w-full flex flex-col gap-3 font-bold text-3xl md:text-5xl tracking-tight items-center md:items-end lg:w-fit text-amber-200"
+          className="md:absolute md:justify-end md:top-10 md:right-10 justify-center w-full flex flex-col gap-3 font-bold text-3xl md:text-5xl tracking-tight items-center md:items-end lg:w-fit text-amber-200"
         >
           <span>THE ENGINE</span>
           <span>BEHIND THE MAGIC</span>
