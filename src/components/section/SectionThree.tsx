@@ -95,7 +95,7 @@ export default function SectionThree() {
   return (
     <section
       ref={sectionRef}
-      className="overflow-hidden flex h-svh px-2 py-20 md:py-15 sm:px-5 lg:px-10 bg-orange-400 will-change-transform"
+      className="overflow-hidden flex h-svh px-2 py-20 md:py-15 sm:px-5 lg:px-10 bg-orange-400"
     >
       <div className="flex flex-col lg:gap-10 font-bold relative w-full">
         <h2 className="lg:text-7xl xl:text-8xl sm:text-5xl md:text-6xl text-[28px] absolute top-20 left-0 lg:top-0 lg:left-0 flex flex-col">

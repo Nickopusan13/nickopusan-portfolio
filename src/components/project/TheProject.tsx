@@ -12,7 +12,6 @@ import { AnimatedLink } from "../ui/AnimatedLink";
 
 gsap.registerPlugin(ScrollTrigger);
 const MotionLink = motion.create(Link);
-const MotionImage = motion.create(Image);
 
 interface ProjectProps {
   images: string[];
@@ -53,14 +52,10 @@ export default function TheProject({
           fill
         />
       </section>
-      <section className="relative py-10 flex flex-col lg:flex-row justify-between z-10 px-5 lg:px-10 bg-amber-600 min-h-svh text-black gap-5 lg:gap-20">
+      <section className="relative py-10 flex flex-col lg:flex-row justify-between z-10 px-2 xl:px-10 bg-amber-600 min-h-svh text-black gap-5 lg:gap-10 xl:gap-20">
         <div className="w-full lg:w-1/2">
-          <div className="flex sticky h-screen top-0 items-center justify-center">
-            <div
-              className="-rotate-1 relative flex w-full flex-col gap-6 rounded-tr-4xl rounded-bl-4xl
-              border-4 border-black bg-amber-300 p-5 font-black
-              shadow-[10px_10px_0px_#000] sm:p-6 lg:p-7"
-            >
+          <div className="flex sticky lg:h-screen top-0 items-center justify-center">
+            <div className="relative flex w-full flex-col gap-6 rounded-tr-2xl md:rounded-tr-4xl rounded-bl-2xl md:rounded-bl-4xl border-2 lg:border-4 border-black bg-amber-300 p-2 font-black shadow-[5px_5px_0px_#000] lg:shadow-[10px_10px_0px_#000] sm:p-6 lg:p-7">
               <div
                 className="absolute -right-4 -top-5 rotate-6 rounded-tr-xl rounded-bl-xl
                 border-2 border-black bg-orange-500 px-4 py-1 text-sm font-black
@@ -91,7 +86,7 @@ export default function TheProject({
                     damping: 18,
                   }}
                   href="/project"
-                  className="flex cursor-pointer items-center gap-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-200 px-5 py-3 text-lg font-black text-black"
+                  className="flex cursor-pointer items-center gap-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-200 px-5 py-3 text-base md:text-lg font-black text-black"
                 >
                   <FaArrowLeft />
                   BACK TO PROJECTS
@@ -116,19 +111,15 @@ export default function TheProject({
                   </div>
                 </div>
                 <div className="flex flex-col gap-5">
-                  <h1
-                    className="text-4xl font-black leading-[0.9] text-amber-100
-                    drop-shadow-[4px_4px_0px_#000] sm:text-5xl lg:text-7xl"
-                  >
+                  <h1 className="text-3xl text-center md:text-start font-black leading-[0.9] text-amber-100 drop-shadow-[3px_3px_0px_#000] lg:drop-shadow-[4px_4px_0px_#000] sm:text-5xl xl:text-7xl">
                     {title}
                   </h1>
                   <div
                     className="rounded-tr-2xl rounded-bl-2xl border-2 border-black bg-amber-100
                     p-4 shadow-[5px_5px_0px_#000]"
                   >
-                    <p className="text-justify text-base font-black leading-relaxed sm:text-lg">
-                      {description ||
-                        `Echo Meridian operates where rhythm meets precision. We explore how motion, sound, and light can synchronize to form coherent, emotional experiences. Every brand we build carries a pulse — an echo that travels beyond the moment of first contact.`}
+                    <p className="text-justify text-base font-black leading-relaxed xl:text-lg">
+                      {description}
                     </p>
                   </div>
                 </div>
@@ -156,35 +147,18 @@ export default function TheProject({
           </div>
         </div>
         <aside className="w-full lg:w-1/2 mt-0 lg:mt-20">
-          <div className="flex flex-col gap-0 lg:gap-10">
+          <div className="flex flex-col gap-5 md:gap-7 lg:gap-10">
             {images.map((src, idx) => {
               return (
                 <div
                   key={idx}
-                  className="hidden lg:block relative w-full h-50 lg:h-100"
+                  className="block relative w-full h-50 md:h-90 xl:h-100"
                 >
-                  <MotionImage
+                  <Image
                     src={src}
                     alt={title}
-                    whileHover={{
-                      translateY: -5,
-                      translateX: -5,
-                      boxShadow: "12px 12px 0px #000",
-                    }}
-                    whileTap={{
-                      scale: 0.94,
-                      y: 3,
-                      x: 3,
-                      rotate: 0,
-                      boxShadow: "2px 2px 0px #000",
-                    }}
-                    whileInView={{ boxShadow: "8px 8px 0px #000" }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 18,
-                    }}
-                    className="object-cover overflow-hidden rounded-tr-4xl rounded-bl-4xl border-4 border-black bg-amber-200 p-2"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="shadow-[12px_12px_0px_#000] object-cover overflow-hidden rounded-tr-2xl rounded-bl-2xl md:rounded-tr-4xl md:rounded-bl-4xl border-2 md:border-4 border-black bg-amber-200 p-1 md:p-2"
                     fill
                   />
                 </div>

@@ -9,7 +9,6 @@ import Link from "next/link";
 import { useRef } from "react";
 
 gsap.registerPlugin(Draggable, ScrambleTextPlugin);
-const MotionImage = motion.create(Image);
 const MotionLink = motion.create(Link);
 
 export function Grid2({
@@ -108,7 +107,7 @@ export function Grid2({
                 : "scale-90 opacity-60 shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]"
             }`}
           >
-            <MotionImage
+            <Image
               alt={item}
               fill
               src={item}
@@ -199,7 +198,7 @@ export function Grid4({ images }: { images: string[] }) {
             href="/"
             className="group relative block h-50 w-full overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 md:h-100"
           >
-            <MotionImage
+            <Image
               alt={item}
               fill
               src={item}
