@@ -9,9 +9,9 @@ gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
 
 export default function MainPage() {
   return (
-    <>
+    <div className="relative">
       <Loader />
       <Main />
-    </>
+    </div>
   );
 }

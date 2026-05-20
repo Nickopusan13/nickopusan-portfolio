@@ -87,32 +87,32 @@ const Emoticon = () => {
         src="/assets/emote/emote_1.svg"
         className="bottom-10 left-[8%]"
         imageClassName="absolute w-30 h-30 lg:w-40 lg:h-40 mt-2"
-        link="https://github.com/Nickopusan13"
-        title="GITHUB"
+        link="/project"
+        title="PROJECT"
       />
 
       <ShyEmote
         src="/assets/emote/emote_2.svg"
         className="bottom-32 left-[30%]"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-1"
-        link="https://www.linkedin.com/in/nickopusan13/"
-        title="LINKEDIN"
+        link="/about"
+        title="ABOUT"
       />
 
       <ShyEmote
         src="/assets/emote/emote_3.svg"
         className="bottom-32 right-[30%]"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-5"
-        link="https://upwork.com/freelancers/nickopusan"
-        title="UPWORK"
+        link="/contact"
+        title="CONTACT"
       />
 
       <ShyEmote
         src="/assets/emote/emote_4.svg"
         className="bottom-10 right-[8%]"
         imageClassName="absolute w-30 h-30 lg:w-35 lg:h-35 mt-7"
-        link="mailto:nickowork13@gmail.com"
-        title="EMAIL"
+        link="https://www.linkedin.com/in/nickopusan13/"
+        title="LINKEDIN"
       />
     </div>
   );

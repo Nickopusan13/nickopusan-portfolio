@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useMediaQuery } from "@/utils/useMediaQuery";
+import Link from "next/link";
 
 export function ShyEmote({
   src,
@@ -68,7 +69,7 @@ export function ShyEmote({
         style={isMobile ? undefined : { x: springX, y: springY }}
         whileHover={isMobile ? undefined : { scale: 1.4 }}
       >
-        <a
+        <Link
           target="_blank"
           rel="noopener noreferrer"
           className="w-full h-full flex items-center justify-center"
@@ -104,7 +105,7 @@ export function ShyEmote({
               loading="eager"
             />
           </motion.div>
-        </a>
+        </Link>
       </motion.div>
     </motion.div>
   );

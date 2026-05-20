@@ -62,7 +62,7 @@ export default function Loader() {
         opacity: 1,
         rotate: 0,
         y: 0,
-        duration: 0.3,
+        duration: 0.25,
         ease: "power3.out",
       },
     );
@@ -83,7 +83,7 @@ export default function Loader() {
         opacity: 1,
         scale: 1,
         rotate: 0,
-        duration: 0.4,
+        duration: 0.25,
         ease: "back.out(2)",
       },
     );
@@ -91,7 +91,7 @@ export default function Loader() {
     tl.to(sceneThree.current, {
       opacity: 0,
       scale: 0.8,
-      duration: 0.2,
+      duration: 0.25,
       delay: 0.15,
     });
     tl.fromTo(
@@ -105,7 +105,7 @@ export default function Loader() {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 0.4,
+        duration: 0.25,
         ease: "power4.out",
       },
     );
@@ -127,7 +127,7 @@ export default function Loader() {
         opacity: 1,
         scale: 1,
         rotate: 0,
-        duration: 0.5,
+        duration: 0.25,
         ease: "elastic.out(1,0.5)",
       },
     );
