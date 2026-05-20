@@ -20,6 +20,7 @@ export default async function ProjectPage({ params }: Props) {
           description={project.description}
           images={project.images}
           title={project.title}
+          subTitle={project.subTitle}
         />
         <div className="border hidden lg:block border-white/20 w-full " />
         <ProjectFooter />

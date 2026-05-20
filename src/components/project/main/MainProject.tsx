@@ -19,6 +19,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { GiFlowerStar } from "react-icons/gi";
+import { projects } from "@/utils/projects";
 
 const sortOptions = [
   { label: "WEB APP" },
@@ -33,12 +34,7 @@ const gridButtons = [
   { id: "grid4", icon: <CiGrid41 />, label: "4 Grid" },
 ];
 
-const images = [
-  "/assets/caufi/caufi_1.webp",
-  "/assets/caufi/caufi_2.webp",
-  "/assets/caufi/caufi_3.webp",
-  "/assets/caufi/caufi_4.webp",
-];
+const images = projects.map((project) => project.images[0]);
 
 export default function MainProject() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -140,7 +136,6 @@ export default function MainProject() {
                         <Image
                           fill
                           src={img}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           alt={img}
                           className={`rounded-sm object-cover p-1 transition-all duration-300 ${
                             activeIndex === idx
@@ -246,7 +241,7 @@ export default function MainProject() {
               >
                 <Grid2
                   setActiveIndex={setActiveIndex}
-                  images={images}
+                  project={projects}
                   activeIndex={activeIndex}
                 />
               </motion.div>
@@ -268,7 +263,6 @@ export default function MainProject() {
                       <Image
                         fill
                         src={img}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt={img}
                         className={`object-cover p-1 rounded-md transition-all duration-300 ${
                           activeIndex === idx
@@ -301,7 +295,7 @@ export default function MainProject() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <Grid4 images={images} />
+              <Grid4 project={projects} />
             </motion.div>
           )}
         </AnimatePresence>

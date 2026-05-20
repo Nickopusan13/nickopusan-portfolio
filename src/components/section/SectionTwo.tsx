@@ -181,39 +181,10 @@ export default function SectionTwo() {
 
 const BuiltSection = () => {
   const titleRef = useRef<(HTMLDivElement | null)[]>([]);
-  const handleEnter = (index: number) => {
-    const el = titleRef.current[index];
-    if (!el) return;
-    gsap.to(el, {
-      keyframes: [
-        { scale: 1.1, skewX: -8, duration: 0.15, ease: "power2.out" },
-        { scale: 0.9, skewX: 4, duration: 0.12, ease: "power2.inOut" },
-        { scale: 1.02, skewX: 0, duration: 0.4, ease: "elastic.out(1, 0.4)" },
-      ],
-      color: "#f97316",
-      overwrite: "auto",
-    });
-  };
-
-  const handleLeave = (index: number) => {
-    const el = titleRef.current[index];
-    if (!el) return;
-    gsap.to(el, {
-      duration: 0.5,
-      scale: 1,
-      skewX: 0,
-      rotation: 0,
-      color: "#ffffff",
-      ease: "back.out(2)",
-      overwrite: "auto",
-    });
-  };
   return (
     <>
       {projects.map((slide, slideIdx) => (
         <Link
-          onMouseEnter={() => handleEnter(slideIdx)}
-          onMouseLeave={() => handleLeave(slideIdx)}
           key={slideIdx}
           href={`project/${slide.slug}`}
           className="relative flex-none overflow-hidden px-1 w-full h-60 md:w-md lg:w-2xl lg:h-100 rounded-2xl"
@@ -235,8 +206,7 @@ const BuiltSection = () => {
                     fill
                     src={image}
                     alt={slide.title}
-                    className="z-5 object-cover p-1 md:p-2 rounded-2xl"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="z-5 object-cover p-1 md:p-2 lg:p-3 rounded-2xl"
                   />
                 </div>
               </SwiperSlide>
@@ -246,12 +216,12 @@ const BuiltSection = () => {
             ref={(el) => {
               titleRef.current[slideIdx] = el;
             }}
-            className="absolute inset-0 z-20 lg:max-w-5xl mx-auto lg:space-y-6 flex flex-col items-center justify-center p-3 md:p-5"
+            className="absolute inset-0 z-20 lg:max-w-5xl mx-auto lg:space-y-6 flex flex-col items-center justify-center p-3 md:p-5 lg:p-7"
           >
-            <span className="flex h-full w-full justify-start text-2xl lg:text-7xl">
+            <span className="flex h-full w-full justify-start text-2xl lg:text-5xl">
               {slideIdx + 1}
             </span>
-            <span className="text-2xl lg:text-6xl flex h-full w-full justify-end items-end">
+            <span className="text-2xl lg:text-5xl flex h-full w-full justify-end items-end">
               {slide.title}
             </span>
           </div>

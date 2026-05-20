@@ -1,23 +1,43 @@
-export const projects = [
+export interface Project {
+  title: string;
+  subTitle: string;
+  slug: string;
+  color: string;
+  description: string;
+  images: string[];
+  year: string;
+  tags: string[];
+}
+
+export const projects: Project[] = [
   {
-    title: "Fullstack Website",
-    slug: "fullstack-project",
+    title: "Clarity",
+    subTitle: "E-Commerce Platform",
+    slug: "clarity",
     color: "bg-blue-600/60 border-blue-600",
     description:
-      "A feature-rich e-commerce platform designed for a seamless shopping experience. The responsive frontend is built with Next.js for fast page loads, while the FastAPI backend securely handles products, user accounts, and order processing.",
+      "Clarity is a modern fullstack e-commerce platform built for a seamless shopping experience. The responsive frontend uses Next.js for fast performance, while the FastAPI backend securely manages products, authentication, user accounts, and order processing.",
     images: [
-      "/assets/caufi/caufi_1.webp",
-      "/assets/caufi/caufi_2.webp",
-      "/assets/caufi/caufi_3.webp",
-      "/assets/caufi/caufi_4.webp",
+      "/assets/clarity/clarity_1.webp",
+      "/assets/clarity/clarity_2.webp",
+      "/assets/clarity/clarity_3.webp",
+      "/assets/clarity/clarity_4.webp",
+      "/assets/clarity/clarity_5.webp",
+      "/assets/clarity/clarity_6.webp",
+      "/assets/clarity/clarity_7.webp",
     ],
+    year: "December, 2025",
+    tags: ["E-Commerce", "Fullstack", "Next.js", "FastAPI"],
   },
   {
     title: "Automation Pipeline",
+    subTitle: "E-Commerce Platform",
     slug: "automation-pipeline",
     color: "bg-green-600/60 border-green-600",
     description:
       "This Python pipeline automates a complete end-to-end workflow. It's built to handle various tasks, from extracting data and integrating with APIs to processing information automatically. The pipeline is designed to run efficiently and deliver clean, structured data for analysis.",
     images: ["/assets/centris/centris-1.png", "/assets/google_maps/maps-1.png"],
+    year: "April, 2025",
+    tags: ["Python", "Automation", "Scraping"],
   },
 ];

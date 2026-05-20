@@ -7,16 +7,17 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
+import { projects } from "@/utils/projects";
 
 gsap.registerPlugin(Draggable, ScrambleTextPlugin);
 const MotionLink = motion.create(Link);
 
 export function Grid2({
-  images,
+  project,
   activeIndex,
   setActiveIndex,
 }: {
-  images: string[];
+  project: typeof projects;
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
@@ -28,7 +29,7 @@ export function Grid2({
       color: "#f97316",
       overwrite: "auto",
       scrambleText: {
-        text: "CAUFI",
+        text: project[index % project.length].title,
         chars: "upperCase",
       },
     });
@@ -39,7 +40,7 @@ export function Grid2({
       color: "#ffffff",
       overwrite: "auto",
       scrambleText: {
-        text: "CAUFI",
+        text: project[index % project.length].title,
         chars: "upperCase",
       },
     });
@@ -47,7 +48,7 @@ export function Grid2({
   useGSAP(() => {
     if (!containerRef.current) return;
     const slideWidth = containerRef.current.children[0].clientWidth + 40;
-    const totalSlides = images.length;
+    const totalSlides = project.length;
     const totalWidth = containerRef.current.scrollWidth / 2;
     function updateActiveIndex(currentX: number) {
       const index = Math.round(Math.abs(currentX) / slideWidth) % totalSlides;
@@ -95,28 +96,28 @@ export function Grid2({
         ref={containerRef}
         className="flex select-none cursor-grab gap-2 md:gap-5 active:cursor-grabbing"
       >
-        {[...images, ...images].map((item, idx) => (
+        {[...project, ...project].map((item, idx) => (
           <Link
             onMouseEnter={() => handleEnter(idx)}
             onMouseLeave={() => handleLeave(idx)}
-            href="/"
+            href={`/project/${item.slug}`}
             key={idx}
             className={`group relative min-w-screen xl:min-w-[80vw] h-50 sm:h-60 md:h-80 lg:h-120 overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 transition-all duration-500 ${
-              activeIndex === idx % images.length
+              activeIndex === idx % project.length
                 ? "scale-95 opacity-100 shadow-[5px_5px_0px_#000] md:shadow-[10px_10px_0px_#000]"
                 : "scale-90 opacity-60 shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]"
             }`}
           >
             <Image
-              alt={item}
+              loading="eager"
+              alt={item.title}
               fill
-              src={item}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              src={item.images[0]}
               className="object-cover rounded-tr-xl md:rounded-tr-3xl rounded-bl-xl md:rounded-bl-3xl p-1.5 md:p-2"
               priority={idx === 0}
             />
-            <div className="absolute right-3 top-3 md:right-5 md:top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
-              CASE STUDY
+            <div className="absolute right-3 top-3 md:right-5 md:top-5 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-xs lg:text-base font-black text-black shadow-[3px_3px_0px_#000]">
+              {item.year}
             </div>
             <div className="absolute bottom-0 left-0 w-full p-3 md:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
@@ -125,10 +126,10 @@ export function Grid2({
                 }}
                 className="text-base md:text-3xl font-semibold"
               >
-                CAUFI
+                {item.title}
               </p>
-              <p className="text-sm text-white/70">
-                [MARKETING SITE] – [SPORTS]
+              <p className="text-sm lg:text-base text-white/70">
+                {item.tags.map((tag) => `[${tag}]`).join(" • ")}
               </p>
             </div>
           </Link>
@@ -138,14 +139,14 @@ export function Grid2({
   );
 }
 
-export function Grid4({ images }: { images: string[] }) {
+export function Grid4({ project }: { project: typeof projects }) {
   const textRef = useRef<(HTMLParagraphElement | null)[]>([]);
   const handleEnter = (index: number) => {
     gsap.to(textRef.current[index], {
       duration: 0.6,
       color: "#f97316",
       scrambleText: {
-        text: "CAUFI",
+        text: project[index % project.length].title,
         chars: "upperCase",
       },
     });
@@ -155,13 +156,13 @@ export function Grid4({ images }: { images: string[] }) {
       duration: 0.6,
       color: "#ffffff",
       scrambleText: {
-        text: "CAUFI",
+        text: project[index % project.length].title,
       },
     });
   };
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-x-5 gap-y-0 lg:gap-y-15 px-2 md:px-5 lg:px-10">
-      {images.map((item, idx) => (
+      {project.map((item, idx) => (
         <motion.div
           key={idx}
           initial={{ opacity: 0, y: 30, rotate: idx % 2 === 0 ? -2 : 2 }}
@@ -195,18 +196,17 @@ export function Grid4({ images }: { images: string[] }) {
               stiffness: 500,
               damping: 18,
             }}
-            href="/"
+            href={`/project/${item.slug}`}
             className="group relative block h-50 w-full overflow-hidden md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-200 p-2 md:h-100"
           >
             <Image
-              alt={item}
+              alt={item.title}
               fill
-              src={item}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              src={item.images[0]}
               className="md:rounded-tr-3xl rounded-tr-xl rounded-bl-xl md:rounded-bl-3xl object-cover p-1 md:p-2"
             />
-            <div className="absolute md:right-5 md:top-5 right-3 top-3 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-xs font-black text-black shadow-[3px_3px_0px_#000]">
-              PROJECT
+            <div className="absolute md:right-5 md:top-5 right-3 top-3 rotate-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-orange-500 px-2 md:px-3 py-1 text-xs lg:text-base font-black text-black shadow-[3px_3px_0px_#000]">
+              {item.year}
             </div>
             <div className="absolute bottom-0 left-0 w-full p-3 md:p-6 bg-linear-to-t from-black/70 to-transparent text-white">
               <p
@@ -215,10 +215,10 @@ export function Grid4({ images }: { images: string[] }) {
                 }}
                 className="text-base md:text-2xl font-semibold"
               >
-                CAUFI
+                {item.title}
               </p>
-              <p className="text-sm text-white/70">
-                [MARKETING SITE] – [SPORTS]
+              <p className="text-sm lg:text-base text-white/70">
+                {item.tags.map((tag) => `[${tag}]`).join(" • ")}
               </p>
             </div>
           </MotionLink>

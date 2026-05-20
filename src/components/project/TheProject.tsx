@@ -17,12 +17,14 @@ interface ProjectProps {
   images: string[];
   title: string;
   description: string;
+  subTitle: string;
 }
 
 export default function TheProject({
   images,
   title,
   description,
+  subTitle,
 }: ProjectProps) {
   const pinRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
@@ -61,7 +63,7 @@ export default function TheProject({
                 border-2 border-black bg-orange-500 px-4 py-1 text-sm font-black
                 shadow-[4px_4px_0px_#000] sm:text-base"
               >
-                CASE STUDY!
+                DESCRIPTION
               </div>
               <div className="justify-start items-center flex">
                 <MotionLink
@@ -106,7 +108,7 @@ export default function TheProject({
                       className="w-fit rotate-1 rounded-full border-2 border-black bg-yellow-300
                       px-4 py-1 text-sm font-black shadow-[3px_3px_0px_#000]"
                     >
-                      E-Commerce Platform
+                      {subTitle}
                     </p>
                   </div>
                 </div>
@@ -148,7 +150,7 @@ export default function TheProject({
         </div>
         <aside className="w-full lg:w-1/2 mt-0 lg:mt-20">
           <div className="flex flex-col gap-5 md:gap-7 lg:gap-10">
-            {images.map((src, idx) => {
+            {images.slice(1).map((src, idx) => {
               return (
                 <div
                   key={idx}
@@ -157,7 +159,6 @@ export default function TheProject({
                   <Image
                     src={src}
                     alt={title}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="shadow-[12px_12px_0px_#000] object-cover overflow-hidden rounded-tr-2xl rounded-bl-2xl md:rounded-tr-4xl md:rounded-bl-4xl border-2 md:border-4 border-black bg-amber-200 p-1 md:p-2"
                     fill
                   />
