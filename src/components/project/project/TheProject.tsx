@@ -10,6 +10,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { AnimatedLink } from "../../ui/AnimatedLink";
 import { projects } from "@/utils/projects";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 gsap.registerPlugin(ScrollTrigger);
 const MotionLink = motion.create(Link);
@@ -169,19 +170,30 @@ export default function TheProject({
             {images.slice(1).map((src, idx, arr) => {
               const isLast = idx === arr.length - 1;
               return (
-                <div
-                  key={idx}
-                  className={`block relative w-full md:h-60 ${
-                    isLast ? "h-10 xl:h-50" : "h-30 xl:h-100"
-                  }`}
-                >
-                  <Image
-                    src={src}
-                    alt={title}
-                    className={`${isLast ? "object-contain" : "object-cover"} shadow-[3px_3px_0px_#000] lg:shadow-[12px_12px_0px_#000] overflow-hidden rounded-tr-2xl rounded-bl-2xl md:rounded-tr-4xl md:rounded-bl-4xl border-2 md:border-4 border-black bg-amber-200 p-1 md:p-2`}
-                    fill
-                  />
-                </div>
+                <Dialog key={idx}>
+                  <DialogTrigger
+                    className={`block relative w-full md:h-60 ${
+                      isLast ? "h-10 xl:h-50" : "h-30 xl:h-100"
+                    }`}
+                  >
+                    <Image
+                      src={src}
+                      alt={title}
+                      className={`${isLast ? "object-contain" : "object-cover"} shadow-[3px_3px_0px_#000] lg:shadow-[12px_12px_0px_#000] overflow-hidden rounded-tr-2xl rounded-bl-2xl md:rounded-tr-4xl md:rounded-bl-4xl border-2 md:border-4 border-black bg-amber-200 p-1 md:p-2`}
+                      fill
+                    />
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-5xl py-3 px-0 bg-white/10 backdrop-blur-xl rounded-3xl">
+                    <div className="relative w-full h-[30vh] lg:h-[70vh]">
+                      <Image
+                        src={src}
+                        alt={title}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               );
             })}
           </div>

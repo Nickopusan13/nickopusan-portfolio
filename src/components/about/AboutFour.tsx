@@ -98,7 +98,7 @@ export default function AboutFour() {
               ref={(el) => {
                 itemRef.current[idx] = el;
               }}
-              className={`w-full  items-center flex justify-center lg:${isEven ? "justify-start" : "justify-end"}`}
+              className={`w-full items-center flex justify-center ${isEven ? "lg:justify-start" : "lg:justify-end"}`}
             >
               <div className="h-fit relative md:max-w-2xl lg:max-w-lg">
                 <span className="absolute left-0 top-0">{idx + 1}</span>

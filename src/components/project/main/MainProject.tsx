@@ -55,8 +55,8 @@ export default function MainProject() {
           Our Craft
         </h1>
         <div className="cartoon-item font-bold flex flex-col items-center justify-center text-sm md:text-lg text-white/50">
-          <span>50+ projects shipped. </span>
-          <span>500M+ page views delivered.</span>
+          <span>Building fast, modern digital experiences.</span>
+          <span>Focused on performance, motion, and clean UI.</span>
         </div>
       </section>
       <section className="pt-10 flex-col flex px-2 sm:px-2 md:px-3">

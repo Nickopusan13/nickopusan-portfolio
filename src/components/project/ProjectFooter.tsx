@@ -7,6 +7,8 @@ import { useRef } from "react";
 import { useMediaQuery } from "@/utils/useMediaQuery";
 import { AnimatedLink } from "../ui/AnimatedLink";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
+import { FaSquareUpwork, FaLinkedin, FaGithub } from "react-icons/fa6";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -141,6 +143,29 @@ export default function ProjectFooter() {
                 >
                   +62 85156229898
                 </a>
+              </div>
+              <div className="flex flex-col items-center justify-center gap-2">
+                <p>Social Account</p>
+                <div className="flex items-center justify-center gap-3 text-5xl">
+                  <Link
+                    className="hover:scale-110 duration-200"
+                    href="https://www.upwork.com/freelancers/nickopusan"
+                  >
+                    <FaSquareUpwork />
+                  </Link>
+                  <Link
+                    className="hover:scale-105 duration-200"
+                    href="http://linkedin.com/in/nickopusan13"
+                  >
+                    <FaLinkedin />
+                  </Link>
+                  <Link
+                    className="hover:scale-105 duration-200"
+                    href="https://github.com/Nickopusan13"
+                  >
+                    <FaGithub />
+                  </Link>
+                </div>
               </div>
               <p className="cartoon-item text-sm">
                 © {new Date().getFullYear()} ALL RIGHTS RESERVED
