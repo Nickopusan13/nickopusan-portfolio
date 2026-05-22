@@ -121,7 +121,7 @@ export default function TheProject({
                   </p>
                   <div className="flex justify-start items-center">
                     <p
-                      className="w-fit rotate-1 rounded-full border-2 border-black bg-yellow-300
+                      className="w-fit rounded-full border-2 border-black bg-yellow-300
                       px-4 py-1 text-sm font-black shadow-[3px_3px_0px_#000]"
                     >
                       {subTitle}
@@ -171,8 +171,8 @@ export default function TheProject({
               return (
                 <div
                   key={idx}
-                  className={`block relative w-full h-30 md:h-60 ${
-                    isLast ? "xl:h-50" : "xl:h-100"
+                  className={`block relative w-full md:h-60 ${
+                    isLast ? "h-10 xl:h-50" : "h-30 xl:h-100"
                   }`}
                 >
                   <Image

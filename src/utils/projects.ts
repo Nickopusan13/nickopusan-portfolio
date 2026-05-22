@@ -34,7 +34,7 @@ export const projects: Project[] = [
       "/assets/clarity/clarity_8.webp",
     ],
     year: "December, 2025",
-    tags: ["E-Commerce", "Fullstack", "Next.js", "FastAPI", "Redis", "Docker"],
+    tags: ["E-Commerce", "Next.js", "FastAPI", "Redis"],
     role: "Fullstack Developer",
     challenges:
       "Building a secure, scalable e-commerce platform with AI integration, payment processing, admin image uploads, and smooth frontend interactions.",
@@ -107,5 +107,78 @@ export const projects: Project[] = [
     ],
     architecture:
       "The automation system combines Scrapy for high-performance crawling with Playwright for browser automation and login handling. Extracted data is processed and stored into JSONL datasets with automatic image downloading and folder organization.",
+  },
+  {
+    title: "Clutch.co Automation",
+    subTitle: "Business Data Scraping Pipeline",
+    slug: "clutch-automation",
+    color: "bg-orange-600/60 border-orange-600",
+    description:
+      "This project is an automation scraping pipeline built for extracting business and company data from Clutch.co. The system was designed to efficiently collect structured company information and export the results into CSV files for further analysis and lead generation.",
+    images: [
+      "/assets/clutch/clutch_1.webp",
+      "/assets/clutch/clutch_2.webp",
+      "/assets/clutch/clutch_3.webp",
+      "/assets/clutch/clutch_4.webp",
+      "/assets/clutch/clutch_5.webp",
+    ],
+    year: "March, 2025",
+    tags: ["Python", "Scrapy", "Playwright"],
+    role: "Automation Developer",
+    solution:
+      "I built an automation scraper for Clutch.co using Scrapy and Playwright. The scraper automatically collects company data such as business names, locations, services, ratings, reviews, and other public information from the platform. All extracted data is processed and exported into structured CSV files for the client.",
+    performance: [
+      "Used Scrapy for high-speed concurrent scraping",
+      "Integrated Playwright for handling dynamic content",
+      "Optimized data extraction and CSV export pipeline",
+    ],
+    challenges:
+      "One of the main challenges in this project was bypassing Cloudflare protection and handling dynamic website rendering. Playwright was used to simulate real browser behavior and properly load JavaScript content, while custom headers, user agents, and request handling strategies helped reduce blocking during the scraping process.",
+    techStack: ["Python", "Scrapy", "Playwright", "CSV", "Requests"],
+    architecture:
+      "The scraping system combines Scrapy for scalable crawling with Playwright for browser automation and dynamic content handling. Extracted company information is cleaned, processed, and exported into structured CSV datasets.",
+  },
+  {
+    title: "DltHub Automation",
+    subTitle: "Incremental Multi-Source Data Pipeline",
+    slug: "data-automation-pipeline",
+    color: "bg-blue-600/60 border-blue-600",
+    description:
+      "This project is a scalable, incremental data automation pipeline that extracts data from Google Tag Manager (GTM), Google Ads, and Facebook Ads. The system uses dltHub for extraction, Apache Airflow for orchestration, and loads structured data into Google BigQuery, Cloud Storage, and Firestore with optimized incremental loading to reduce costs and improve efficiency.",
+    images: [
+      "/assets/dlt/dlt_1.webp",
+      "/assets/dlt/dlt_2.webp",
+      "/assets/dlt/dlt_3.webp",
+      "/assets/dlt/dlt_4.webp",
+      "/assets/dlt/dlt_5.webp",
+      "/assets/dlt/dlt_6.webp",
+      "/assets/dlt/dlt_7.webp",
+    ],
+    year: "October, 2025",
+    tags: ["Python", "Apache Airflow", "dltHub"],
+    role: "Data Pipeline Engineer",
+    solution:
+      "I developed a comprehensive incremental data automation pipeline that pulls tracking and advertising data from Google Tag Manager (GTM), Google Ads, and Facebook Ads. The pipeline is fully orchestrated using Apache Airflow (Dockerized on GCP), leverages dltHub for reliable extraction and normalization, and stores data across BigQuery (analytics), Cloud Storage (raw backup), and Firestore (operational use). Strong emphasis was placed on incremental loading to minimize API costs and processing time.",
+    performance: [
+      "Built true incremental extraction for GTM, Google Ads, and Facebook Ads",
+      "Significantly reduced daily processing costs by fetching only new or changed data",
+      "Automated daily orchestration using Apache Airflow DAGs",
+      "Seamless data delivery to BigQuery, Google Cloud Storage, and Firestore",
+      "Implemented secure authentication using Google service accounts and OAuth",
+    ],
+    challenges:
+      "A major challenge was implementing incremental loading for Firestore, as it is not natively supported by dltHub. Previously the pipeline performed full refreshes, which was costly and inefficient. I solved this by developing a custom incremental extractor using Firestore queries based on timestamps and document IDs. This allowed the pipeline to only process new or updated records on each run.",
+    techStack: [
+      "Python",
+      "Apache Airflow",
+      "dltHub",
+      "Google Cloud Platform",
+      "BigQuery",
+      "Firestore",
+      "Docker",
+      "Google Auth",
+    ],
+    architecture:
+      "The architecture uses Apache Airflow as the central orchestrator running in Docker containers on GCP. dltHub handles data extraction and normalization from GTM, Google Ads, and Facebook Ads. A custom incremental layer was built for Firestore support. Data flows into BigQuery for analysis, Cloud Storage for archiving, and Firestore for real-time access — all processed incrementally for maximum efficiency.",
   },
 ];
