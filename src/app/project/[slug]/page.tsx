@@ -18,6 +18,7 @@ export default async function ProjectPage({ params }: Props) {
       <ProjectNavbar />
       <div className="flex flex-col bg-amber-600 gap-10">
         <TheProject
+          year={project.year}
           description={project.description}
           images={project.images}
           title={project.title}

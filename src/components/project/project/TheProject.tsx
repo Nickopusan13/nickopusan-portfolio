@@ -20,6 +20,7 @@ interface ProjectProps {
   description: string;
   subTitle: string;
   slug: string;
+  year: string;
 }
 
 export default function TheProject({
@@ -28,6 +29,7 @@ export default function TheProject({
   description,
   subTitle,
   slug,
+  year,
 }: ProjectProps) {
   const pinRef = useRef<HTMLDivElement>(null);
   const currentIndex = projects.findIndex((project) => project.slug === slug);
@@ -109,13 +111,13 @@ export default function TheProject({
                 </MotionLink>
               </div>
               <div className="hidden md:block border-2 border-black w-full" />
-              <div className="flex flex-col gap-4 lg:gap-5">
+              <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
                   <p
                     className="w-fit -rotate-2 rounded-tr-xl rounded-bl-xl border-2 border-black
                     bg-orange-500 px-3 py-1 text-sm font-black shadow-[3px_3px_0px_#000]"
                   >
-                    Sep 24, 2025
+                    {year}
                   </p>
                   <div className="flex justify-start items-center">
                     <p
@@ -127,14 +129,14 @@ export default function TheProject({
                   </div>
                 </div>
                 <div className="flex flex-col gap-5">
-                  <h1 className="text-3xl text-center md:text-start font-black leading-[0.9] text-amber-100 drop-shadow-[3px_3px_0px_#000] lg:drop-shadow-[4px_4px_0px_#000] sm:text-5xl xl:text-7xl">
+                  <h1 className="text-3xl text-center md:text-start font-black leading-[0.9] text-amber-100 drop-shadow-[3px_3px_0px_#000] lg:drop-shadow-[4px_4px_0px_#000] sm:text-5xl xl:text-6xl">
                     {title}
                   </h1>
                   <div
                     className="rounded-tr-2xl rounded-bl-2xl border-2 border-black bg-amber-100
                     p-4 shadow-[5px_5px_0px_#000]"
                   >
-                    <p className="text-justify text-base font-black leading-relaxed xl:text-lg">
+                    <p className="text-justify text-sm sm:text-sm font-black leading-relaxed xl:text-lg">
                       {description}
                     </p>
                   </div>
@@ -164,16 +166,19 @@ export default function TheProject({
         </div>
         <aside className="w-full lg:w-1/2 mt-0 lg:mt-20">
           <div className="lg:flex lg:flex-col grid grid-cols-2 gap-2 md:gap-7 lg:gap-10">
-            {images.slice(1).map((src, idx) => {
+            {images.slice(1).map((src, idx, arr) => {
+              const isLast = idx === arr.length - 1;
               return (
                 <div
                   key={idx}
-                  className="block relative w-full h-30 md:h-60 xl:h-100"
+                  className={`block relative w-full h-30 md:h-60 ${
+                    isLast ? "xl:h-50" : "xl:h-100"
+                  }`}
                 >
                   <Image
                     src={src}
                     alt={title}
-                    className="shadow-[3px_3px_0px_#000] lg:shadow-[12px_12px_0px_#000] object-cover overflow-hidden rounded-tr-2xl rounded-bl-2xl md:rounded-tr-4xl md:rounded-bl-4xl border-2 md:border-4 border-black bg-amber-200 p-1 md:p-2"
+                    className={`${isLast ? "object-contain" : "object-cover"} shadow-[3px_3px_0px_#000] lg:shadow-[12px_12px_0px_#000] overflow-hidden rounded-tr-2xl rounded-bl-2xl md:rounded-tr-4xl md:rounded-bl-4xl border-2 md:border-4 border-black bg-amber-200 p-1 md:p-2`}
                     fill
                   />
                 </div>
