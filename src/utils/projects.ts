@@ -7,16 +7,22 @@ export interface Project {
   images: string[];
   year: string;
   tags: string[];
+  role: string;
+  challenges: string;
+  solution: string;
+  techStack: string[];
+  performance: string[];
+  architecture: string;
 }
 
 export const projects: Project[] = [
   {
     title: "Clarity",
-    subTitle: "E-Commerce Platform",
+    subTitle: "AI-Powered Fullstack E-Commerce Platform",
     slug: "clarity",
     color: "bg-blue-600/60 border-blue-600",
     description:
-      "Clarity is a modern fullstack e-commerce platform built for a seamless shopping experience. The responsive frontend uses Next.js for fast performance, while the FastAPI backend securely manages products, authentication, user accounts, and order processing.",
+      "Clarity is a modern, high-performance AI-powered e-commerce platform built for excellent user experience and scalability. The frontend was designed in Figma and developed with Next.js, TypeScript, TailwindCSS, TanStack Query, Axios, and Framer Motion. The backend was built using Python FastAPI with PostgreSQL, Redis caching, and JWT authentication.",
     images: [
       "/assets/clarity/clarity_1.webp",
       "/assets/clarity/clarity_2.webp",
@@ -27,7 +33,41 @@ export const projects: Project[] = [
       "/assets/clarity/clarity_7.webp",
     ],
     year: "December, 2025",
-    tags: ["E-Commerce", "Fullstack", "Next.js", "FastAPI"],
+    tags: ["E-Commerce", "Fullstack", "Next.js", "FastAPI", "Redis", "Docker"],
+    role: "Fullstack Developer",
+    challenges:
+      "Building a secure, scalable e-commerce platform with AI integration, payment processing, admin image uploads, and smooth frontend interactions.",
+    solution:
+      "Developed a fullstack solution with FastAPI backend using PostgreSQL and asyncpg. Implemented JWT + Google OAuth authentication, secure email verification, and password recovery. Integrated Google Gemini AI chatbot with session context, Midtrans payments, and Cloudflare R2 for storing images uploaded from the admin panel. Used Redis for caching, TanStack Query + Axios for efficient data fetching and API communication on the frontend.",
+    performance: [
+      "Redis caching for faster API responses",
+      "TanStack Query + Axios for optimized data fetching",
+      "Cloudflare R2 for optimized image storage and delivery",
+      "Async database operations with asyncpg",
+      "Dockerized backend for scalable deployment",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "TailwindCSS",
+      "TanStack Query",
+      "Axios",
+      "Framer Motion",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "Cloudflare R2",
+      "Google Gemini AI",
+      "Midtrans",
+      "JWT",
+      "Docker",
+      "Google Cloud Run",
+      "Vercel",
+      "Supabase",
+    ],
+    architecture:
+      "Frontend built with Next.js App Router, TanStack Query, Axios, and deployed on Vercel. Backend built with FastAPI, containerized with Docker, and deployed on Google Cloud Run. PostgreSQL as primary database, Redis for caching, and Cloudflare R2 for admin-uploaded product images.",
   },
   {
     title: "Automation Pipeline",
@@ -39,5 +79,22 @@ export const projects: Project[] = [
     images: ["/assets/centris/centris-1.png", "/assets/google_maps/maps-1.png"],
     year: "April, 2025",
     tags: ["Python", "Automation", "Scraping"],
+    role: "Fullstack Developer",
+    solution: "",
+    performance: [
+      "Optimized image loading using next/image",
+      "Reduced unnecessary rerenders",
+      "Implemented lazy loading and caching",
+    ],
+    challenges: "",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "TailwindCSS",
+    ],
+    architecture:
+      "Frontend built with Next.js App Router connected to FastAPI REST APIs with PostgreSQL database.",
   },
 ];

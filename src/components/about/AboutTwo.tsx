@@ -110,7 +110,7 @@ export default function AboutTwo() {
             }}
             className={`item-section h-svh flex sticky top-0 items-center justify-center text-white overflow-hidden border-4`}
           >
-            <div className="flex flex-col h-full items-center justify-center md:items-start lg:items-center w-full lg:w-1/2 gap-10 pl-5 pr-5 lg:pl-10 lg:pr-10 xl:pr-25 overflow-hidden">
+            <div className="flex flex-col h-full items-center justify-center md:items-start w-full lg:w-1/2 gap-10 pl-5 pr-5 lg:pl-10 lg:pr-10 xl:pr-25 overflow-hidden">
               <div className="flex flex-col overflow-hidden gap-2">
                 <motion.div
                   initial={{

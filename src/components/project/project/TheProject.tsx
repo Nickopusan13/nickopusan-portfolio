@@ -8,7 +8,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { AnimatedLink } from "../ui/AnimatedLink";
+import { AnimatedLink } from "../../ui/AnimatedLink";
+import { projects } from "@/utils/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 const MotionLink = motion.create(Link);
@@ -18,6 +19,7 @@ interface ProjectProps {
   title: string;
   description: string;
   subTitle: string;
+  slug: string;
 }
 
 export default function TheProject({
@@ -25,15 +27,27 @@ export default function TheProject({
   title,
   description,
   subTitle,
+  slug,
 }: ProjectProps) {
   const pinRef = useRef<HTMLDivElement>(null);
+  const currentIndex = projects.findIndex((project) => project.slug === slug);
+
+  const prevProject =
+    currentIndex > 0
+      ? projects[currentIndex - 1]
+      : projects[projects.length - 1];
+
+  const nextProject =
+    currentIndex < projects.length - 1
+      ? projects[currentIndex + 1]
+      : projects[0];
   useGSAP(() => {
     if (!pinRef.current) return;
 
     ScrollTrigger.create({
       trigger: pinRef.current,
       start: "top top",
-      end: "+=150%",
+      end: "+=100%",
       pin: true,
       pinSpacing: false,
       anticipatePin: 1,
@@ -56,7 +70,7 @@ export default function TheProject({
       </section>
       <section className="relative py-10 flex flex-col lg:flex-row justify-between z-10 px-2 xl:px-10 bg-amber-600 min-h-svh text-black gap-5 lg:gap-10 xl:gap-20">
         <div className="w-full lg:w-1/2">
-          <div className="flex sticky lg:h-screen top-0 items-center justify-center">
+          <div className="flex lg:sticky lg:h-screen top-0 items-center justify-center">
             <div className="relative flex w-full flex-col gap-6 rounded-tr-2xl md:rounded-tr-4xl rounded-bl-2xl md:rounded-bl-4xl border-2 lg:border-4 border-black bg-amber-300 p-2 font-black shadow-[5px_5px_0px_#000] lg:shadow-[10px_10px_0px_#000] sm:p-6 lg:p-7">
               <div
                 className="absolute -right-4 -top-5 rotate-6 rounded-tr-xl rounded-bl-xl
@@ -94,9 +108,9 @@ export default function TheProject({
                   BACK TO PROJECTS
                 </MotionLink>
               </div>
-              <div className="border-2 border-black w-full" />
-              <div className="flex flex-col gap-5">
-                <div className="flex flex-col gap-3">
+              <div className="hidden md:block border-2 border-black w-full" />
+              <div className="flex flex-col gap-4 lg:gap-5">
+                <div className="flex flex-col gap-2">
                   <p
                     className="w-fit -rotate-2 rounded-tr-xl rounded-bl-xl border-2 border-black
                     bg-orange-500 px-3 py-1 text-sm font-black shadow-[3px_3px_0px_#000]"
@@ -132,7 +146,7 @@ export default function TheProject({
                   newTab={false}
                   underline="bg-amber-700"
                   classname="cartoon-item"
-                  href="/"
+                  href={`/project/${prevProject.slug}`}
                 >
                   PREVIOUS
                 </AnimatedLink>
@@ -140,7 +154,7 @@ export default function TheProject({
                   newTab={false}
                   classname="cartoon-item"
                   underline="bg-amber-700"
-                  href="/"
+                  href={`/project/${nextProject.slug}`}
                 >
                   NEXT
                 </AnimatedLink>
@@ -149,17 +163,17 @@ export default function TheProject({
           </div>
         </div>
         <aside className="w-full lg:w-1/2 mt-0 lg:mt-20">
-          <div className="flex flex-col gap-5 md:gap-7 lg:gap-10">
+          <div className="lg:flex lg:flex-col grid grid-cols-2 gap-2 md:gap-7 lg:gap-10">
             {images.slice(1).map((src, idx) => {
               return (
                 <div
                   key={idx}
-                  className="block relative w-full h-50 md:h-90 xl:h-100"
+                  className="block relative w-full h-30 md:h-60 xl:h-100"
                 >
                   <Image
                     src={src}
                     alt={title}
-                    className="shadow-[12px_12px_0px_#000] object-cover overflow-hidden rounded-tr-2xl rounded-bl-2xl md:rounded-tr-4xl md:rounded-bl-4xl border-2 md:border-4 border-black bg-amber-200 p-1 md:p-2"
+                    className="shadow-[3px_3px_0px_#000] lg:shadow-[12px_12px_0px_#000] object-cover overflow-hidden rounded-tr-2xl rounded-bl-2xl md:rounded-tr-4xl md:rounded-bl-4xl border-2 md:border-4 border-black bg-amber-200 p-1 md:p-2"
                     fill
                   />
                 </div>
