@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaLongArrowAltRight } from "react-icons/fa";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const item = [
   {
@@ -37,72 +31,6 @@ const item = [
 ];
 
 export default function SecTwoProject() {
-  const scrollSection = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  useGSAP(
-    () => {
-      if (!scrollSection.current) return;
-
-      const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
-      if (!cards.length) return;
-
-      const mm = gsap.matchMedia();
-
-      mm.add("(min-width: 769px)", () => {
-        gsap.set(cards, {
-          position: "absolute",
-          yPercent: 120,
-          zIndex: (i) => i + 1,
-        });
-
-        gsap.set(cards[0], {
-          yPercent: 0,
-          scale: 1,
-        });
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: scrollSection.current,
-            start: "top top",
-            end: `+=${(cards.length - 1) * 100}%`,
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        cards.slice(1).forEach((card, i) => {
-          const previousCard = cards[i];
-
-          tl.to(
-            previousCard,
-            {
-              yPercent: 5,
-              duration: 0.6,
-              ease: "none",
-            },
-            i,
-          ).to(
-            card,
-            {
-              yPercent: 5,
-              duration: 0.6,
-              ease: "none",
-            },
-            i,
-          );
-        });
-      });
-
-      return () => {
-        mm.revert();
-      };
-    },
-    {
-      scope: scrollSection,
-    },
-  );
   return (
     <section className="relative min-h-svh w-full overflow-hidden bg-amber-500 text-black border-y-4 border-black">
       <div className="relative z-10 px-3 py-5 md:px-5 md:py-8 xl:px-10 lg:py-16">
@@ -150,19 +78,13 @@ export default function SecTwoProject() {
             />
           </motion.div>
         </div>
-        <div
-          ref={scrollSection}
-          className="relative mt-8 md:mt-10 flex flex-col gap-8 lg:gap-10 lg:block lg:h-[80svh]"
-        >
+        <div className="relative mt-8 md:mt-10 lg:gap-10 flex flex-col">
           {item.map((item, idx) => {
             const number = idx + 1;
             return (
               <div
-                ref={(el) => {
-                  cardRefs.current[idx] = el;
-                }}
                 key={idx}
-                className={`grid w-full grid-cols-1 gap-4 lg:gap-6 md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-400 p-3 shadow-[7px_7px_0px_#000] md:shadow-[10px_10px_0px_#000] lg:absolute lg:left-0 lg:top-0 lg:h-full lg:flex xl:grid xl:grid-cols-[20%_1fr_30%] md:p-8`}
+                className={`grid w-full grid-cols-1 gap-4 lg:gap-6 md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-400 p-3 shadow-[7px_7px_0px_#000] md:shadow-[10px_10px_0px_#000] lg:flex xl:grid xl:grid-cols-[20%_1fr_30%] md:p-8`}
               >
                 <div className="flex lg:w-fit xl:w-full items-start border-b-3 border-black pb-4 lg:border-b-0 lg:border-r-4 lg:pb-0 lg:pr-5">
                   <span className=" flex size-10 md:size-20 items-center justify-center md:rounded-tr-2xl rounded-tr-xl rounded-bl-xl md:rounded-bl-2xl border-3 md:border-4 border-black bg-orange-500 text-2xl md:text-5xl font-black text-black shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]">
@@ -181,34 +103,6 @@ export default function SecTwoProject() {
                   <p className="lg:max-w-3xl text-base font-bold text-justify lg:text-start leading-relaxed text-black/75 md:text-lg">
                     {item.description}
                   </p>
-                  <motion.button
-                    whileHover={{
-                      scale: 1.06,
-                      x: -4,
-                      y: -4,
-                      rotate: -2,
-                      boxShadow: "8px 8px 0px #000",
-                    }}
-                    whileTap={{
-                      scale: 0.94,
-                      x: 2,
-                      y: 2,
-                      rotate: 0,
-                      boxShadow: "2px 2px 0px #000",
-                    }}
-                    whileInView={{ boxShadow: "4px 4px 0px #000" }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 18,
-                    }}
-                    className="flex w-fit cursor-pointer items-center gap-2 md:gap-3 rounded-tr-xl rounded-bl-xl border-2 border-black bg-amber-200 px-3 py-2 md:px-5 md:py-3 text-lg font-black text-black"
-                  >
-                    <span>Learn More</span>
-                    <span>
-                      <FaLongArrowAltRight />
-                    </span>
-                  </motion.button>
                 </div>
                 <motion.div
                   whileHover={{
