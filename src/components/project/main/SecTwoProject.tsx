@@ -78,7 +78,7 @@ export default function SecTwoProject() {
             />
           </motion.div>
         </div>
-        <div className="relative mt-8 md:mt-10 lg:gap-10 flex flex-col">
+        <div className="relative mt-8 md:mt-10 gap-7 lg:gap-10 flex flex-col">
           {item.map((item, idx) => {
             const number = idx + 1;
             return (
@@ -87,7 +87,7 @@ export default function SecTwoProject() {
                 className={`grid w-full grid-cols-1 gap-4 lg:gap-6 md:rounded-tr-4xl rounded-tr-2xl rounded-bl-2xl md:rounded-bl-4xl border-3 md:border-4 border-black bg-amber-400 p-3 shadow-[7px_7px_0px_#000] md:shadow-[10px_10px_0px_#000] lg:flex xl:grid xl:grid-cols-[20%_1fr_30%] md:p-8`}
               >
                 <div className="flex lg:w-fit xl:w-full items-start border-b-3 border-black pb-4 lg:border-b-0 lg:border-r-4 lg:pb-0 lg:pr-5">
-                  <span className=" flex size-10 md:size-20 items-center justify-center md:rounded-tr-2xl rounded-tr-xl rounded-bl-xl md:rounded-bl-2xl border-3 md:border-4 border-black bg-orange-500 text-2xl md:text-5xl font-black text-black shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]">
+                  <span className=" flex size-10 md:size-17 lg:size-20 items-center justify-center md:rounded-tr-2xl rounded-tr-xl rounded-bl-xl md:rounded-bl-2xl border-3 md:border-4 border-black bg-orange-500 text-2xl md:text-4xl lg:text-5xl  font-black text-black shadow-[3px_3px_0px_#000] md:shadow-[5px_5px_0px_#000]">
                     {number}
                   </span>
                 </div>
